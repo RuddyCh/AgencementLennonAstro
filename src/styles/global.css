@@ -1,0 +1,397 @@
+/* ============================================================
+   global.css — Agencement Lennon
+   Styles de base, custom properties, utilitaires non-Tailwind
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── 1. CUSTOM PROPERTIES ───────────────────────────────────── */
+@layer base {
+  :root {
+    --navy:       #0D1F3C;
+    --navy-light: #162E56;
+    --oak:        #C4955A;
+    --oak-light:  #DDB97A;
+    --cream:      #FAF8F4;
+    --cream-warm: #F2EDE4;
+    --stone:      #7A7469;
+    --radius:     6px;
+    --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream text-navy font-sans;
+    overflow-x: hidden;
+  }
+
+  /* Accessibility */
+  :focus-visible {
+    outline: 2px solid var(--oak);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Skip link */
+  .skip-link {
+    @apply fixed -top-20 left-4 z-[9999] bg-oak text-white px-4 py-2 text-sm font-sans rounded;
+    transition: top 0.2s;
+  }
+  .skip-link:focus {
+    @apply top-4;
+  }
+}
+
+/* ── 2. TYPOGRAPHY ──────────────────────────────────────────── */
+@layer base {
+  h1, h2, h3, h4, h5 {
+    @apply font-serif font-semibold;
+  }
+  em {
+    @apply text-oak not-italic;
+  }
+  p {
+    @apply leading-relaxed;
+  }
+  a {
+    @apply transition-colors duration-300;
+  }
+}
+
+/* ── 3. COMPOSANTS RÉUTILISABLES ────────────────────────────── */
+@layer components {
+
+  /* Container */
+  .container {
+    @apply w-full max-w-content mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Boutons */
+  .btn {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 text-sm font-sans font-medium tracking-wide
+           rounded-sm transition-all duration-300 ease-luxury cursor-pointer border;
+  }
+  .btn-primary {
+    @apply btn bg-oak border-oak text-white
+           hover:bg-oak-dark hover:border-oak-dark hover:shadow-luxury;
+  }
+  .btn-outline {
+    @apply btn border-white/60 text-white bg-transparent
+           hover:bg-white/10 hover:border-white;
+  }
+  .btn-outline-dark {
+    @apply btn border-navy/40 text-navy bg-transparent
+           hover:bg-navy hover:text-cream hover:border-navy;
+  }
+  .btn-ghost {
+    @apply btn border-transparent text-oak bg-transparent px-0
+           hover:gap-3;
+  }
+
+  /* Section layout */
+  .section {
+    @apply py-section;
+  }
+  .section-alt {
+    @apply bg-cream-warm;
+  }
+  .section-dark {
+    @apply bg-navy text-cream;
+  }
+
+  /* Section headings */
+  .section-eyebrow {
+    @apply block text-oak font-sans text-xs font-medium tracking-[0.2em] uppercase mb-4;
+  }
+  .section-title {
+    @apply font-serif text-h2 text-navy mb-3;
+  }
+  .section-title em {
+    @apply text-oak;
+  }
+  .section-ornament {
+    @apply block w-14 h-px bg-oak mb-8;
+  }
+  .section-subtitle {
+    @apply font-sans text-body-lg text-stone max-w-prose-xl mb-12;
+  }
+
+  /* Ornamental line */
+  .ornament-line {
+    @apply w-14 h-px bg-oak block;
+  }
+
+  /* ── GSAP reveal classes — état initial ─────────────────────
+   * CRITIQUE : tous les états "invisible" sont conditionnés à .js-enabled.
+   * Si JS est absent, lent, ou planté → le contenu reste visible (opacity:1).
+   * Progressive enhancement : le site est lisible sans JS, animé avec JS.
+   * ─────────────────────────────────────────────────────────── */
+
+  /* hero-reveal : visibility pour ne pas bloquer le LCP de l'image hero */
+  :global(.js-enabled) .hero-reveal {
+    visibility: hidden;
+  }
+  /* reveal, reveal-scale, reveal-left : masquage opacity + transform */
+  :global(.js-enabled) .reveal {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  :global(.js-enabled) .reveal-scale {
+    opacity: 0;
+    transform: scale(0.95);
+    transform-origin: center;
+  }
+  :global(.js-enabled) .reveal-left {
+    opacity: 0;
+    transform: translateX(-3rem);
+  }
+  :global(.js-enabled) .reveal-clip {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  /* ── Curseur personnalisé ─────────────────────────────────── */
+  .custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: var(--oak);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: normal;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s cubic-bezier(0.16,1,0.3,1),
+                height 0.25s cubic-bezier(0.16,1,0.3,1),
+                background 0.25s ease,
+                opacity 0.3s ease;
+    opacity: 0; /* Caché tant que la souris n'a pas bougé */
+  }
+  .custom-cursor.cursor-active { opacity: 1; }
+  .custom-cursor.cursor-gallery {
+    width: 54px;
+    height: 54px;
+    background: var(--oak);
+    /* Icône loupe en SVG encodée */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .custom-cursor.cursor-link {
+    width: 36px;
+    height: 36px;
+    background: var(--navy);
+    mix-blend-mode: multiply;
+  }
+  /* Masquer le curseur natif sur desktop */
+  @media (pointer: fine) {
+    body.cursor-ready * { cursor: none !important; }
+  }
+
+  /* Form elements */
+  .form-group {
+    @apply flex flex-col gap-1.5;
+  }
+  .form-label {
+    @apply text-sm font-medium text-navy/80 font-sans;
+  }
+  .form-input {
+    @apply w-full border border-cream-dark bg-white rounded-sm px-4 py-3
+           text-sm font-sans text-navy placeholder:text-stone/60
+           focus:outline-none focus:border-oak focus:ring-1 focus:ring-oak/30
+           transition-colors duration-200;
+  }
+  .form-select {
+    @apply form-input appearance-none cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%237A7469' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+  .form-textarea {
+    @apply form-input resize-y min-h-[8rem];
+  }
+
+  /* Service card */
+  .service-card {
+    @apply bg-white rounded-sm border border-cream-dark p-8 flex flex-col gap-4
+           hover:shadow-luxury hover:-translate-y-1 transition-all duration-300 ease-luxury;
+  }
+
+  /* Gallery */
+  .gallery-item {
+    @apply relative overflow-hidden rounded-sm cursor-pointer block;
+  }
+  .gallery-item img {
+    @apply w-full h-full object-cover transition-transform duration-700 ease-luxury;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.04);
+  }
+  .gallery-caption {
+    @apply absolute bottom-0 left-0 right-0 py-4 px-5
+           bg-gradient-to-t from-navy/80 to-transparent
+           translate-y-full transition-transform duration-300 ease-luxury;
+  }
+  .gallery-item:hover .gallery-caption {
+    @apply translate-y-0;
+  }
+  .gallery-caption span {
+    @apply text-sm font-sans text-white;
+  }
+
+  /* Cookie banner */
+  .cookie-banner {
+    @apply fixed bottom-0 left-0 right-0 z-[2000] bg-navy text-white
+           border-t-2 border-oak/40 shadow-luxury-lg;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cookie-banner.show {
+    transform: translateY(0);
+  }
+
+  /* Lightbox */
+  .lightbox-overlay {
+    @apply fixed inset-0 z-[3000] bg-navy/95 backdrop-blur-sm
+           flex items-center justify-center opacity-0 pointer-events-none
+           transition-opacity duration-300;
+  }
+  .lightbox-overlay.open {
+    @apply opacity-100 pointer-events-auto;
+  }
+  .lightbox-img-wrap {
+    @apply relative max-w-[90vw] max-h-[90vh];
+  }
+  .lightbox-img-wrap img {
+    @apply max-w-[90vw] max-h-[85vh] object-contain rounded-sm shadow-luxury-lg;
+  }
+  .lightbox-btn {
+    @apply absolute top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center
+           bg-white/10 hover:bg-white/20 text-white text-xl rounded-full
+           transition-colors duration-200 cursor-pointer border border-white/20;
+  }
+  .lightbox-close-btn {
+    @apply absolute -top-12 right-0 w-10 h-10 flex items-center justify-center
+           bg-white/10 hover:bg-white/20 text-white rounded-full
+           transition-colors duration-200 cursor-pointer border border-white/20;
+  }
+}
+
+/* ── 4. HEADER ──────────────────────────────────────────────── */
+.site-header {
+  @apply fixed top-0 left-0 right-0 z-50;
+  transition: background var(--transition), box-shadow var(--transition),
+              backdrop-filter var(--transition);
+}
+.site-header.scrolled {
+  @apply shadow-luxury bg-navy/95;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── 5. MOBILE NAV ──────────────────────────────────────────── */
+.mobile-nav {
+  @apply fixed inset-0 z-40 bg-navy flex flex-col items-center justify-center gap-8
+         opacity-0 pointer-events-none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-nav.open {
+  @apply opacity-100 pointer-events-auto;
+}
+.mobile-nav a {
+  @apply text-2xl font-serif text-cream hover:text-oak transition-colors duration-200;
+}
+
+/* ── 6. HERO ────────────────────────────────────────────────── */
+.hero {
+  @apply relative min-h-screen flex items-center overflow-hidden;
+}
+.hero-bg {
+  @apply absolute inset-0;
+}
+.hero-bg img {
+  @apply w-full h-full object-cover;
+}
+.hero-overlay {
+  @apply absolute inset-0 bg-gradient-to-br from-navy/85 via-navy/70 to-navy/50;
+}
+.hero-inner {
+  @apply relative z-10 pt-24 pb-16;
+}
+
+/* ── 7. ABOUT GRID ──────────────────────────────────────────── */
+.about-image-wrap {
+  @apply relative overflow-hidden rounded-sm;
+}
+.about-image-main {
+  @apply rounded-sm object-cover w-full shadow-luxury-lg;
+  aspect-ratio: 4/5;
+}
+.about-badge {
+  @apply absolute -bottom-6 -right-6 bg-oak text-white w-28 h-28
+         rounded-full flex flex-col items-center justify-center text-center
+         shadow-luxury border-4 border-cream;
+}
+
+/* ── 8. CONTACT MAP ─────────────────────────────────────────── */
+.map-wrap iframe {
+  @apply w-full h-72 sm:h-96 rounded-sm border-0 shadow-luxury;
+}
+
+/* ── 9. FOOTER ──────────────────────────────────────────────── */
+.footer-top-bar {
+  @apply h-1 bg-gradient-to-r from-oak via-oak-light to-oak;
+}
+
+/* ── 10. LEGAL PAGES ────────────────────────────────────────── */
+.legal-page main {
+  @apply py-24;
+}
+.legal-page h1 {
+  @apply text-h1 mb-10 pb-6 border-b border-cream-dark;
+}
+.legal-page h2 {
+  @apply text-xl font-serif text-navy mt-10 mb-3;
+}
+.legal-page p, .legal-page li {
+  @apply text-stone leading-relaxed mb-3;
+}
+.legal-page section {
+  @apply mb-10;
+}
+
+/* ── 11. PRINT ──────────────────────────────────────────────── */
+@media print {
+  .site-header, .cookie-banner, .mobile-nav { display: none; }
+  .hero { min-height: auto; }
+}
+
+/* ── 12. RÉDUCTION DE MOUVEMENT ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  /* Forcer la visibilité même si .js-enabled est présent */
+  :global(.js-enabled) .hero-reveal {
+    visibility: visible !important;
+  }
+  :global(.js-enabled) .reveal,
+  :global(.js-enabled) .reveal-scale,
+  :global(.js-enabled) .reveal-left {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  :global(.js-enabled) .reveal-clip {
+    clip-path: none !important;
+  }
+}

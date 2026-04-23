@@ -1,0 +1,282 @@
+---
+/**
+ * /services/bardage-exterieur-landivisiau/
+ * Cibles SEO : "bardage extérieur Landivisiau", "bardage bois Finistère",
+ *              "habillage façade Bretagne", "bardage composite 29"
+ */
+import Layout  from '../../layouts/Layout.astro';
+import Navbar  from '../../components/Navbar.astro';
+import Footer  from '../../components/Footer.astro';
+import CookieBanner from '../../components/CookieBanner.astro';
+import { Image } from 'astro:assets';
+import heroBg from '../../assets/images/hero-fond-bois-bleu.jpg';
+
+const serviceJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Bardage extérieur en Finistère",
+  "description": "Pose de bardage bois, composite et fibrociment pour façades et extensions à Landivisiau et dans tout le Finistère. Matériaux adaptés au climat breton. Agencement Lennon.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Agencement Lennon",
+    "telephone": "+33767426234",
+    "address": { "@type": "PostalAddress", "streetAddress": "11 rue des Cols-Verts", "addressLocality": "Landivisiau", "postalCode": "29400", "addressCountry": "FR" }
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Landivisiau" },
+    { "@type": "City", "name": "Brest" },
+    { "@type": "City", "name": "Morlaix" },
+    { "@type": "AdministrativeArea", "name": "Finistère" }
+  ]
+});
+
+const faq = [
+  {
+    q: "Quel bardage résiste le mieux au climat breton ?",
+    a: "En Bretagne, le composite et le fibrociment sont les plus durables : imperméables, résistants aux vents chargés en sel, sans entretien. Le bois naturel (red cedar, mélèze, douglas) est aussi adapté avec un traitement initial et un entretien tous les 3 à 5 ans. Nous conseillons selon votre exposition et votre budget.",
+  },
+  {
+    q: "Faut-il un permis pour poser un bardage ?",
+    a: "Un bardage modifiant l'aspect extérieur de la maison nécessite généralement une déclaration préalable de travaux. En zone protégée (ABF), les règles sont plus strictes. Nous vous informons lors de la visite.",
+  },
+  {
+    q: "Posez-vous aussi les isolants sous le bardage ?",
+    a: "Oui, nous travaillons en coordination avec les artisans isolation ou pouvons intégrer le complexe isolant + bardage selon vos besoins. Un bardage ventilé bien posé améliore sensiblement le bilan thermique.",
+  },
+  {
+    q: "Quelles sont les orientations les plus adaptées au bardage ?",
+    a: "Toutes les façades peuvent être bardées. Les façades nord et ouest (plus exposées en Bretagne) bénéficient particulièrement du composite ou du fibrociment pour leur imperméabilité totale.",
+  },
+  {
+    q: "Réalisez-vous des habillages de colonnes ou de murets ?",
+    a: "Oui, nous réalisons tous types d'habillages extérieurs : colonnes, piliers de portail, murets, soubassements, extensions et garages.",
+  },
+];
+---
+
+<Layout
+  title="Bardage extérieur Finistère — Pose Landivisiau | Agencement Lennon"
+  description="Bardage bois, composite et fibrociment en Finistère. Façades, extensions, habillages. Artisan à Landivisiau. Matériaux adaptés au climat breton. Devis gratuit."
+  canonical="https://www.agencementlennon.fr/services/bardage-exterieur-landivisiau/"
+  isHome={false}
+>
+  <script type="application/ld+json" set:html={serviceJsonLd} slot="head" />
+  <Navbar />
+
+  <main id="contenu">
+
+    <section class="relative bg-navy overflow-hidden pt-36 pb-20">
+      <!-- Image bois en fond — même traitement que le hero principal -->
+      <div class="absolute inset-0" aria-hidden="true">
+        <Image
+          src={heroBg}
+          alt=""
+          class="w-full h-full object-cover object-center"
+          widths={[768, 1280]}
+          sizes="100vw"
+          quality={70}
+          loading="eager"
+        />
+        <!-- Overlay navy profond pour lisibilité du texte -->
+        <div class="absolute inset-0 bg-navy/80"></div>
+        <!-- Dégradé bas pour transition douce vers le contenu -->
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-navy to-transparent"></div>
+      </div>
+      <div class="absolute inset-0 bg-grain opacity-10 pointer-events-none" aria-hidden="true"></div>
+      <div class="container relative">
+        <nav class="mb-8" aria-label="Fil d'Ariane">
+          <ol class="flex items-center gap-2 text-xs font-sans text-cream/40" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/" class="hover:text-cream/70 transition-colors" itemprop="item"><span itemprop="name">Accueil</span></a><meta itemprop="position" content="1" /></li>
+            <li aria-hidden="true"><span class="text-oak/40">›</span></li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/services/" class="hover:text-cream/70 transition-colors" itemprop="item"><span itemprop="name">Services</span></a><meta itemprop="position" content="2" /></li>
+            <li aria-hidden="true"><span class="text-oak/40">›</span></li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span class="text-cream/70" itemprop="name">Bardage extérieur</span><meta itemprop="position" content="3" /></li>
+          </ol>
+        </nav>
+        <div class="max-w-3xl">
+          <span class="section-eyebrow" style="color: var(--oak-light)">Aménagement extérieur</span>
+          <h1 class="font-serif text-h1 text-cream mt-3 mb-6 leading-tight">
+            Bardage extérieur<br>
+            <em class="text-oak not-italic">en Finistère</em>
+          </h1>
+          <p class="font-sans text-body-lg text-cream/70 max-w-2xl leading-relaxed mb-10">
+            Façade rénovée, extension habillée, maison transformée. Agencement Lennon pose des bardages
+            bois, composite et fibrociment adaptés au climat finistérien — vent, pluie, sel marin —
+            avec les fixations et les ventilations qui font la différence sur le long terme.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/#contact" class="btn-primary">Demander un devis gratuit</a>
+            <a href="tel:+33767426234" class="btn-outline">07 67 42 62 34</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="bg-cream-warm">
+      <div class="container py-0">
+        <div class="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden shadow-luxury-lg -mt-8 lg:-mt-12 relative z-10">
+          <div class="aspect-[4/3] bg-navy/10 flex items-center justify-center min-h-[280px]">
+            <p class="font-sans text-xs text-navy/30 text-center p-8">Photo bardage façade ici<br><code class="text-[0.65rem] opacity-50">bardage-facade-finistere.jpg</code></p>
+          </div>
+          <div class="aspect-[4/3] bg-cream-dark flex items-center justify-center min-h-[280px]">
+            <p class="font-sans text-xs text-navy/30 text-center p-8">Photo extension bardée ici<br><code class="text-[0.65rem] opacity-50">extension-bardage-detail.jpg</code></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section bg-cream-warm">
+      <div class="container">
+        <div class="grid lg:grid-cols-3 gap-16">
+          <div class="lg:col-span-2">
+            <h2 class="font-serif text-h2 text-navy mb-6 reveal">Un bardage pensé<br><em>pour le Finistère</em></h2>
+            <div class="ornament-line reveal-clip mb-8"></div>
+            <div class="space-y-5 font-sans text-stone leading-relaxed reveal">
+              <p>Le bardage n'est pas qu'esthétique : c'est une protection. En Finistère, les conditions météorologiques sont parmi les plus sévères de France. Un bardage mal posé ou mal choisi se dégrade rapidement, et les réparations coûtent cher.</p>
+              <p>Chez Agencement Lennon, nous sélectionnons les matériaux selon votre exposition, nous soignons la ventilation derrière le bardage (essentielle pour éviter condensation et pourriture), et nous fixons avec des systèmes inox pour tenir sur la durée sans taches de rouille.</p>
+              <p>Qu'il s'agisse de rénover une façade vieillissante, d'habiller une extension neuve ou de créer un bardage contemporain sur une maison ancienne — nous étudions chaque projet pour un résultat qui tient dans le temps.</p>
+            </div>
+
+            <!-- Matériaux -->
+            <div class="mt-12 reveal">
+              <h3 class="font-serif text-h3 text-navy mb-6">Matériaux disponibles</h3>
+              <div class="space-y-4">
+                {[
+                  {
+                    name: 'Bardage bois naturel',
+                    items: ['Red cedar (très résistant aux intempéries)', 'Douglas (bois français, PEFC)', 'Mélèze (naturellement imputrescible)', 'Pin traité autoclave classe 3'],
+                    pros: 'Aspect chaleureux, biodégradable, travaillable',
+                    cons: 'Entretien régulier recommandé (3–5 ans)',
+                  },
+                  {
+                    name: 'Bardage composite',
+                    items: ['Fibres bois + polymère', 'Imputrescible, sans entretien annuel', 'Anti-dérapant, résistant UV', 'Large palette de teintes et textures'],
+                    pros: 'Durabilité maximale, zéro entretien, aspect bois',
+                    cons: 'Coût initial plus élevé que le bois',
+                  },
+                  {
+                    name: 'Fibrociment',
+                    items: ['Planches à recouvrement ou panneaux', 'Imperméable, ininflammable', 'Aspect bois ou lisse selon modèle', 'Garanti 15 à 50 ans selon fabricant'],
+                    pros: 'Excellent rapport durabilité/prix, très résistant',
+                    cons: 'Aspect moins "naturel" que le bois massif',
+                  },
+                ].map(mat => (
+                  <div class="bg-white border border-cream-dark rounded-sm p-6">
+                    <h4 class="font-serif text-lg text-navy mb-3">{mat.name}</h4>
+                    <ul class="space-y-1 mb-4">
+                      {mat.items.map(item => (
+                        <li class="font-sans text-sm text-stone flex items-start gap-2">
+                          <span class="text-oak mt-0.5">—</span>{item}
+                        </li>
+                      ))}
+                    </ul>
+                    <div class="flex gap-4 text-xs font-sans border-t border-cream-dark pt-3">
+                      <span class="text-green-700">✓ {mat.pros}</span>
+                      <span class="text-stone">△ {mat.cons}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <aside class="reveal-left">
+            <div class="bg-navy rounded-sm p-7 text-cream sticky top-28">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-oak rounded-l-sm" aria-hidden="true"></div>
+              <p class="font-serif text-xl text-cream mb-1">Un projet de bardage ?</p>
+              <p class="font-sans text-sm text-cream/60 mb-6">Devis gratuit · Finistère · 48h</p>
+              <a href="/#contact" class="btn-primary w-full justify-center mb-3 text-sm">Demander un devis</a>
+              <a href="tel:+33767426234" class="btn-outline w-full justify-center text-sm">07 67 42 62 34</a>
+              <div class="mt-6 pt-6 border-t border-white/10 space-y-2">
+                {['Visite gratuite sur site', 'Matériaux adaptés au climat breton', 'Fixations inox anti-corrosion', 'Ventilation soignée', 'Tout le Finistère (29)'].map(item => (
+                  <div class="flex items-center gap-2.5">
+                    <svg class="w-4 h-4 text-oak flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    <span class="font-sans text-xs text-cream/70">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-6 bg-cream-warm border border-cream-dark rounded-sm p-6">
+              <p class="font-sans text-xs tracking-widest uppercase text-stone mb-4">Autres services</p>
+              <nav class="flex flex-col gap-2">
+                {[
+                  { href: '/services/cuisine-sur-mesure-finistere/', label: 'Cuisine sur mesure' },
+                  { href: '/services/terrasse-bois-composite-finistere/', label: 'Terrasse bois & composite' },
+                  { href: '/services/dressing-rangements-sur-mesure/', label: 'Dressing & rangements' },
+                ].map(s => (
+                  <a href={s.href} class="font-sans text-sm text-stone hover:text-navy flex items-center gap-2 group transition-colors duration-200">
+                    <span class="w-4 h-px bg-oak/30 group-hover:w-6 group-hover:bg-oak transition-all duration-300" aria-hidden="true"></span>{s.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-cream" aria-labelledby="faq-title">
+      <div class="container max-w-3xl">
+        <span class="section-eyebrow reveal">Questions fréquentes</span>
+        <h2 class="section-title reveal" id="faq-title">Bardage — <em>FAQ</em></h2>
+        <div class="ornament-line reveal-clip mt-4 mb-10"></div>
+        <script type="application/ld+json" set:html={JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": faq.map(f => ({ "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.a } })) })} />
+        <dl class="space-y-4 stagger-parent">
+          {faq.map(item => (
+            <div class="stagger-child bg-white border border-cream-dark rounded-sm overflow-hidden">
+              <dt><button class="faq-btn w-full flex items-center justify-between gap-4 p-6 text-left font-serif text-navy hover:text-oak transition-colors duration-200" aria-expanded="false">
+                <span class="text-base leading-snug">{item.q}</span>
+                <svg class="faq-icon w-5 h-5 flex-shrink-0 text-oak transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button></dt>
+              <dd class="faq-answer hidden px-6 pb-6 font-sans text-sm text-stone leading-relaxed">{item.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="section bg-navy relative overflow-hidden">
+      <!-- Fond texture bois -->
+      <div class="absolute inset-0 bg-grain opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+      <!-- Coins décoratifs -->
+      <div class="absolute top-8 left-8 w-12 h-12 border-t border-l border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute top-8 right-8 w-12 h-12 border-t border-r border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-8 left-8 w-12 h-12 border-b border-l border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-8 right-8 w-12 h-12 border-b border-r border-oak/30 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="container relative text-center">
+        <!-- Ornement centré -->
+        <div class="flex items-center justify-center gap-4 mb-8 reveal" aria-hidden="true">
+          <div class="h-px w-16 bg-gradient-to-r from-transparent to-oak/50"></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--oak)" opacity="0.6">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          <div class="h-px w-16 bg-gradient-to-l from-transparent to-oak/50"></div>
+        </div>
+
+        <h2 class="font-serif text-h2 text-cream mb-4 reveal">Votre façade mérite<br><em>mieux que le provisoire</em></h2>
+        <p class="font-sans text-body-lg text-cream/60 max-w-xl mx-auto mb-10 reveal">
+          Visite gratuite et sans engagement. Tout le Finistère.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center reveal">
+          <a href="/#contact" class="btn-primary px-10 py-4">Demander un devis gratuit</a>
+          <a href="tel:+33767426234" class="btn-outline px-10 py-4">07 67 42 62 34</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer /><CookieBanner />
+</Layout>
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      btn.closest('div')?.querySelector('.faq-answer')?.classList.toggle('hidden', expanded);
+      const icon = btn.querySelector('.faq-icon') as HTMLElement | null;
+      if (icon) icon.style.transform = expanded ? '' : 'rotate(180deg)';
+    });
+  });
+</script>

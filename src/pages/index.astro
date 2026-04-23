@@ -1,0 +1,39 @@
+---
+/**
+ * index.astro — Page d'accueil Agencement Lennon
+ * Assemblage des composants avec Layout
+ * SSG (Static Site Generation) par défaut avec Astro
+ */
+
+import Layout      from '../layouts/Layout.astro';
+import Navbar      from '../components/Navbar.astro';
+import Hero        from '../components/Hero.astro';
+import Services    from '../components/Services.astro';
+import Gallery     from '../components/Gallery.astro';
+import Testimonials from '../components/Testimonials.astro';
+import About       from '../components/About.astro';
+import Contact     from '../components/Contact.astro';
+import Footer      from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+---
+
+<Layout
+  title="Agencement Lennon | Menuiserie sur mesure à Landivisiau – La qualité par passion"
+  description="Agencement Lennon, menuiserie intérieure & extérieure sur mesure à Landivisiau (29). Cuisines, dressings, parquets, terrasses, bardages. Devis gratuit. La qualité par passion."
+  canonical="https://www.agencementlennon.fr/"
+  isHome={true}
+>
+  <Navbar />
+
+  <main id="contenu">
+    <Hero />
+    <Services />
+    <Gallery />
+    <Testimonials />
+    <About />
+    <Contact />
+  </main>
+
+  <Footer />
+  <CookieBanner />
+</Layout>

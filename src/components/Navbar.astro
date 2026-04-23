@@ -1,0 +1,335 @@
+---
+/**
+ * Navbar.astro — Header fixe avec logo, navigation desktop/mobile
+ * Gestion scroll : fond transparent → navy/opaque
+ * Menu mobile : overlay plein écran avec animation
+ */
+---
+
+<header class="site-header" id="site-header">
+  <div class="container">
+    <div class="flex items-center justify-between h-20">
+
+      <!-- LOGO + BRAND -->
+      <a href="/" class="brand flex items-center gap-3 z-50" aria-label="Accueil — Agencement Lennon">
+        <img
+          src="/images/logo-lennon.png"
+          alt="Logo Agencement Lennon"
+          class="w-10 h-10 object-contain"
+          width="40" height="40"
+        />
+        <div class="flex flex-col">
+          <span class="font-serif text-lg leading-tight text-cream font-semibold tracking-tight">
+            Agencement Lennon
+          </span>
+          <span class="text-[0.65rem] font-sans tracking-[0.2em] uppercase text-oak-light leading-none">
+            La qualité par passion
+          </span>
+        </div>
+      </a>
+
+      <!-- NAV DESKTOP -->
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Navigation principale">
+
+        <!-- Lien Accueil (ancre hero) -->
+        <a href="/#hero"
+           class="nav-link font-sans text-sm text-cream/80 hover:text-cream tracking-wide
+                  transition-colors duration-200 relative group">
+          Accueil
+          <span class="absolute -bottom-1 left-0 h-px w-0 bg-oak group-hover:w-full
+                       transition-all duration-300 ease-luxury"></span>
+        </a>
+
+        <!-- Dropdown Services -->
+        <div class="relative group/services">
+          <button
+            class="nav-link font-sans text-sm text-cream/80 hover:text-cream tracking-wide
+                   transition-colors duration-200 relative flex items-center gap-1.5
+                   group-hover/services:text-cream"
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="services-menu-btn"
+          >
+            Services
+            <svg class="w-3.5 h-3.5 opacity-60 transition-transform duration-200
+                        group-hover/services:rotate-180"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                 aria-hidden="true">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+            <span class="absolute -bottom-1 left-0 h-px w-0 bg-oak group-hover/services:w-full
+                         transition-all duration-300 ease-luxury"></span>
+          </button>
+
+          <!-- Panneau dropdown -->
+          <div
+            id="services-dropdown"
+            class="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-72
+                   bg-navy border border-white/10 rounded-sm shadow-luxury-lg
+                   opacity-0 invisible translate-y-2
+                   group-hover/services:opacity-100 group-hover/services:visible
+                   group-hover/services:translate-y-0
+                   transition-all duration-200 ease-luxury z-50"
+            role="menu"
+            aria-labelledby="services-menu-btn"
+          >
+            <!-- Flèche décorative -->
+            <div class="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3
+                        bg-navy border-l border-t border-white/10 rotate-45"
+                 aria-hidden="true"></div>
+
+            <div class="p-2">
+              {[
+                { href: '/services/', label: 'Tous nos services', sub: 'Vue d\'ensemble', icon: 'M4 6h16M4 10h16M4 14h16M4 18h7' },
+                { href: '/services/cuisine-sur-mesure-finistere/', label: 'Cuisine sur mesure', sub: 'Menuiserie intérieure', icon: 'M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9' },
+                { href: '/services/terrasse-bois-composite-finistere/', label: 'Terrasse bois & composite', sub: 'Aménagement extérieur', icon: 'M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z' },
+                { href: '/services/dressing-rangements-sur-mesure/', label: 'Dressing & rangements', sub: 'Menuiserie intérieure', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3' },
+                { href: '/services/bardage-exterieur-landivisiau/', label: 'Bardage extérieur', sub: 'Aménagement extérieur', icon: 'M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z' },
+              ].map(({ href, label, sub, icon }, i) => (
+                <a
+                  href={href}
+                  class={`flex items-center gap-3 px-4 py-3 rounded-sm text-cream/70
+                          hover:text-cream hover:bg-white/5 transition-all duration-150
+                          ${i === 0 ? 'border-b border-white/10 mb-1' : ''}`}
+                  role="menuitem"
+                >
+                  <div class="w-8 h-8 flex items-center justify-center bg-white/5 rounded-sm flex-shrink-0">
+                    <svg class="w-4 h-4 text-oak" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="1.5"
+                         stroke-linecap="round" aria-hidden="true">
+                      <path d={icon}/>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-sans text-sm font-medium leading-none mb-0.5">{label}</p>
+                    <p class="font-sans text-xs opacity-50">{sub}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Autres liens ancres -->
+        {[
+          { href: '/#realisations', label: 'Réalisations' },
+          { href: '/#avis',         label: 'Avis' },
+          { href: '/#contact',      label: 'Contact' },
+        ].map(({ href, label }) => (
+          <a
+            href={href}
+            class="nav-link font-sans text-sm text-cream/80 hover:text-cream tracking-wide
+                   transition-colors duration-200 relative group"
+          >
+            {label}
+            <span class="absolute -bottom-1 left-0 h-px w-0 bg-oak group-hover:w-full
+                         transition-all duration-300 ease-luxury"></span>
+          </a>
+        ))}
+
+        <!-- CTA téléphone -->
+        <a
+          href="tel:+33767426234"
+          class="btn-primary text-xs px-5 py-2.5 ml-4"
+          aria-label="Appeler Agencement Lennon"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          07 67 42 62 34
+        </a>
+      </nav>
+
+      <!-- TOGGLE MOBILE -->
+      <button
+        id="navToggle"
+        class="lg:hidden z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-cream"
+        aria-expanded="false"
+        aria-controls="mobileNav"
+        aria-label="Ouvrir le menu"
+      >
+        <span class="hamburger-line block w-6 h-px bg-current transition-all duration-300"></span>
+        <span class="hamburger-line block w-6 h-px bg-current transition-all duration-300"></span>
+        <span class="hamburger-line block w-4 h-px bg-current transition-all duration-300 self-end"></span>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- MENU MOBILE -->
+<nav
+  id="mobileNav"
+  class="mobile-nav"
+  aria-label="Navigation mobile"
+  aria-hidden="true"
+>
+  <!-- Fond bois décoratif -->
+  <div class="absolute inset-0 bg-grain opacity-30 pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Ligne décorative gauche -->
+  <div class="absolute left-8 top-1/2 -translate-y-1/2 w-px h-48 bg-oak/30" aria-hidden="true"></div>
+
+  <div class="relative flex flex-col items-center gap-8 text-center">
+    {[
+      { href: '/#hero',          label: 'Accueil',       num: '01' },
+      { href: '/services/',      label: 'Services',      num: '02' },
+      { href: '/#realisations',  label: 'Réalisations',  num: '03' },
+      { href: '/#avis',          label: 'Avis clients',  num: '04' },
+      { href: '/#contact',       label: 'Contact',       num: '05' },
+    ].map(({ href, label, num }) => (
+      <a href={href} class="mobile-nav-item group flex items-baseline gap-4">
+        <span class="text-xs font-sans text-oak/60 tracking-widest">{num}</span>
+        <span class="text-3xl font-serif text-cream group-hover:text-oak transition-colors duration-200">
+          {label}
+        </span>
+      </a>
+    ))}
+
+    <!-- Sous-liens services en mobile -->
+    <div class="flex flex-wrap justify-center gap-2 -mt-4 px-8">
+      {[
+        { href: '/services/cuisine-sur-mesure-finistere/',    label: 'Cuisine' },
+        { href: '/services/terrasse-bois-composite-finistere/', label: 'Terrasse' },
+        { href: '/services/dressing-rangements-sur-mesure/', label: 'Dressing' },
+        { href: '/services/bardage-exterieur-landivisiau/',   label: 'Bardage' },
+      ].map(({ href, label }) => (
+        <a href={href}
+           class="font-sans text-xs text-cream/40 hover:text-oak border border-white/10
+                  hover:border-oak/40 px-3 py-1.5 rounded-sm transition-all duration-200">
+          {label}
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-4 border-t border-white/10 pt-6 flex flex-col items-center gap-3">
+      <a href="tel:+33767426234" class="btn-primary text-sm">
+        07 67 42 62 34
+      </a>
+      <span class="text-xs font-sans text-white/30 tracking-widest uppercase">
+        Devis gratuit · Réponse 48h
+      </span>
+    </div>
+  </div>
+
+  <!-- Bouton fermer -->
+  <button
+    id="navClose"
+    class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center
+           text-cream hover:text-oak transition-colors duration-200"
+    aria-label="Fermer le menu"
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M18 6 6 18M6 6l12 12"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- ── STICKY CTA MOBILE — bouton d'appel fixe en bas d'écran ── -->
+<div
+  id="sticky-cta"
+  class="fixed bottom-0 left-0 right-0 z-40 lg:hidden
+         bg-navy border-t border-white/10 px-4 py-3
+         flex items-center justify-between gap-3
+         transition-transform duration-300"
+>
+  <div class="flex flex-col">
+    <span class="text-[0.6rem] font-sans text-cream/40 tracking-widest uppercase">Devis gratuit · 48h</span>
+    <span class="font-serif text-sm text-cream">Agencement Lennon</span>
+  </div>
+  <div class="flex gap-2">
+    <a
+      href="tel:+33767426234"
+      class="inline-flex items-center gap-2 bg-oak text-white text-sm font-sans
+             font-medium px-5 py-2.5 rounded-sm hover:bg-oak-dark transition-colors duration-200"
+      aria-label="Appeler le 07 67 42 62 34"
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      Appeler
+    </a>
+    <a
+      href="/#contact"
+      class="inline-flex items-center gap-2 border border-white/30 text-cream text-sm
+             font-sans font-medium px-5 py-2.5 rounded-sm hover:bg-white/10 transition-colors duration-200"
+    >
+      Devis
+    </a>
+  </div>
+</div>
+
+<script>
+  // ── Header scroll state ──────────────────────────────────────
+  const header = document.getElementById('site-header');
+  if (header) {
+    const handleScroll = () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // état initial
+  }
+
+  // ── Menu mobile ──────────────────────────────────────────────
+  const navToggle = document.getElementById('navToggle');
+  const navClose  = document.getElementById('navClose');
+  const nav       = document.getElementById('mobileNav');
+  const lines     = navToggle?.querySelectorAll('.hamburger-line');
+
+  const openNav = () => {
+    nav?.classList.add('open');
+    navToggle?.setAttribute('aria-expanded', 'true');
+    nav?.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+    if (lines) {
+      lines[0].style.transform = 'rotate(45deg) translate(3px, 3px)';
+      lines[1].style.transform = 'rotate(-45deg) translate(3px, -3px)';
+      lines[2].style.opacity   = '0';
+    }
+  };
+
+  const closeNav = () => {
+    nav?.classList.remove('open');
+    navToggle?.setAttribute('aria-expanded', 'false');
+    nav?.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lines) {
+      lines[0].style.transform = '';
+      lines[1].style.transform = '';
+      lines[2].style.opacity   = '1';
+    }
+  };
+
+  nav?.setAttribute('aria-hidden', 'true');
+  navToggle?.addEventListener('click', openNav);
+  navClose?.addEventListener('click', closeNav);
+  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeNav));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav?.classList.contains('open')) {
+      closeNav();
+      navToggle?.focus();
+    }
+  });
+  document.addEventListener('click', e => {
+    if (nav?.classList.contains('open') &&
+        !nav.contains(e.target as Node) &&
+        e.target !== navToggle) {
+      closeNav();
+    }
+  });
+
+  // ── Sticky CTA : masquer quand le menu mobile est ouvert ─────
+  const stickyCta = document.getElementById('sticky-cta');
+  const originalOpenNav  = openNav;
+  const originalCloseNav = closeNav;
+
+  navToggle?.addEventListener('click', () => {
+    stickyCta?.classList.add('translate-y-full');
+  });
+  navClose?.addEventListener('click', () => {
+    stickyCta?.classList.remove('translate-y-full');
+  });
+  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    stickyCta?.classList.remove('translate-y-full');
+  }));
+</script>

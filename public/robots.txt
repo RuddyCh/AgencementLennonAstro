@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Autoriser les ressources statiques pour Googlebot
+User-agent: Googlebot
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.webp
+Allow: /*.svg
+
+Sitemap: https://www.agencementlennon.fr/sitemap-index.xml

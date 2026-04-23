@@ -1,0 +1,395 @@
+---
+/**
+ * /services/cuisine-sur-mesure-finistere/
+ * Cibles SEO : "cuisine sur mesure Landivisiau", "cuisiniste Finistère",
+ *              "cuisine équipée sur mesure Brest Morlaix 29"
+ */
+import Layout  from '../../layouts/Layout.astro';
+import Navbar  from '../../components/Navbar.astro';
+import Footer  from '../../components/Footer.astro';
+import CookieBanner from '../../components/CookieBanner.astro';
+import { Image } from 'astro:assets';
+import heroBg from '../../assets/images/hero-fond-bois-bleu.jpg';
+
+const serviceJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Cuisine sur mesure en Finistère",
+  "description": "Conception et pose de cuisines équipées sur mesure à Landivisiau et dans tout le Finistère. Menuiserie artisanale, bois massif et panneaux de qualité, pose soignée par Steven Lennon.",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Agencement Lennon",
+    "telephone": "+33767426234",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "11 rue des Cols-Verts",
+      "addressLocality": "Landivisiau",
+      "postalCode": "29400",
+      "addressCountry": "FR"
+    }
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Landivisiau" },
+    { "@type": "City", "name": "Brest" },
+    { "@type": "City", "name": "Morlaix" },
+    { "@type": "AdministrativeArea", "name": "Finistère" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Cuisines sur mesure",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cuisine en L sur mesure" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cuisine avec îlot central" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cuisine en U sur mesure" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cuisine ouverte sur séjour" } }
+    ]
+  }
+});
+
+const faq = [
+  {
+    q: "Quel est le délai de réalisation d'une cuisine sur mesure ?",
+    a: "En général, comptez 4 à 8 semaines entre la validation du plan et la pose, selon la complexité du projet et notre planning. Nous vous donnons un délai précis dès la première rencontre.",
+  },
+  {
+    q: "Intervenez-vous uniquement à Landivisiau ?",
+    a: "Non, nous intervenons dans tout le Finistère : Brest, Morlaix, Quimper, Saint-Pol-de-Léon, Lesneven, Landerneau... Contactez-nous pour vérifier selon votre commune.",
+  },
+  {
+    q: "Quels matériaux proposez-vous pour les façades ?",
+    a: "Bois massif (chêne, hêtre, frêne), MDF laqué, stratifié HPL, panneaux melaminés... Nous vous guidons selon votre budget, votre style et la durabilité souhaitée.",
+  },
+  {
+    q: "Proposez-vous un service de conception avant la pose ?",
+    a: "Oui, chaque projet commence par une étude personnalisée : visite du chantier, prise de côtes, proposition de plan. Ce premier rendez-vous est sans engagement.",
+  },
+  {
+    q: "Posez-vous également les électroménagers ?",
+    a: "Nous assurons la pose des meubles, plinthes, plans de travail et habillages. Pour les branchements électriques et plomberie, nous coordonnons avec vos artisans ou pouvons recommander des prestataires de confiance.",
+  },
+];
+---
+
+<Layout
+  title="Cuisine sur mesure Finistère — Artisan Landivisiau | Agencement Lennon"
+  description="Cuisine sur mesure à Landivisiau et dans tout le Finistère. Steven Lennon conçoit et pose cuisines en bois, laquées ou mixtes. Devis gratuit, étude personnalisée."
+  canonical="https://www.agencementlennon.fr/services/cuisine-sur-mesure-finistere/"
+  isHome={false}
+>
+  <script type="application/ld+json" set:html={serviceJsonLd} slot="head" />
+
+  <Navbar />
+
+  <main id="contenu">
+
+    <!-- ── HERO PAGE SERVICE ───────────────────────────────────── -->
+    <section class="relative bg-navy overflow-hidden pt-36 pb-20">
+      <!-- Image bois en fond — même traitement que le hero principal -->
+      <div class="absolute inset-0" aria-hidden="true">
+        <Image
+          src={heroBg}
+          alt=""
+          class="w-full h-full object-cover object-center"
+          widths={[768, 1280]}
+          sizes="100vw"
+          quality={70}
+          loading="eager"
+        />
+        <!-- Overlay navy profond pour lisibilité du texte -->
+        <div class="absolute inset-0 bg-navy/80"></div>
+        <!-- Dégradé bas pour transition douce vers le contenu -->
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-navy to-transparent"></div>
+      </div>
+      <div class="absolute inset-0 bg-grain opacity-10 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="container relative">
+
+        <!-- Fil d'Ariane -->
+        <nav class="mb-8" aria-label="Fil d'Ariane">
+          <ol class="flex items-center gap-2 text-xs font-sans text-cream/40"
+              itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/" class="hover:text-cream/70 transition-colors" itemprop="item">
+                <span itemprop="name">Accueil</span>
+              </a>
+              <meta itemprop="position" content="1" />
+            </li>
+            <li aria-hidden="true"><span class="text-oak/40">›</span></li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/services/" class="hover:text-cream/70 transition-colors" itemprop="item">
+                <span itemprop="name">Services</span>
+              </a>
+              <meta itemprop="position" content="2" />
+            </li>
+            <li aria-hidden="true"><span class="text-oak/40">›</span></li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <span class="text-cream/70" itemprop="name">Cuisine sur mesure</span>
+              <meta itemprop="position" content="3" />
+            </li>
+          </ol>
+        </nav>
+
+        <div class="max-w-3xl">
+          <span class="section-eyebrow" style="color: var(--oak-light)">Menuiserie intérieure</span>
+          <h1 class="font-serif text-h1 text-cream mt-3 mb-6 leading-tight">
+            Cuisine sur mesure<br>
+            <em class="text-oak not-italic">en Finistère</em>
+          </h1>
+          <p class="font-sans text-body-lg text-cream/70 max-w-2xl leading-relaxed mb-10">
+            De la conception à la pose, chaque cuisine Agencement Lennon est pensée pour votre espace,
+            votre style et votre quotidien. Artisan indépendant basé à Landivisiau, Steven Lennon
+            intervient dans tout le Finistère avec un seul interlocuteur du début à la fin.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/#contact" class="btn-primary">Demander un devis gratuit</a>
+            <a href="tel:+33767426234" class="btn-outline">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              07 67 42 62 34
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── IMAGE HERO DU SERVICE ──────────────────────────────── -->
+    <div class="bg-cream-warm">
+      <div class="container py-0">
+        <div class="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden shadow-luxury-lg -mt-8 lg:-mt-12 relative z-10">
+          <!-- IMAGE PRINCIPALE — à remplacer par une vraie photo de cuisine -->
+          <div class="aspect-[4/3] bg-navy/10 flex items-center justify-center min-h-[280px]">
+            <div class="text-center p-8">
+              <svg class="w-12 h-12 text-navy/20 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+              </svg>
+              <p class="font-sans text-xs text-navy/30">Ajouter une photo de cuisine ici<br><code class="text-[0.65rem] opacity-50">src/assets/images/cuisine-service-hero.jpg</code></p>
+            </div>
+          </div>
+          <!-- IMAGE SECONDAIRE -->
+          <div class="aspect-[4/3] bg-cream-dark flex items-center justify-center min-h-[280px]">
+            <div class="text-center p-8">
+              <svg class="w-12 h-12 text-navy/20 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+              </svg>
+              <p class="font-sans text-xs text-navy/30">Ajouter une 2ème photo de cuisine ici<br><code class="text-[0.65rem] opacity-50">src/assets/images/cuisine-detail.jpg</code></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONTENU PRINCIPAL ──────────────────────────────────── -->
+    <section class="section bg-cream-warm">
+      <div class="container">
+        <div class="grid lg:grid-cols-3 gap-16">
+
+          <!-- Corps de texte (2/3) -->
+          <div class="lg:col-span-2 prose-content">
+
+            <h2 class="font-serif text-h2 text-navy mb-6 reveal">
+              Un cuisiniste artisan,<br><em>pas un revendeur</em>
+            </h2>
+            <div class="ornament-line reveal-clip mb-8"></div>
+
+            <div class="space-y-5 font-sans text-stone leading-relaxed reveal">
+              <p>
+                Chez Agencement Lennon, une cuisine sur mesure commence par une rencontre : Steven vient
+                chez vous, mesure votre espace, écoute vos envies et contraintes. Il n'existe pas de
+                catalogue, pas de modèle standard à adapter — chaque cuisine est dessinée <strong class="text-navy">spécifiquement
+                pour votre intérieur.</strong>
+              </p>
+              <p>
+                C'est cette approche qui fait la différence entre une cuisine "sur mesure" vendue en grande
+                surface et une vraie création artisanale : les côtes sont les vôtres, les matériaux sont
+                choisis ensemble, et la pose est réalisée par le même artisan qui a conçu le projet.
+              </p>
+              <p>
+                Basé à <strong class="text-navy">Landivisiau</strong>, Steven intervient dans tout le
+                <strong class="text-navy">Finistère</strong> : Brest, Morlaix, Lesneven, Landerneau,
+                Saint-Pol-de-Léon, Quimper et leurs environs. Le déplacement pour le premier rendez-vous
+                est gratuit.
+              </p>
+            </div>
+
+            <!-- Étapes du projet -->
+            <div class="mt-14 reveal">
+              <h3 class="font-serif text-h3 text-navy mb-8">Le processus, étape par étape</h3>
+              <ol class="space-y-6" role="list">
+                {[
+                  { num: '01', title: 'Rendez-vous et prise de côtes', desc: "Steven vient chez vous gratuitement. Mesures, échanges sur vos besoins, premiers conseils sur les matériaux et l'organisation de l'espace." },
+                  { num: '02', title: 'Étude et devis personnalisé', desc: 'Proposition de plan, sélection des façades, plans de travail et accessoires. Devis détaillé remis sous 5 à 7 jours.' },
+                  { num: '03', title: 'Fabrication artisanale', desc: 'Les caissons et éléments sont fabriqués ou sourcés selon les spécifications exactes du projet. Chaque pièce est vérifiée avant livraison.' },
+                  { num: '04', title: 'Pose soignée par Steven', desc: "Installation minutieuse, gestion des angles et finitions. Vous avez un seul interlocuteur du début à la fin — pas de sous-traitance." },
+                ].map(step => (
+                  <li class="flex gap-6 items-start">
+                    <span class="font-serif text-3xl font-bold text-oak/30 leading-none flex-shrink-0 w-10 text-right">{step.num}</span>
+                    <div class="border-l border-cream-dark pl-6">
+                      <h4 class="font-serif text-lg text-navy mb-1">{step.title}</h4>
+                      <p class="font-sans text-sm text-stone leading-relaxed">{step.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <!-- Matériaux -->
+            <div class="mt-14 reveal">
+              <h3 class="font-serif text-h3 text-navy mb-6">Matériaux et finitions</h3>
+              <div class="grid sm:grid-cols-2 gap-4">
+                {[
+                  { label: 'Façades bois massif', detail: 'Chêne, hêtre, frêne — durabilité et chaleur naturelle' },
+                  { label: 'Façades laquées MDF', detail: 'Mat ou brillant, palette RAL complète' },
+                  { label: 'Stratifié & HPL', detail: 'Excellent rapport qualité/prix, très résistant' },
+                  { label: 'Plans de travail', detail: 'Bois massif, quartz, compact, stratifié, céramique' },
+                  { label: 'Caissons qualité', detail: 'Panneaux de faible émission, visserie inox' },
+                  { label: 'Quincaillerie premium', detail: 'Blum, Hettich — charnières et coulisses silencieuses' },
+                ].map(m => (
+                  <div class="bg-white border border-cream-dark rounded-sm p-4">
+                    <p class="font-sans text-sm font-medium text-navy mb-0.5">{m.label}</p>
+                    <p class="font-sans text-xs text-stone">{m.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Colonne latérale (1/3) -->
+          <aside class="reveal-left">
+            <!-- CTA sticky -->
+            <div class="bg-navy rounded-sm p-7 text-cream sticky top-28">
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-oak rounded-l-sm" aria-hidden="true"></div>
+              <p class="font-serif text-xl text-cream mb-1">Un projet de cuisine ?</p>
+              <p class="font-sans text-sm text-cream/60 mb-6">Devis gratuit · Réponse sous 48h · Tout le Finistère</p>
+              <a href="/#contact" class="btn-primary w-full justify-center mb-3 text-sm">Demander un devis</a>
+              <a href="tel:+33767426234" class="btn-outline w-full justify-center text-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                07 67 42 62 34
+              </a>
+              <div class="mt-6 pt-6 border-t border-white/10 space-y-2">
+                {['Étude et visite gratuites', 'Fabrication artisanale', 'Pose par Steven en personne', 'Tout le Finistère (29)', 'Devis détaillé sous 7 jours'].map(item => (
+                  <div class="flex items-center gap-2.5">
+                    <svg class="w-4 h-4 text-oak flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    <span class="font-sans text-xs text-cream/70">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Autres services -->
+            <div class="mt-6 bg-cream-warm border border-cream-dark rounded-sm p-6">
+              <p class="font-sans text-xs tracking-widest uppercase text-stone mb-4">Autres services</p>
+              <nav class="flex flex-col gap-2" aria-label="Autres services Agencement Lennon">
+                {[
+                  { href: '/services/terrasse-bois-composite-finistere/', label: 'Terrasse bois & composite' },
+                  { href: '/services/dressing-rangements-sur-mesure/', label: 'Dressing & rangements' },
+                  { href: '/services/bardage-exterieur-landivisiau/', label: 'Bardage extérieur' },
+                ].map(s => (
+                  <a href={s.href}
+                     class="font-sans text-sm text-stone hover:text-navy flex items-center gap-2 group transition-colors duration-200">
+                    <span class="w-4 h-px bg-oak/30 group-hover:w-6 group-hover:bg-oak transition-all duration-300" aria-hidden="true"></span>
+                    {s.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ────────────────────────────────────────────────── -->
+    <section class="section bg-cream" aria-labelledby="faq-title">
+      <div class="container max-w-3xl">
+        <span class="section-eyebrow reveal">Questions fréquentes</span>
+        <h2 class="section-title reveal" id="faq-title">Cuisine sur mesure — <em>FAQ</em></h2>
+        <div class="ornament-line reveal-clip mt-4 mb-10"></div>
+
+        <script type="application/ld+json" set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": faq.map(f => ({
+            "@type": "Question",
+            "name": f.q,
+            "acceptedAnswer": { "@type": "Answer", "text": f.a }
+          }))
+        })} />
+
+        <dl class="space-y-4 stagger-parent">
+          {faq.map(item => (
+            <div class="stagger-child bg-white border border-cream-dark rounded-sm overflow-hidden">
+              <dt>
+                <button
+                  class="faq-btn w-full flex items-center justify-between gap-4 p-6 text-left
+                         font-serif text-navy hover:text-oak transition-colors duration-200"
+                  aria-expanded="false"
+                >
+                  <span class="text-base leading-snug">{item.q}</span>
+                  <svg class="faq-icon w-5 h-5 flex-shrink-0 text-oak transition-transform duration-300"
+                       viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </button>
+              </dt>
+              <dd class="faq-answer hidden px-6 pb-6 font-sans text-sm text-stone leading-relaxed">
+                {item.a}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <!-- ── CTA FINAL ──────────────────────────────────────────── -->
+    <section class="section bg-navy relative overflow-hidden">
+      <!-- Fond texture bois -->
+      <div class="absolute inset-0 bg-grain opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+      <!-- Coins décoratifs -->
+      <div class="absolute top-8 left-8 w-12 h-12 border-t border-l border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute top-8 right-8 w-12 h-12 border-t border-r border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-8 left-8 w-12 h-12 border-b border-l border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-8 right-8 w-12 h-12 border-b border-r border-oak/30 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="container relative text-center">
+        <!-- Ornement centré -->
+        <div class="flex items-center justify-center gap-4 mb-8 reveal" aria-hidden="true">
+          <div class="h-px w-16 bg-gradient-to-r from-transparent to-oak/50"></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--oak)" opacity="0.6">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          <div class="h-px w-16 bg-gradient-to-l from-transparent to-oak/50"></div>
+        </div>
+
+        <h2 class="font-serif text-h2 text-cream mb-4 reveal">Votre cuisine sur mesure<br><em>commence ici</em></h2>
+        <p class="font-sans text-body-lg text-cream/60 max-w-xl mx-auto mb-10 reveal">
+          Premier rendez-vous gratuit et sans engagement. Steven se déplace dans tout le Finistère.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center reveal">
+          <a href="/#contact" class="btn-primary px-10 py-4">Demander un devis gratuit</a>
+          <a href="tel:+33767426234" class="btn-outline px-10 py-4">07 67 42 62 34</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <CookieBanner />
+</Layout>
+
+<!-- FAQ accordion -->
+<script>
+  document.querySelectorAll('.faq-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const answer = btn.closest('div')?.querySelector('.faq-answer');
+      const icon   = btn.querySelector('.faq-icon');
+      answer?.classList.toggle('hidden', expanded);
+      icon?.style.setProperty('transform', expanded ? '' : 'rotate(180deg)');
+    });
+  });
+</script>

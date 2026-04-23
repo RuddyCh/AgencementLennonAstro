@@ -1,0 +1,217 @@
+---
+/**
+ * Testimonials.astro — Section avis clients Google
+ * ──────────────────────────────────────────────────
+ * REMPLIR : Remplacer les données ci-dessous par les vrais avis Google.
+ * Pour chaque avis : prénom + initiale nom, ville, note (1-5), texte, date.
+ * La note Google globale est à mettre à jour dans `globalRating`.
+ */
+
+const globalRating  = 5.0;   // ← ta note globale Google (ex: 4.9)
+const totalReviews  = 12;    // ← nombre total d'avis sur Google
+
+const reviews = [
+  {
+    author:   'Marie-Laure B.',       // ← prénom + initiale (RGPD)
+    location: 'Landivisiau',
+    rating:   5,
+    date:     'Mars 2025',
+    text:     'Remplacer par le vrai texte de l\'avis Google. Steven a réalisé notre cuisine sur mesure avec un soin exceptionnel. Résultat bluffant, délais respectés, et un vrai professionnel à l\'écoute. Je recommande sans hésitation !',
+    service:  'Cuisine sur mesure',
+  },
+  {
+    author:   'Jean-Pierre L.',
+    location: 'Brest',
+    rating:   5,
+    date:     'Janvier 2025',
+    text:     'Remplacer par le vrai texte de l\'avis Google. Terrasse composite posée impeccablement. Travail soigné, matériaux de qualité. On a passé tout l\'été dessus, aucun regret. Merci à toute l\'équipe !',
+    service:  'Terrasse composite',
+  },
+  {
+    author:   'Émilie et Franck T.',
+    location: 'Morlaix',
+    rating:   5,
+    date:     'Novembre 2024',
+    text:     'Remplacer par le vrai texte de l\'avis Google. Dressing sur mesure parfaitement adapté à notre comble. Très belle finition, bois de qualité. Steven est à l\'écoute et de bon conseil.',
+    service:  'Dressing sur mesure',
+  },
+  {
+    author:   'Yves C.',
+    location: 'Landivisiau',
+    rating:   5,
+    date:     'Septembre 2024',
+    text:     'Remplacer par le vrai texte de l\'avis Google. Bardage extérieur réalisé avec sérieux et précision. Le rendu est magnifique, notre maison est transformée. Travail propre, chantier bien géré.',
+    service:  'Bardage extérieur',
+  },
+  {
+    author:   'Sophie M.',
+    location: 'Saint-Renan',
+    rating:   5,
+    date:     'Juillet 2024',
+    text:     'Remplacer par le vrai texte de l\'avis Google. Très satisfaite de notre cuisine. Steven a su s\'adapter à notre espace atypique et proposer des solutions créatives. Le résultat est exactement ce qu\'on imaginait.',
+    service:  'Cuisine sur mesure',
+  },
+  {
+    author:   'Laurent et Anne K.',
+    location: 'Lesneven',
+    rating:   5,
+    date:     'Avril 2024',
+    text:     'Remplacer par le vrai texte de l\'avis Google. Extension et bardage anthracite réalisés dans les temps et dans le budget. Communication parfaite tout au long du chantier. On referait appel à Agencement Lennon sans hésiter.',
+    service:  'Extension & bardage',
+  },
+];
+
+// Génère les étoiles SVG
+const StarIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+</svg>`;
+---
+
+<section id="avis" class="section bg-cream" aria-labelledby="avis-title">
+  <div class="container">
+
+    <!-- En-tête -->
+    <div class="mb-16">
+      <span class="section-eyebrow reveal">Ce qu'ils disent</span>
+      <h2 class="section-title reveal" id="avis-title">
+        Avis de nos <em>clients</em>
+      </h2>
+      <div class="ornament-line reveal-clip mt-4 mb-6"></div>
+
+      <!-- Note globale Google -->
+      <div class="reveal flex flex-col sm:flex-row sm:items-center gap-6 mt-8">
+        <div class="flex items-center gap-4 bg-white rounded-sm border border-cream-dark px-6 py-4 shadow-luxury w-fit">
+          <!-- Logo Google -->
+          <svg width="28" height="28" viewBox="0 0 24 24" aria-label="Google" role="img">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+
+          <div>
+            <div class="flex items-center gap-2 mb-0.5">
+              <span class="font-serif text-3xl font-bold text-navy leading-none">{globalRating.toFixed(1)}</span>
+              <div class="flex text-oak" aria-label={`Note : ${globalRating} sur 5`}>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span class={i < Math.floor(globalRating) ? 'text-oak' : 'text-cream-dark'}
+                        set:html={StarIcon} />
+                ))}
+              </div>
+            </div>
+            <p class="font-sans text-xs text-stone">
+              {totalReviews} avis Google vérifiés
+            </p>
+          </div>
+        </div>
+
+        <a
+          href="https://g.page/r/VOTRE_LIEN_GOOGLE_REVIEWS/review"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-outline-dark text-xs"
+          aria-label="Laisser un avis sur Google"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+          </svg>
+          Laisser un avis
+        </a>
+      </div>
+    </div>
+
+    <!-- Grille d'avis -->
+    <div
+      class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-parent"
+      role="list"
+      aria-label="Avis clients"
+    >
+      {reviews.map(review => (
+        <article
+          class="stagger-child bg-white rounded-sm border border-cream-dark p-7
+                 flex flex-col gap-4 shadow-luxury hover:shadow-luxury-lg
+                 hover:-translate-y-0.5 transition-all duration-300 ease-luxury"
+          role="listitem"
+          itemscope
+          itemtype="https://schema.org/Review"
+        >
+          <!-- Note étoiles -->
+          <div class="flex items-center justify-between">
+            <div
+              class="flex gap-0.5 text-oak"
+              aria-label={`${review.rating} étoiles sur 5`}
+              itemprop="reviewRating"
+              itemscope
+              itemtype="https://schema.org/Rating"
+            >
+              <meta itemprop="ratingValue" content={String(review.rating)} />
+              <meta itemprop="bestRating"  content="5" />
+              {Array.from({ length: 5 }).map((_, i) => (
+                <span class={i < review.rating ? 'text-oak' : 'text-cream-dark'}
+                      set:html={StarIcon} />
+              ))}
+            </div>
+            <!-- Badge service -->
+            <span class="text-[0.65rem] font-sans tracking-wide uppercase text-stone
+                         bg-cream-warm border border-cream-dark px-2.5 py-1 rounded-sm">
+              {review.service}
+            </span>
+          </div>
+
+          <!-- Texte de l'avis -->
+          <blockquote class="flex-1" itemprop="reviewBody">
+            <p class="font-sans text-sm text-stone leading-relaxed">
+              "{review.text}"
+            </p>
+          </blockquote>
+
+          <!-- Auteur -->
+          <footer class="flex items-center justify-between border-t border-cream-dark pt-4">
+            <div class="flex items-center gap-3">
+              <!-- Avatar initiales -->
+              <div
+                class="w-9 h-9 rounded-full bg-navy flex items-center justify-center
+                       flex-shrink-0"
+                aria-hidden="true"
+              >
+                <span class="font-serif text-sm text-oak-light font-semibold">
+                  {review.author.charAt(0)}
+                </span>
+              </div>
+              <div>
+                <p class="font-sans text-sm font-medium text-navy" itemprop="author"
+                   itemscope itemtype="https://schema.org/Person">
+                  <span itemprop="name">{review.author}</span>
+                </p>
+                <p class="font-sans text-xs text-stone">{review.location}</p>
+              </div>
+            </div>
+            <time class="font-sans text-xs text-stone/60" itemprop="datePublished">
+              {review.date}
+            </time>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA Google Reviews -->
+    <div class="flex justify-center mt-10 reveal">
+      <a
+        href="https://g.page/r/VOTRE_LIEN_GOOGLE_REVIEWS"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline-dark"
+        aria-label="Voir tous les avis sur Google"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        Voir tous nos avis Google ({totalReviews})
+      </a>
+    </div>
+
+  </div>
+</section>

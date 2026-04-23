@@ -1,0 +1,79 @@
+---
+/**
+ * CookieBanner.astro — Bandeau de consentement cookies RGPD
+ * Apparaît en bas de page si pas encore de choix
+ * Persistance via localStorage
+ */
+---
+
+<div
+  id="cookie-banner"
+  class="cookie-banner"
+  role="region"
+  aria-label="Gestion des cookies"
+  aria-live="polite"
+>
+  <div class="container py-4">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="font-sans text-sm text-cream/80 leading-relaxed text-center sm:text-left">
+        Nous utilisons des cookies pour améliorer votre expérience de navigation.
+        <a href="/politique-cookies" class="text-oak-light underline hover:text-oak transition-colors ml-1">
+          En savoir plus
+        </a>
+      </p>
+      <div class="flex gap-3 flex-shrink-0">
+        <button
+          id="accept-cookies"
+          class="btn-primary text-xs px-5 py-2.5"
+        >
+          Accepter
+        </button>
+        <button
+          id="decline-cookies"
+          class="btn-outline text-xs px-5 py-2.5"
+        >
+          Refuser
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner  = document.getElementById('cookie-banner');
+  const acceptBtn  = document.getElementById('accept-cookies');
+  const declineBtn = document.getElementById('decline-cookies');
+  const manageBtn  = document.getElementById('manageCookies');
+
+  const showBanner = () => {
+    if (!banner) return;
+    // Petit délai pour ne pas bloquer le rendu initial
+    setTimeout(() => banner.classList.add('show'), 800);
+  };
+
+  const hideBanner = () => {
+    banner?.classList.remove('show');
+  };
+
+  // Vérification du consentement existant
+  if (localStorage.getItem('cookiesAccepted') === null) {
+    showBanner();
+  }
+
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'true');
+    hideBanner();
+  });
+
+  declineBtn?.addEventListener('click', () => {
+    localStorage.setItem('cookiesAccepted', 'false');
+    hideBanner();
+  });
+
+  // Bouton "Gérer les cookies" dans le footer
+  manageBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    localStorage.removeItem('cookiesAccepted');
+    showBanner();
+  });
+</script>

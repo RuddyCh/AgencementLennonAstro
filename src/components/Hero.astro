@@ -1,0 +1,137 @@
+---
+/**
+ * Hero.astro — Section héro plein écran
+ * Fond bois bleu avec overlay gradient
+ * Révélation GSAP séquentielle + parallaxe
+ * Statistiques animées avec compteurs
+ */
+
+import { Image } from 'astro:assets';
+import heroBg from '../assets/images/hero-fond-bois-bleu.jpg';
+---
+
+<section class="hero" id="hero" role="region" aria-label="Présentation d'Agencement Lennon">
+
+  <!-- Image de fond avec parallaxe GSAP — optimisée via Astro Image (WebP auto, srcset) -->
+  <div class="hero-bg" aria-hidden="true">
+    <Image
+      src={heroBg}
+      alt=""
+      class="hero-parallax-bg w-full h-full object-cover"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      quality={80}
+      fetchpriority="high"
+      loading="eager"
+    />
+  </div>
+
+  <!-- Overlay gradient -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Grain de texture -->
+  <div class="absolute inset-0 bg-grain opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Ligne décorative verticale gauche -->
+  <div
+    class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-oak/40 to-transparent
+           hidden xl:block reveal-clip"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Contenu principal -->
+  <div class="container hero-inner relative z-10 pt-28 pb-20 lg:pb-28">
+    <div class="max-w-4xl">
+
+      <!-- Eyebrow / localisation -->
+      <p class="hero-reveal flex items-center gap-2 mb-5">
+        <span class="inline-flex items-center gap-1.5 text-xs font-sans tracking-[0.2em] uppercase text-oak-light bg-white/10 border border-white/20 px-3 py-1.5 rounded-sm backdrop-blur-sm">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          Landivisiau · Finistère · Bretagne
+        </span>
+      </p>
+
+      <!-- Titre principal H1 -->
+      <h1 class="hero-reveal font-serif text-display text-cream mb-6 leading-[1.05]">
+        L'artisanat qui<br>
+        <em class="text-oak not-italic">transforme votre maison.</em>
+      </h1>
+
+      <!-- Sous-titre -->
+      <p class="hero-reveal font-sans text-body-lg text-cream/80 max-w-2xl mb-10 leading-relaxed">
+        Cuisines sur mesure, terrasses, dressings, bardages — Steven Lennon conçoit et pose chaque
+        ouvrage avec la rigueur d'un artisan passionné, du premier trait au dernier joint.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-reveal flex flex-wrap gap-4 mb-16">
+        <a href="#contact" class="btn-primary text-sm px-7 py-4">
+          Demander un devis gratuit
+        </a>
+        <a href="#realisations" class="btn-outline text-sm px-7 py-4">
+          Voir nos réalisations
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Statistiques -->
+      <div class="hero-reveal flex flex-wrap gap-8 lg:gap-14">
+        <!-- Séparateur décoratif -->
+        <div class="w-full h-px bg-white/15 mb-4" aria-hidden="true"></div>
+
+        <div class="flex flex-col">
+          <span
+            class="font-serif text-4xl font-semibold text-cream"
+            data-count="50"
+            data-suffix="+"
+            aria-label="Plus de 50 chantiers réalisés"
+          >0</span>
+          <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">chantiers livrés</span>
+        </div>
+
+        <div class="w-px bg-white/15 self-stretch" aria-hidden="true"></div>
+
+        <div class="flex flex-col">
+          <span
+            class="font-serif text-4xl font-semibold text-cream"
+            data-count="100"
+            data-suffix="%"
+            aria-label="100% sur mesure"
+          >0</span>
+          <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">sur mesure</span>
+        </div>
+
+        <div class="w-px bg-white/15 self-stretch" aria-hidden="true"></div>
+
+        <div class="flex flex-col">
+          <span class="font-serif text-4xl font-semibold text-cream" aria-label="Zone d'intervention : le Finistère">Finistère</span>
+          <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">zone d'intervention</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-cream/40 hero-reveal" aria-hidden="true">
+    <span class="text-xs font-sans tracking-widest uppercase">Défiler</span>
+    <div class="w-px h-12 bg-gradient-to-b from-cream/40 to-transparent scroll-line"></div>
+  </div>
+
+</section>
+
+<style>
+  @keyframes scrollLine {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+  .scroll-line {
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+</style>

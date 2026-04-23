@@ -1,0 +1,221 @@
+---
+/**
+ * /services/index.astro — Hub des services
+ * Cibles SEO : "menuiserie sur mesure Finistère", "artisan menuisier Landivisiau 29"
+ */
+import Layout  from '../../layouts/Layout.astro';
+import Navbar  from '../../components/Navbar.astro';
+import Footer  from '../../components/Footer.astro';
+import CookieBanner from '../../components/CookieBanner.astro';
+import { Image } from 'astro:assets';
+import heroBg from '../../assets/images/hero-fond-bois-bleu.jpg';
+
+const services = [
+  {
+    href:     '/services/cuisine-sur-mesure-finistere/',
+    title:    'Cuisine sur mesure',
+    subtitle: 'Menuiserie intérieure',
+    desc:     'De la conception à la pose, chaque cuisine est dessinée pour votre espace. Bois massif, laqué, mixte — étude personnalisée et devis gratuit en Finistère.',
+    keywords: ['Cuisine en L', 'Cuisine avec îlot', 'Cuisine en U', 'Cuisine ouverte'],
+    icon: `<path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/><path d="M9 22V12h6v10"/><path d="m2 10.45 10-7 10 7"/>`,
+  },
+  {
+    href:     '/services/terrasse-bois-composite-finistere/',
+    title:    'Terrasse bois & composite',
+    subtitle: 'Aménagement extérieur',
+    desc:     'Des terrasses résistantes au climat breton. Bois massif certifié PEFC ou composite sans entretien — pose soignée dans tout le Finistère.',
+    keywords: ['Terrasse composite', 'Terrasse bois', 'Pergola', 'Claustra'],
+    icon: `<path d="M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/><path d="M6 8h4"/><path d="M6 18h4"/><path d="m12 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/><path d="M14 8h4"/><path d="M14 18h4"/><path d="m20 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/>`,
+  },
+  {
+    href:     '/services/dressing-rangements-sur-mesure/',
+    title:    'Dressing & rangements',
+    subtitle: 'Menuiserie intérieure',
+    desc:     'Dressings, placards, bibliothèques et rangements sur mesure — y compris dans les espaces atypiques (sous combles, sous escalier). Tout le Finistère.',
+    keywords: ['Dressing chambre', 'Placard couloir', 'Bibliothèque', 'Sous-escalier'],
+    icon: `<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/>`,
+  },
+  {
+    href:     '/services/bardage-exterieur-landivisiau/',
+    title:    'Bardage extérieur',
+    subtitle: 'Aménagement extérieur',
+    desc:     'Rénovation de façade, habillage d\'extension, bardage contemporain. Matériaux adaptés au vent et à l\'humidité du Finistère — fixations inox.',
+    keywords: ['Red cedar', 'Douglas', 'Composite', 'Fibrociment'],
+    icon: `<rect width="4" height="16" x="2" y="4" rx="1"/><rect width="4" height="16" x="10" y="4" rx="1"/><rect width="4" height="16" x="18" y="4" rx="1"/>`,
+  },
+];
+---
+
+<Layout
+  title="Services menuiserie sur mesure Finistère — Agencement Lennon Landivisiau"
+  description="Cuisines, terrasses, dressings, bardages sur mesure en Finistère. Artisan menuisier à Landivisiau. Devis gratuit, étude personnalisée, pose par Steven Lennon."
+  canonical="https://www.agencementlennon.fr/services/"
+  isHome={false}
+>
+  <Navbar />
+
+  <main id="contenu">
+
+    <!-- HERO -->
+    <section class="relative bg-navy overflow-hidden pt-36 pb-20">
+      <!-- Image bois en fond — même traitement que le hero principal -->
+      <div class="absolute inset-0" aria-hidden="true">
+        <Image
+          src={heroBg}
+          alt=""
+          class="w-full h-full object-cover object-center"
+          widths={[768, 1280]}
+          sizes="100vw"
+          quality={70}
+          loading="eager"
+        />
+        <!-- Overlay navy profond pour lisibilité du texte -->
+        <div class="absolute inset-0 bg-navy/80"></div>
+        <!-- Dégradé bas pour transition douce vers le contenu -->
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-navy to-transparent"></div>
+      </div>
+      <div class="absolute inset-0 bg-grain opacity-10 pointer-events-none" aria-hidden="true"></div>
+      <div class="container relative max-w-3xl">
+        <nav class="mb-8" aria-label="Fil d'Ariane">
+          <ol class="flex items-center gap-2 text-xs font-sans text-cream/40" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <a href="/" class="hover:text-cream/70 transition-colors" itemprop="item"><span itemprop="name">Accueil</span></a>
+              <meta itemprop="position" content="1" />
+            </li>
+            <li aria-hidden="true"><span class="text-oak/40">›</span></li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+              <span class="text-cream/70" itemprop="name">Services</span>
+              <meta itemprop="position" content="2" />
+            </li>
+          </ol>
+        </nav>
+        <span class="section-eyebrow" style="color: var(--oak-light)">Artisan menuisier · Landivisiau</span>
+        <h1 class="font-serif text-h1 text-cream mt-3 mb-6 leading-tight">
+          Menuiserie sur mesure<br>
+          <em class="text-oak not-italic">en Finistère</em>
+        </h1>
+        <p class="font-sans text-body-lg text-cream/70 max-w-2xl leading-relaxed mb-10">
+          Intérieur ou extérieur, cuisine ou bardage — Agencement Lennon conçoit et pose chaque
+          réalisation sur mesure. Un seul artisan, du premier trait au dernier joint.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/#contact" class="btn-primary">Demander un devis gratuit</a>
+          <a href="tel:+33767426234" class="btn-outline">07 67 42 62 34</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRILLE DES SERVICES -->
+    <section class="section bg-cream-warm">
+      <div class="container">
+        <div class="mb-14">
+          <span class="section-eyebrow reveal">Nos prestations</span>
+          <h2 class="section-title reveal">Tout ce que nous <em>réalisons</em></h2>
+          <div class="ornament-line reveal-clip mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 stagger-parent">
+          {services.map(service => (
+            <a
+              href={service.href}
+              class="stagger-child group bg-white border border-cream-dark rounded-sm p-8
+                     flex flex-col gap-5 hover:shadow-luxury-lg hover:-translate-y-1
+                     transition-all duration-300 ease-luxury"
+            >
+              <!-- Icône -->
+              <div class="w-12 h-12 flex items-center justify-center bg-cream-warm
+                          border border-cream-dark rounded-sm
+                          group-hover:bg-navy group-hover:border-navy
+                          transition-all duration-300">
+                <svg class="w-5 h-5 text-oak group-hover:text-oak-light transition-colors duration-300"
+                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true" set:html={service.icon} />
+              </div>
+
+              <!-- Texte -->
+              <div class="flex-1">
+                <p class="text-xs font-sans text-stone tracking-widest uppercase mb-1">{service.subtitle}</p>
+                <h3 class="font-serif text-h3 text-navy group-hover:text-navy mb-3">{service.title}</h3>
+                <p class="font-sans text-sm text-stone leading-relaxed">{service.desc}</p>
+              </div>
+
+              <!-- Keywords -->
+              <ul class="flex flex-wrap gap-1.5" aria-label="Prestations">
+                {service.keywords.map(kw => (
+                  <li class="text-xs font-sans px-2.5 py-1 bg-cream-warm border border-cream-dark rounded-sm text-stone">
+                    {kw}
+                  </li>
+                ))}
+              </ul>
+
+              <!-- CTA inline -->
+              <div class="flex items-center gap-2 text-sm font-sans text-oak font-medium
+                          group-hover:gap-3 transition-all duration-300">
+                Découvrir ce service
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14m-7-7 7 7-7 7"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- RÉASSURANCE -->
+    <section class="section bg-cream">
+      <div class="container">
+        <div class="grid md:grid-cols-3 gap-8 stagger-parent">
+          {[
+            { num: '50+', label: 'Chantiers livrés', desc: 'En Finistère depuis 2021' },
+            { num: '100%', label: 'Sur mesure', desc: 'Pas de catalogue, pas de standard' },
+            { num: '1', label: 'Interlocuteur', desc: 'Steven du début à la fin, sans sous-traitance' },
+          ].map(stat => (
+            <div class="stagger-child text-center">
+              <span class="font-serif text-5xl font-bold text-oak block mb-2">{stat.num}</span>
+              <p class="font-serif text-lg text-navy mb-1">{stat.label}</p>
+              <p class="font-sans text-sm text-stone">{stat.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section bg-navy relative overflow-hidden">
+      <!-- Fond texture bois -->
+      <div class="absolute inset-0 bg-grain opacity-20 pointer-events-none" aria-hidden="true"></div>
+
+      <!-- Coins décoratifs -->
+      <div class="absolute top-8 left-8 w-12 h-12 border-t border-l border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute top-8 right-8 w-12 h-12 border-t border-r border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-8 left-8 w-12 h-12 border-b border-l border-oak/30 pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-8 right-8 w-12 h-12 border-b border-r border-oak/30 pointer-events-none" aria-hidden="true"></div>
+
+      <div class="container relative text-center">
+        <!-- Ornement centré -->
+        <div class="flex items-center justify-center gap-4 mb-8 reveal" aria-hidden="true">
+          <div class="h-px w-16 bg-gradient-to-r from-transparent to-oak/50"></div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--oak)" opacity="0.6">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          <div class="h-px w-16 bg-gradient-to-l from-transparent to-oak/50"></div>
+        </div>
+
+        <h2 class="font-serif text-h2 text-cream mb-4 reveal">Un projet en tête ?<br><em>Parlons-en.</em></h2>
+        <p class="font-sans text-body-lg text-cream/60 max-w-xl mx-auto mb-10 reveal">
+          Premier rendez-vous gratuit et sans engagement. Steven se déplace dans tout le Finistère.
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center reveal">
+          <a href="/#contact" class="btn-primary px-10 py-4">Demander un devis gratuit</a>
+          <a href="tel:+33767426234" class="btn-outline px-10 py-4">07 67 42 62 34</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+  <CookieBanner />
+</Layout>

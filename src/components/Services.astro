@@ -1,0 +1,145 @@
+---
+/**
+ * Services.astro — Section savoir-faire
+ * Grille de 3 cartes avec icônes SVG, GSAP stagger reveal
+ */
+
+const services = [
+  {
+    id: 'interieur',
+    title: 'Menuiserie intérieure',
+    description: 'Cuisines équipées, dressings, bibliothèques, parquets et aménagements sur mesure. Chaque espace est pensé pour s\'adapter parfaitement à votre vie — et durer des décennies.',
+    keywords: ['Cuisine sur mesure', 'Dressing', 'Parquet', 'Bibliothèque'],
+    icon: `<path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/><path d="M9 22V12h6v10"/><path d="m2 10.45 10-7 10 7"/>`,
+  },
+  {
+    id: 'exterieur',
+    title: 'Aménagement extérieur',
+    description: 'Terrasses bois & composite, bardages, claustras, pergolas. Des extérieurs durables qui résistent au climat breton et mettent en valeur votre habitat.',
+    keywords: ['Terrasse composite', 'Bardage', 'Pergola', 'Claustra'],
+    icon: `<path d="M4 3 2 5v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/><path d="M6 8h4"/><path d="M6 18h4"/><path d="m12 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/><path d="M14 8h4"/><path d="M14 18h4"/><path d="m20 3-2 2v15c0 .6.4 1 1 1h2c.6 0 1-.4 1-1V5Z"/>`,
+  },
+  {
+    id: 'conception',
+    title: 'Conception & Pose',
+    description: 'Un accompagnement complet de A à Z : étude personnalisée, fabrication artisanale et pose soignée par Steven Lennon en personne. Un interlocuteur unique, du début à la fin.',
+    keywords: ['Étude sur mesure', 'Fabrication artisanale', 'Pose soignée', 'Suivi personnalisé'],
+    icon: `<path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13"/><path d="m8 6 2-2"/><path d="m18 16 2-2"/><path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17"/><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/>`,
+  },
+];
+---
+
+<section id="services" class="section bg-cream">
+  <div class="container">
+
+    <!-- En-tête de section -->
+    <div class="mb-16">
+      <span class="section-eyebrow reveal">Notre expertise</span>
+      <h2 class="section-title reveal">
+        Nos <em>savoir-faire</em>
+      </h2>
+      <div class="ornament-line reveal-clip mt-4 mb-6"></div>
+      <p class="section-subtitle reveal max-w-xl">
+        Du concept à la pose, chaque réalisation est pensée sur mesure pour s'adapter
+        à votre espace et à votre style de vie.
+      </p>
+    </div>
+
+    <!-- Grille de services (stagger GSAP) -->
+    <div class="grid md:grid-cols-3 gap-6 stagger-parent" role="list">
+      {services.map(service => (
+        <article
+          class="stagger-child service-card group"
+          role="listitem"
+          id={`service-${service.id}`}
+        >
+          <!-- Icône -->
+          <div class="w-12 h-12 flex items-center justify-center bg-cream-warm
+                      rounded-sm border border-cream-dark mb-2
+                      group-hover:bg-navy group-hover:border-navy
+                      transition-all duration-300 ease-luxury">
+            <svg
+              class="w-5 h-5 text-oak group-hover:text-oak-light transition-colors duration-300"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              set:html={service.icon}
+            />
+          </div>
+
+          <!-- Titre -->
+          <h3 class="font-serif text-h3 text-navy group-hover:text-navy transition-colors">
+            {service.title}
+          </h3>
+
+          <!-- Description -->
+          <p class="font-sans text-sm text-stone leading-relaxed flex-1">
+            {service.description}
+          </p>
+
+          <!-- Tags de mots-clés -->
+          <ul class="flex flex-wrap gap-1.5" aria-label="Prestations incluses">
+            {service.keywords.map(kw => (
+              <li class="text-xs font-sans px-2.5 py-1 bg-cream-warm border border-cream-dark
+                          rounded-sm text-stone">
+                {kw}
+              </li>
+            ))}
+          </ul>
+
+          <!-- Lien CTA -->
+          <a
+            href="#contact"
+            class="btn-ghost text-sm font-medium mt-2"
+            aria-label={`Demander un devis pour : ${service.title}`}
+          >
+            Demander un devis
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" aria-hidden="true"
+                 class="transition-transform duration-300 group-hover:translate-x-1">
+              <path d="M5 12h14m-7-7 7 7-7 7"/>
+            </svg>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bandeau réassurance -->
+    <div class="mt-16 reveal">
+      <div class="bg-navy rounded-sm p-8 lg:p-10 flex flex-col lg:flex-row items-center
+                  justify-between gap-6 relative overflow-hidden">
+        <!-- Grain texture -->
+        <div class="absolute inset-0 bg-grain opacity-20 pointer-events-none" aria-hidden="true"></div>
+        <!-- Ligne déco -->
+        <div class="absolute left-0 top-0 bottom-0 w-1 bg-oak" aria-hidden="true"></div>
+
+        <div class="relative text-center lg:text-left">
+          <p class="font-serif text-xl text-cream mb-1">
+            Un projet en tête ?
+          </p>
+          <p class="font-sans text-sm text-cream/60">
+            Devis gratuit et sans engagement · Réponse sous 48h · Zone Finistère
+          </p>
+        </div>
+
+        <div class="relative flex flex-wrap gap-3 justify-center lg:justify-end flex-shrink-0">
+          <a href="#contact" class="btn-primary text-sm">
+            Demander un devis gratuit
+          </a>
+          <a href="tel:+33767426234" class="btn-outline text-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            07 67 42 62 34
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
