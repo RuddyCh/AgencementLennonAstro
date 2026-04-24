@@ -1,0 +1,232 @@
+---
+/**
+ * WhatsAppFAB.astro — Bouton flottant WhatsApp
+ *
+ * Comportement :
+ *  - Apparaît après 3 s de navigation (pas d'intrusion immédiate)
+ *  - Se décale au-dessus de la nav mobile fixe sur petits écrans
+ *  - Disparaît quand le formulaire #contact est dans le viewport
+ *    (inutile de doubler le CTA quand l'utilisateur est déjà là)
+ *  - Tooltip au survol desktop
+ *  - Respect prefers-reduced-motion : pas d'animation d'entrée
+ *  - z-index : 1500 (au-dessus nav mobile z-40, sous cookie banner z-2000)
+ */
+
+const phone   = '33767426234';           // Format international sans le +
+const message = encodeURIComponent('Bonjour Steven, je souhaite un devis pour un projet de menuiserie.');
+const waUrl   = `https://wa.me/${phone}?text=${message}`;
+---
+
+<!-- FAB container — caché par défaut, révélé par JS -->
+<div
+  id="wa-fab"
+  class="wa-fab"
+  aria-label="Nous contacter sur WhatsApp"
+  role="complementary"
+>
+  <a
+    href={waUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="wa-btn"
+    aria-label="Envoyer un message WhatsApp à Agencement Lennon"
+    title="Écrire sur WhatsApp"
+  >
+    <!-- Icône WhatsApp (SVG officiel simplifié) -->
+    <svg
+      class="wa-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.558 4.114 1.534 5.838L.057 23.487a.5.5 0 0 0 .61.61l5.65-1.477A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.82 9.82 0 0 1-5.007-1.37l-.359-.214-3.72.974.99-3.62-.234-.372A9.818 9.818 0 1 1 12 21.818z"/>
+    </svg>
+
+    <!-- Tooltip desktop -->
+    <span class="wa-tooltip" aria-hidden="true">Réponse rapide via WhatsApp</span>
+
+    <!-- Pulse ring (animation d'attention) -->
+    <span class="wa-pulse" aria-hidden="true"></span>
+  </a>
+</div>
+
+<style>
+  /* ── Variables locales ───────────────────────────────────────── */
+  :root {
+    --wa-green:       #25D366;
+    --wa-green-dark:  #1DAB55;
+    --wa-size:        56px;
+    --wa-bottom-mob:  84px;   /* hauteur nav mobile (68px) + 16px de marge */
+    --wa-bottom-desk: 32px;
+    --wa-right:       24px;
+  }
+
+  /* ── FAB wrapper ─────────────────────────────────────────────── */
+  .wa-fab {
+    position: fixed;
+    bottom: var(--wa-bottom-mob);
+    right: var(--wa-right);
+    z-index: 1500;
+
+    /* Caché par défaut → révélé par JS après délai */
+    opacity: 0;
+    transform: translateY(16px) scale(0.85);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Position desktop : plus bas, pas de nav mobile en bas */
+  @media (min-width: 1024px) {
+    .wa-fab {
+      bottom: var(--wa-bottom-desk);
+    }
+  }
+
+  /* Visible */
+  .wa-fab.wa-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  /* Caché quand contact en vue */
+  .wa-fab.wa-hidden-by-contact {
+    opacity: 0;
+    transform: translateY(8px) scale(0.9);
+    pointer-events: none;
+  }
+
+  /* ── Bouton principal ────────────────────────────────────────── */
+  .wa-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--wa-size);
+    height: var(--wa-size);
+    border-radius: 50%;
+    background: var(--wa-green);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .wa-btn:hover {
+    background: var(--wa-green-dark);
+    transform: scale(1.08);
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+  }
+
+  .wa-btn:active {
+    transform: scale(0.96);
+  }
+
+  .wa-btn:focus-visible {
+    outline: 2px solid var(--wa-green);
+    outline-offset: 4px;
+  }
+
+  /* ── Icône ───────────────────────────────────────────────────── */
+  .wa-icon {
+    width: 28px;
+    height: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Tooltip ─────────────────────────────────────────────────── */
+  .wa-tooltip {
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 12px;
+    font-family: var(--font-sans, sans-serif);
+    padding: 5px 10px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  /* Flèche du tooltip */
+  .wa-tooltip::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-left-color: #1a1a1a;
+  }
+
+  .wa-btn:hover .wa-tooltip {
+    opacity: 1;
+  }
+
+  /* Masquer le tooltip sur mobile (touch) */
+  @media (hover: none) {
+    .wa-tooltip { display: none; }
+  }
+
+  /* ── Pulse ring ──────────────────────────────────────────────── */
+  .wa-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--wa-green);
+    animation: wa-pulse-anim 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes wa-pulse-anim {
+    0%   { transform: scale(1);    opacity: 0.7; }
+    70%  { transform: scale(1.55); opacity: 0; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .wa-fab {
+      transition: opacity 0.2s;
+      transform: none !important;
+    }
+    .wa-pulse { animation: none; }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    const fab     = document.getElementById('wa-fab');
+    const contact = document.getElementById('contact');
+    if (!fab) return;
+
+    /* ── 1. Apparition différée (3 s) ──────────────────────────── */
+    let appeared = false;
+    const show = () => {
+      if (appeared) return;
+      appeared = true;
+      fab.classList.add('wa-visible');
+    };
+    setTimeout(show, 3000);
+
+    /* ── 2. Masquage quand la section #contact est visible ─────── */
+    if (contact && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            fab.classList.toggle('wa-hidden-by-contact', entry.isIntersecting);
+          });
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(contact);
+    }
+  })();
+</script>
