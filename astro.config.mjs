@@ -17,6 +17,5 @@ export default defineConfig({
     service: {
       entrypoint: 'astro/assets/services/sharp',
     },
-    experimentalLayout: 'responsive',
   },
 });
