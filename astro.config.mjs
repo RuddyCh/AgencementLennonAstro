@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-// import sitemap from '@astrojs/sitemap'; // Temporairement désactivé — bug @astrojs/sitemap avec Astro 4.15
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://www.agencementlennon.fr',
   integrations: [
     tailwind(),
-    // sitemap(), // À réactiver après mise à jour : npm update @astrojs/sitemap
+    sitemap(),
   ],
   compressHTML: true,
   build: {
