@@ -13,8 +13,8 @@ var config_default = defineConfig({
   // ── Gestion des images uploadées par Steven ──────────────────────
   media: {
     tina: {
-      mediaRoot: "uploads",
-      // stockées dans public/uploads/
+      mediaRoot: "images",
+      // stockées dans public/images/
       publicFolder: "public"
     }
   },
