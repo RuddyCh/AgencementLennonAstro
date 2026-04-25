@@ -1,1 +1,8 @@
-{ "caption": "Vue plongeante · Terrasse composite", "photo": "/images/vue-plongeante-terrasse-composite-gris-beige.jpeg", "alt": "Vue plongeante terrasse composite bicolore gris et beige — Finistère", "category": "Terrasse", "featured": false, "order": 8 }
+{
+  "caption": "Vue plongeante · Terrasse composite",
+  "photo": "/images/stevbg2.jpg",
+  "alt": "Vue plongeante terrasse composite bicolore gris et beige — Finistère",
+  "category": "Terrasse",
+  "featured": false,
+  "order": 8
+}
