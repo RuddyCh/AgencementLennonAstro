@@ -86,6 +86,8 @@ export type Query = {
   homepageConnection: HomepageConnection;
   gallery: Gallery;
   galleryConnection: GalleryConnection;
+  services: Services;
+  servicesConnection: ServicesConnection;
 };
 
 
@@ -139,9 +141,25 @@ export type QueryGalleryConnectionArgs = {
   filter?: InputMaybe<GalleryFilter>;
 };
 
+
+export type QueryServicesArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryServicesConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ServicesFilter>;
+};
+
 export type DocumentFilter = {
   homepage?: InputMaybe<HomepageFilter>;
   gallery?: InputMaybe<GalleryFilter>;
+  services?: InputMaybe<ServicesFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -181,7 +199,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Homepage | Gallery | Folder;
+export type DocumentNode = Homepage | Gallery | Services | Folder;
 
 export type HomepageHero = {
   __typename?: 'HomepageHero';
@@ -321,6 +339,45 @@ export type GalleryConnection = Connection & {
   edges?: Maybe<Array<Maybe<GalleryConnectionEdges>>>;
 };
 
+export type Services = Node & Document & {
+  __typename?: 'Services';
+  heroSubtitle?: Maybe<Scalars['String']['output']>;
+  photo1?: Maybe<Scalars['String']['output']>;
+  photo1Alt?: Maybe<Scalars['String']['output']>;
+  photo2?: Maybe<Scalars['String']['output']>;
+  photo2Alt?: Maybe<Scalars['String']['output']>;
+  intro1?: Maybe<Scalars['String']['output']>;
+  intro2?: Maybe<Scalars['String']['output']>;
+  intro3?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ServicesFilter = {
+  heroSubtitle?: InputMaybe<StringFilter>;
+  photo1?: InputMaybe<ImageFilter>;
+  photo1Alt?: InputMaybe<StringFilter>;
+  photo2?: InputMaybe<ImageFilter>;
+  photo2Alt?: InputMaybe<StringFilter>;
+  intro1?: InputMaybe<StringFilter>;
+  intro2?: InputMaybe<StringFilter>;
+  intro3?: InputMaybe<StringFilter>;
+};
+
+export type ServicesConnectionEdges = {
+  __typename?: 'ServicesConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Services>;
+};
+
+export type ServicesConnection = Connection & {
+  __typename?: 'ServicesConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<ServicesConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -332,6 +389,8 @@ export type Mutation = {
   createHomepage: Homepage;
   updateGallery: Gallery;
   createGallery: Gallery;
+  updateServices: Services;
+  createServices: Services;
 };
 
 
@@ -391,15 +450,29 @@ export type MutationCreateGalleryArgs = {
   params: GalleryMutation;
 };
 
+
+export type MutationUpdateServicesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ServicesMutation;
+};
+
+
+export type MutationCreateServicesArgs = {
+  relativePath: Scalars['String']['input'];
+  params: ServicesMutation;
+};
+
 export type DocumentUpdateMutation = {
   homepage?: InputMaybe<HomepageMutation>;
   gallery?: InputMaybe<GalleryMutation>;
+  services?: InputMaybe<ServicesMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   homepage?: InputMaybe<HomepageMutation>;
   gallery?: InputMaybe<GalleryMutation>;
+  services?: InputMaybe<ServicesMutation>;
 };
 
 export type HomepageHeroMutation = {
@@ -438,9 +511,22 @@ export type GalleryMutation = {
   order?: InputMaybe<Scalars['Float']['input']>;
 };
 
+export type ServicesMutation = {
+  heroSubtitle?: InputMaybe<Scalars['String']['input']>;
+  photo1?: InputMaybe<Scalars['String']['input']>;
+  photo1Alt?: InputMaybe<Scalars['String']['input']>;
+  photo2?: InputMaybe<Scalars['String']['input']>;
+  photo2Alt?: InputMaybe<Scalars['String']['input']>;
+  intro1?: InputMaybe<Scalars['String']['input']>;
+  intro2?: InputMaybe<Scalars['String']['input']>;
+  intro3?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', eyebrow?: string | null, titleLine1?: string | null, titleLine2?: string | null, subtitle?: string | null, ctaText?: string | null, ctaSecondary?: string | null } | null, stats?: Array<{ __typename: 'HomepageStats', value?: number | null, suffix?: string | null, label?: string | null } | null> | null, about?: { __typename: 'HomepageAbout', paragraph1?: string | null, paragraph2?: string | null, photo?: string | null } | null };
 
 export type GalleryPartsFragment = { __typename: 'Gallery', caption: string, photo?: string | null, alt?: string | null, category?: string | null, featured?: boolean | null, order?: number | null };
+
+export type ServicesPartsFragment = { __typename: 'Services', heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null };
 
 export type HomepageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -480,6 +566,25 @@ export type GalleryConnectionQueryVariables = Exact<{
 
 export type GalleryConnectionQuery = { __typename?: 'Query', galleryConnection: { __typename?: 'GalleryConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'GalleryConnectionEdges', cursor: string, node?: { __typename: 'Gallery', id: string, caption: string, photo?: string | null, alt?: string | null, category?: string | null, featured?: boolean | null, order?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
+export type ServicesQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type ServicesQuery = { __typename?: 'Query', services: { __typename: 'Services', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type ServicesConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<ServicesFilter>;
+}>;
+
+
+export type ServicesConnectionQuery = { __typename?: 'Query', servicesConnection: { __typename?: 'ServicesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServicesConnectionEdges', cursor: string, node?: { __typename: 'Services', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
 export const HomepagePartsFragmentDoc = gql`
     fragment HomepageParts on Homepage {
   __typename
@@ -515,6 +620,19 @@ export const GalleryPartsFragmentDoc = gql`
   category
   featured
   order
+}
+    `;
+export const ServicesPartsFragmentDoc = gql`
+    fragment ServicesParts on Services {
+  __typename
+  heroSubtitle
+  photo1
+  photo1Alt
+  photo2
+  photo2Alt
+  intro1
+  intro2
+  intro3
 }
     `;
 export const HomepageDocument = gql`
@@ -631,6 +749,63 @@ export const GalleryConnectionDocument = gql`
   }
 }
     ${GalleryPartsFragmentDoc}`;
+export const ServicesDocument = gql`
+    query services($relativePath: String!) {
+  services(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...ServicesParts
+  }
+}
+    ${ServicesPartsFragmentDoc}`;
+export const ServicesConnectionDocument = gql`
+    query servicesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ServicesFilter) {
+  servicesConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...ServicesParts
+      }
+    }
+  }
+}
+    ${ServicesPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -645,6 +820,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     galleryConnection(variables?: GalleryConnectionQueryVariables, options?: C): Promise<{data: GalleryConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: GalleryConnectionQueryVariables, query: string}> {
         return requester<{data: GalleryConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: GalleryConnectionQueryVariables, query: string}, GalleryConnectionQueryVariables>(GalleryConnectionDocument, variables, options);
+      },
+    services(variables: ServicesQueryVariables, options?: C): Promise<{data: ServicesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesQueryVariables, query: string}> {
+        return requester<{data: ServicesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesQueryVariables, query: string}, ServicesQueryVariables>(ServicesDocument, variables, options);
+      },
+    servicesConnection(variables?: ServicesConnectionQueryVariables, options?: C): Promise<{data: ServicesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesConnectionQueryVariables, query: string}> {
+        return requester<{data: ServicesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesConnectionQueryVariables, query: string}, ServicesConnectionQueryVariables>(ServicesConnectionDocument, variables, options);
       }
     };
   }

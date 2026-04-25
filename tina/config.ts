@@ -1,16 +1,16 @@
 import { defineConfig } from 'tinacms';
- 
+
 export default defineConfig({
   // ── Connexion Tina Cloud ─────────────────────────────────────────
   branch:   process.env.GITHUB_BRANCH || 'main',
   clientId: process.env.PUBLIC_TINA_CLIENT_ID || '',
   token:    process.env.TINA_TOKEN || '',
- 
+
   build: {
     outputFolder: 'admin',   // génère /admin sur le site
     publicFolder: 'public',
   },
- 
+
   // ── Gestion des images uploadées par Steven ──────────────────────
   media: {
     tina: {
@@ -18,10 +18,10 @@ export default defineConfig({
       publicFolder: 'public',
     },
   },
- 
+
   schema: {
     collections: [
- 
+
       // ════════════════════════════════════════════════════════════
       // 🏠 PAGE D'ACCUEIL — contenu texte
       // Fichier : content/home.json
@@ -75,7 +75,7 @@ export default defineConfig({
               },
             ],
           },
- 
+
           // ── Stats (compteurs animés) ──────────────────────────
           {
             type:  'object',
@@ -91,7 +91,7 @@ export default defineConfig({
               { type: 'string', name: 'label',  label: 'Libellé sous le chiffre'   },
             ],
           },
- 
+
           // ── À propos ──────────────────────────────────────────
           {
             type:   'object',
@@ -119,7 +119,7 @@ export default defineConfig({
           },
         ],
       },
- 
+
       // ════════════════════════════════════════════════════════════
       // 📸 GALERIE — un fichier JSON par projet
       // Fichier : content/gallery/*.json
@@ -168,7 +168,49 @@ export default defineConfig({
           },
         ],
       },
- 
+
+      // ── PAGES SERVICES ───────────────────────────────────────────
+      {
+        name:   'services',
+        label:  '🔧 Pages Services (photos & textes)',
+        path:   'content/services',
+        format: 'json',
+        ui: {
+          allowedActions: { create: false, delete: false },
+          itemProps: item => ({ label: item?.heroSubtitle ? '✓' : '○' }),
+        },
+        fields: [
+          {
+            type:  'string',
+            name:  'heroSubtitle',
+            label: 'Texte d\'introduction (sous le titre)',
+            ui:    { component: 'textarea' },
+          },
+          { type: 'image',  name: 'photo1',    label: '📷 Photo principale' },
+          { type: 'string', name: 'photo1Alt', label: 'Description photo 1 (SEO)' },
+          { type: 'image',  name: 'photo2',    label: '📷 Photo secondaire' },
+          { type: 'string', name: 'photo2Alt', label: 'Description photo 2 (SEO)' },
+          {
+            type:  'string',
+            name:  'intro1',
+            label: 'Paragraphe 1',
+            ui:    { component: 'textarea' },
+          },
+          {
+            type:  'string',
+            name:  'intro2',
+            label: 'Paragraphe 2',
+            ui:    { component: 'textarea' },
+          },
+          {
+            type:  'string',
+            name:  'intro3',
+            label: 'Paragraphe 3',
+            ui:    { component: 'textarea' },
+          },
+        ],
+      },
+
     ],
   },
 });

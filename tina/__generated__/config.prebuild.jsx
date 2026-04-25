@@ -162,6 +162,47 @@ var config_default = defineConfig({
             label: "Ordre d'affichage (1 = en premier)"
           }
         ]
+      },
+      // ── PAGES SERVICES ───────────────────────────────────────────
+      {
+        name: "services",
+        label: "\u{1F527} Pages Services (photos & textes)",
+        path: "content/services",
+        format: "json",
+        ui: {
+          allowedActions: { create: false, delete: false },
+          itemProps: (item) => ({ label: item?.heroSubtitle ? "\u2713" : "\u25CB" })
+        },
+        fields: [
+          {
+            type: "string",
+            name: "heroSubtitle",
+            label: "Texte d'introduction (sous le titre)",
+            ui: { component: "textarea" }
+          },
+          { type: "image", name: "photo1", label: "\u{1F4F7} Photo principale" },
+          { type: "string", name: "photo1Alt", label: "Description photo 1 (SEO)" },
+          { type: "image", name: "photo2", label: "\u{1F4F7} Photo secondaire" },
+          { type: "string", name: "photo2Alt", label: "Description photo 2 (SEO)" },
+          {
+            type: "string",
+            name: "intro1",
+            label: "Paragraphe 1",
+            ui: { component: "textarea" }
+          },
+          {
+            type: "string",
+            name: "intro2",
+            label: "Paragraphe 2",
+            ui: { component: "textarea" }
+          },
+          {
+            type: "string",
+            name: "intro3",
+            label: "Paragraphe 3",
+            ui: { component: "textarea" }
+          }
+        ]
       }
     ]
   }

@@ -58,11 +58,14 @@ type Query {
   homepageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomepageFilter): HomepageConnection!
   gallery(relativePath: String): Gallery!
   galleryConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: GalleryFilter): GalleryConnection!
+  services(relativePath: String): Services!
+  servicesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ServicesFilter): ServicesConnection!
 }
 
 input DocumentFilter {
   homepage: HomepageFilter
   gallery: GalleryFilter
+  services: ServicesFilter
 }
 
 type DocumentConnectionEdges {
@@ -88,7 +91,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Homepage | Gallery | Folder
+union DocumentNode = Homepage | Gallery | Services | Folder
 
 type HomepageHero {
   eyebrow: String
@@ -219,6 +222,42 @@ type GalleryConnection implements Connection {
   edges: [GalleryConnectionEdges]
 }
 
+type Services implements Node & Document {
+  heroSubtitle: String
+  photo1: String
+  photo1Alt: String
+  photo2: String
+  photo2Alt: String
+  intro1: String
+  intro2: String
+  intro3: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ServicesFilter {
+  heroSubtitle: StringFilter
+  photo1: ImageFilter
+  photo1Alt: StringFilter
+  photo2: ImageFilter
+  photo2Alt: StringFilter
+  intro1: StringFilter
+  intro2: StringFilter
+  intro3: StringFilter
+}
+
+type ServicesConnectionEdges {
+  cursor: String!
+  node: Services
+}
+
+type ServicesConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [ServicesConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -229,17 +268,21 @@ type Mutation {
   createHomepage(relativePath: String!, params: HomepageMutation!): Homepage!
   updateGallery(relativePath: String!, params: GalleryMutation!): Gallery!
   createGallery(relativePath: String!, params: GalleryMutation!): Gallery!
+  updateServices(relativePath: String!, params: ServicesMutation!): Services!
+  createServices(relativePath: String!, params: ServicesMutation!): Services!
 }
 
 input DocumentUpdateMutation {
   homepage: HomepageMutation
   gallery: GalleryMutation
+  services: ServicesMutation
   relativePath: String
 }
 
 input DocumentMutation {
   homepage: HomepageMutation
   gallery: GalleryMutation
+  services: ServicesMutation
 }
 
 input HomepageHeroMutation {
@@ -276,6 +319,17 @@ input GalleryMutation {
   category: String
   featured: Boolean
   order: Float
+}
+
+input ServicesMutation {
+  heroSubtitle: String
+  photo1: String
+  photo1Alt: String
+  photo2: String
+  photo2Alt: String
+  intro1: String
+  intro2: String
+  intro3: String
 }
 
 schema {

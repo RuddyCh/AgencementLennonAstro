@@ -32,3 +32,15 @@ fragment GalleryParts on Gallery {
   featured
   order
 }
+
+fragment ServicesParts on Services {
+  __typename
+  heroSubtitle
+  photo1
+  photo1Alt
+  photo2
+  photo2Alt
+  intro1
+  intro2
+  intro3
+}
