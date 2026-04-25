@@ -7,6 +7,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Fix : [hidden] écrasé par les utilitaires Tailwind (ex: .flex)
+   Sans ce correctif, un <span hidden class="flex"> reste visible. ── */
+[hidden] { display: none !important; }
+
 /* ── 1. CUSTOM PROPERTIES ───────────────────────────────────── */
 @layer base {
   :root {
