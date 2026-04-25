@@ -8,8 +8,10 @@ import Layout  from '../../layouts/Layout.astro';
 import Navbar  from '../../components/Navbar.astro';
 import Footer  from '../../components/Footer.astro';
 import CookieBanner from '../../components/CookieBanner.astro';
+import WhatsAppFAB   from '../../components/WhatsAppFAB.astro';
 import { Image } from 'astro:assets';
 import heroBg from '../../assets/images/hero-fond-bois-bleu.jpg';
+import serviceData from '../../../content/services/dressing.json';
 
 const serviceJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -122,9 +124,7 @@ const solutions = [
             <em class="text-oak not-italic">sur mesure en Finistère</em>
           </h1>
           <p class="font-sans text-body-lg text-cream/70 max-w-2xl leading-relaxed mb-10">
-            Chaque millimètre compte dans un dressing sur mesure. Chez Agencement Lennon, Steven conçoit
-            et pose des rangements adaptés à votre espace — même les plus atypiques — pour un résultat
-            que les modèles en kit ne peuvent pas offrir.
+            {serviceData.heroSubtitle}
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="/#contact" class="btn-primary">Demander un devis gratuit</a>
@@ -138,11 +138,29 @@ const solutions = [
     <div class="bg-cream-warm">
       <div class="container py-0">
         <div class="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden shadow-luxury-lg -mt-8 lg:-mt-12 relative z-10">
-          <div class="aspect-[4/3] bg-navy/10 flex items-center justify-center min-h-[280px]">
-            <p class="font-sans text-xs text-navy/30 text-center p-8">Photo dressing ici<br><code class="text-[0.65rem] opacity-50">dressing-sur-mesure-finistere.jpg</code></p>
+          <div class="aspect-[4/3] bg-navy/10 min-h-[280px] overflow-hidden">
+            {serviceData.photo1 ? (
+              <img src={serviceData.photo1} alt={serviceData.photo1Alt} class="w-full h-full object-cover" loading="eager" />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center p-8">
+                <div class="text-center">
+                  <svg class="w-12 h-12 text-navy/20 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                  <p class="font-sans text-xs text-navy/30">Photo à ajouter via l'admin Tina<br>Pages Services → Dressing → Photo principale</p>
+                </div>
+              </div>
+            )}
           </div>
-          <div class="aspect-[4/3] bg-cream-dark flex items-center justify-center min-h-[280px]">
-            <p class="font-sans text-xs text-navy/30 text-center p-8">Détail rangements ici<br><code class="text-[0.65rem] opacity-50">rangements-detail.jpg</code></p>
+          <div class="aspect-[4/3] bg-cream-dark min-h-[280px] overflow-hidden">
+            {serviceData.photo2 ? (
+              <img src={serviceData.photo2} alt={serviceData.photo2Alt} class="w-full h-full object-cover" loading="lazy" />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center p-8">
+                <div class="text-center">
+                  <svg class="w-12 h-12 text-navy/20 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                  <p class="font-sans text-xs text-navy/30">2ème photo à ajouter via l'admin Tina<br>Pages Services → Dressing → Photo secondaire</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -170,8 +188,9 @@ const solutions = [
 
             <div class="reveal space-y-5 font-sans text-stone leading-relaxed">
               <h3 class="font-serif text-h3 text-navy">Pourquoi choisir le sur-mesure ?</h3>
-              <p>Un dressing en kit vous oblige à adapter votre usage à ses dimensions. Le sur-mesure fait l'inverse : chaque colonne, chaque tiroir, chaque étagère est dimensionné exactement comme vous en avez besoin. <strong class="text-navy">Résultat : aucun espace perdu, aucune pièce qui force.</strong></p>
-              <p>Chez Agencement Lennon, nous prenons les cotes au millimètre, proposons un plan avant fabrication, et posons nous-mêmes le résultat — sans sous-traitant et sans mauvaise surprise.</p>
+              <p>{serviceData.intro1}</p>
+              <p>{serviceData.intro2}</p>
+              <p>{serviceData.intro3}</p>
             </div>
           </div>
 
@@ -264,6 +283,7 @@ const solutions = [
 
   </main>
   <Footer /><CookieBanner />
+  <WhatsAppFAB />
 </Layout>
 <script>
   document.querySelectorAll('.faq-btn').forEach(btn => {

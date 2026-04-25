@@ -8,8 +8,10 @@ import Layout  from '../../layouts/Layout.astro';
 import Navbar  from '../../components/Navbar.astro';
 import Footer  from '../../components/Footer.astro';
 import CookieBanner from '../../components/CookieBanner.astro';
+import WhatsAppFAB   from '../../components/WhatsAppFAB.astro';
 import { Image } from 'astro:assets';
 import heroBg from '../../assets/images/hero-fond-bois-bleu.jpg';
+import serviceData from '../../../content/services/bardage.json';
 
 const serviceJsonLd = JSON.stringify({
   "@context": "https://schema.org",
@@ -100,9 +102,7 @@ const faq = [
             <em class="text-oak not-italic">en Finistère</em>
           </h1>
           <p class="font-sans text-body-lg text-cream/70 max-w-2xl leading-relaxed mb-10">
-            Façade rénovée, extension habillée, maison transformée. Agencement Lennon pose des bardages
-            bois, composite et fibrociment adaptés au climat finistérien — vent, pluie, sel marin —
-            avec les fixations et les ventilations qui font la différence sur le long terme.
+            {serviceData.heroSubtitle}
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="/#contact" class="btn-primary">Demander un devis gratuit</a>
@@ -115,11 +115,29 @@ const faq = [
     <div class="bg-cream-warm">
       <div class="container py-0">
         <div class="grid lg:grid-cols-2 gap-0 rounded-sm overflow-hidden shadow-luxury-lg -mt-8 lg:-mt-12 relative z-10">
-          <div class="aspect-[4/3] bg-navy/10 flex items-center justify-center min-h-[280px]">
-            <p class="font-sans text-xs text-navy/30 text-center p-8">Photo bardage façade ici<br><code class="text-[0.65rem] opacity-50">bardage-facade-finistere.jpg</code></p>
+          <div class="aspect-[4/3] bg-navy/10 min-h-[280px] overflow-hidden">
+            {serviceData.photo1 ? (
+              <img src={serviceData.photo1} alt={serviceData.photo1Alt} class="w-full h-full object-cover" loading="eager" />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center p-8">
+                <div class="text-center">
+                  <svg class="w-12 h-12 text-navy/20 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                  <p class="font-sans text-xs text-navy/30">Photo à ajouter via l'admin Tina<br>Pages Services → Bardage → Photo principale</p>
+                </div>
+              </div>
+            )}
           </div>
-          <div class="aspect-[4/3] bg-cream-dark flex items-center justify-center min-h-[280px]">
-            <p class="font-sans text-xs text-navy/30 text-center p-8">Photo extension bardée ici<br><code class="text-[0.65rem] opacity-50">extension-bardage-detail.jpg</code></p>
+          <div class="aspect-[4/3] bg-cream-dark min-h-[280px] overflow-hidden">
+            {serviceData.photo2 ? (
+              <img src={serviceData.photo2} alt={serviceData.photo2Alt} class="w-full h-full object-cover" loading="lazy" />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center p-8">
+                <div class="text-center">
+                  <svg class="w-12 h-12 text-navy/20 mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                  <p class="font-sans text-xs text-navy/30">2ème photo à ajouter via l'admin Tina<br>Pages Services → Bardage → Photo secondaire</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -132,9 +150,9 @@ const faq = [
             <h2 class="font-serif text-h2 text-navy mb-6 reveal">Un bardage pensé<br><em>pour le Finistère</em></h2>
             <div class="ornament-line reveal-clip mb-8"></div>
             <div class="space-y-5 font-sans text-stone leading-relaxed reveal">
-              <p>Le bardage n'est pas qu'esthétique : c'est une protection. En Finistère, les conditions météorologiques sont parmi les plus sévères de France. Un bardage mal posé ou mal choisi se dégrade rapidement, et les réparations coûtent cher.</p>
-              <p>Chez Agencement Lennon, nous sélectionnons les matériaux selon votre exposition, nous soignons la ventilation derrière le bardage (essentielle pour éviter condensation et pourriture), et nous fixons avec des systèmes inox pour tenir sur la durée sans taches de rouille.</p>
-              <p>Qu'il s'agisse de rénover une façade vieillissante, d'habiller une extension neuve ou de créer un bardage contemporain sur une maison ancienne — nous étudions chaque projet pour un résultat qui tient dans le temps.</p>
+              <p>{serviceData.intro1}</p>
+              <p>{serviceData.intro2}</p>
+              <p>{serviceData.intro3}</p>
             </div>
 
             <!-- Matériaux -->
@@ -268,6 +286,7 @@ const faq = [
 
   </main>
   <Footer /><CookieBanner />
+  <WhatsAppFAB />
 </Layout>
 <script>
   document.querySelectorAll('.faq-btn').forEach(btn => {
