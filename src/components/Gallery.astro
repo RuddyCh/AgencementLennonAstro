@@ -3,78 +3,15 @@
  * Gallery.astro — Section réalisations
  * Grille masonry-like, lightbox natif avec navigation clavier
  * GSAP stagger reveal + hover parallaxe
- * Images optimisées via Astro Image (WebP auto, srcset)
+ * ── Contenu éditable via Tina CMS → content/gallery/*.json ──
  */
 
-import { Image } from 'astro:assets';
+// Charge tous les fichiers JSON de la galerie
+const galleryFiles = await Astro.glob('../../content/gallery/*.json');
 
-import imgCuisineBicolore    from '../assets/images/cuisine-bicolore-anthracite-chene-landivisiau.jpeg';
-import imgTerrasseAerienne   from '../assets/images/terrasse-composite-bicolore-vue-aerienne.jpeg';
-import imgCuisineChene       from '../assets/images/cuisine-chene-naturel-hotte-noire-landivisiau.jpg';
-import imgExtensionBardage   from '../assets/images/extension-bardage-anthracite-baies-vitrees-finistere.jpeg';
-import imgCuisineBlanche     from '../assets/images/cuisine-blanche-plan-travail-bois-ilot-finistere.jpg';
-import imgSousEscalier       from '../assets/images/amenagement-sous-escalier-banquette-rangements.jpg';
-import imgTerrasseJardin     from '../assets/images/terrasse-composite-exterieur-jardin-bretagne.jpeg';
-import imgTerrassePlongeante from '../assets/images/vue-plongeante-terrasse-composite-gris-beige.jpeg';
-
-const projects = [
-  {
-    img:     imgCuisineBicolore,
-    alt:     'Cuisine bicolore anthracite et chêne sur mesure — Menuiserie Landivisiau, Finistère',
-    caption: 'Cuisine bicolore anthracite & chêne',
-    loading: 'eager' as const,
-    featured: true,
-  },
-  {
-    img:     imgTerrasseAerienne,
-    alt:     'Terrasse bois composite bicolore vue aérienne — Agencement Lennon Finistère',
-    caption: 'Terrasse composite bicolore',
-    loading: 'lazy' as const,
-    featured: false,
-  },
-  {
-    img:     imgCuisineChene,
-    alt:     'Cuisine en chêne naturel avec hotte noire — Menuiserie sur mesure Landivisiau',
-    caption: 'Cuisine chêne naturel',
-    loading: 'lazy' as const,
-    featured: false,
-  },
-  {
-    img:     imgExtensionBardage,
-    alt:     'Extension de maison bardage anthracite grandes baies vitrées — Agencement Lennon',
-    caption: 'Extension & bardage anthracite',
-    loading: 'lazy' as const,
-    featured: false,
-  },
-  {
-    img:     imgCuisineBlanche,
-    alt:     'Cuisine blanche avec plan de travail bois et îlot — Menuiserie Finistère',
-    caption: 'Cuisine blanche & bois naturel',
-    loading: 'lazy' as const,
-    featured: false,
-  },
-  {
-    img:     imgSousEscalier,
-    alt:     'Aménagement sur mesure sous escalier banquette et rangements — Landivisiau',
-    caption: 'Aménagement sous-escalier',
-    loading: 'lazy' as const,
-    featured: false,
-  },
-  {
-    img:     imgTerrasseJardin,
-    alt:     'Terrasse composite bois depuis le jardin — Agencement Lennon Bretagne',
-    caption: 'Terrasse extérieure composite',
-    loading: 'lazy' as const,
-    featured: false,
-  },
-  {
-    img:     imgTerrassePlongeante,
-    alt:     'Vue plongeante terrasse composite bicolore gris et beige — Finistère',
-    caption: 'Vue plongeante · Terrasse composite',
-    loading: 'lazy' as const,
-    featured: false,
-  },
-];
+const projects = galleryFiles
+  .map(f => f.default)
+  .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
 ---
 
 <section id="realisations" class="section bg-cream-warm">
@@ -99,25 +36,24 @@ const projects = [
     >
       {projects.map((project, index) => (
         <a
-          href={project.img.src}
+          href={project.photo}
           class={`gallery-item stagger-child rounded-sm overflow-hidden ${
-            index === 0 ? 'md:col-span-2 md:row-span-2' : ''
+            project.featured ? 'md:col-span-2 md:row-span-2' : ''
           }`}
           aria-label={`Voir en grand : ${project.caption}`}
           role="listitem"
           data-lightbox
-          data-src={project.img.src}
+          data-src={project.photo}
           data-alt={project.alt}
         >
-          <Image
-            src={project.img}
+          <img
+            src={project.photo}
             alt={project.alt}
-            loading={project.loading}
-            width={index === 0 ? 800 : 600}
-            height={index === 0 ? 600 : 450}
-            quality={82}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            width={project.featured ? 800 : 600}
+            height={project.featured ? 600 : 450}
             class="w-full h-full object-cover"
-            style={index === 0 ? 'aspect-ratio:auto' : 'aspect-ratio:4/3'}
+            style={project.featured ? 'aspect-ratio:auto' : 'aspect-ratio:4/3'}
           />
           <div class="gallery-caption">
             <span class="font-sans text-sm">{project.caption}</span>

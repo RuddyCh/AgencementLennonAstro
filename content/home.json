@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "eyebrow": "Landivisiau · Finistère · Bretagne",
+    "titleLine1": "L'artisanat qui",
+    "titleLine2": "transforme votre maison.",
+    "subtitle": "Menuiserie intérieure et extérieure sur mesure. Cuisines, dressings, terrasses, bardages — chaque projet est unique, chaque finition est soignée.",
+    "ctaText": "Demander un devis gratuit",
+    "ctaSecondary": "Voir nos réalisations"
+  },
+  "stats": [
+    { "value": 3, "suffix": "+", "label": "ans d'expérience" },
+    { "value": 50, "suffix": "+", "label": "projets réalisés" },
+    { "value": 5, "suffix": "★", "label": "note Google" },
+    { "value": 100, "suffix": "%", "label": "clients satisfaits" }
+  ],
+  "about": {
+    "paragraph1": "Fondée en 2021 par Steven Lennon, Agencement Lennon est une entreprise de menuiserie basée à Landivisiau, au cœur du Finistère. La passion du bois et l'exigence du travail bien fait sont au cœur de chaque projet — du premier rendez-vous à la dernière finition.",
+    "paragraph2": "Chaque chantier est abordé avec le même soin : écoute du client, conseils personnalisés, fabrication artisanale et pose rigoureuse. Notre zone d'intervention couvre Landivisiau, Brest, Morlaix et tout le Finistère.",
+    "photo": "/images/stevbg.jpg"
+  }
+}

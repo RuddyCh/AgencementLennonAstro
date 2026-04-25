@@ -1,0 +1,34 @@
+fragment HomepageParts on Homepage {
+  __typename
+  hero {
+    __typename
+    eyebrow
+    titleLine1
+    titleLine2
+    subtitle
+    ctaText
+    ctaSecondary
+  }
+  stats {
+    __typename
+    value
+    suffix
+    label
+  }
+  about {
+    __typename
+    paragraph1
+    paragraph2
+    photo
+  }
+}
+
+fragment GalleryParts on Gallery {
+  __typename
+  caption
+  photo
+  alt
+  category
+  featured
+  order
+}

@@ -8,6 +8,9 @@
 
 import { Image } from 'astro:assets';
 import heroBg from '../assets/images/hero-fond-bois-bleu.jpg';
+import homeData from '../../content/home.json';
+
+const { hero, stats } = homeData;
 ---
 
 <section class="hero" id="hero" role="region" aria-label="Présentation d'Agencement Lennon">
@@ -49,29 +52,28 @@ import heroBg from '../assets/images/hero-fond-bois-bleu.jpg';
           <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
           </svg>
-          Landivisiau · Finistère · Bretagne
+          {hero.eyebrow}
         </span>
       </p>
 
       <!-- Titre principal H1 -->
       <h1 class="hero-reveal font-serif text-display text-cream mb-6 leading-[1.05]">
-        L'artisanat qui<br>
-        <em class="text-oak not-italic">transforme votre maison.</em>
+        {hero.titleLine1}<br>
+        <em class="text-oak not-italic">{hero.titleLine2}</em>
       </h1>
 
       <!-- Sous-titre -->
       <p class="hero-reveal font-sans text-body-lg text-cream/80 max-w-2xl mb-10 leading-relaxed">
-        Cuisines sur mesure, terrasses, dressings, bardages — Steven Lennon conçoit et pose chaque
-        ouvrage avec la rigueur d'un artisan passionné, du premier trait au dernier joint.
+        {hero.subtitle}
       </p>
 
       <!-- CTAs -->
       <div class="hero-reveal flex flex-wrap gap-4 mb-16">
         <a href="#contact" class="btn-primary text-sm px-7 py-4">
-          Demander un devis gratuit
+          {hero.ctaText}
         </a>
         <a href="#realisations" class="btn-outline text-sm px-7 py-4">
-          Voir nos réalisations
+          {hero.ctaSecondary}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="m9 18 6-6-6-6"/>
           </svg>
@@ -80,37 +82,21 @@ import heroBg from '../assets/images/hero-fond-bois-bleu.jpg';
 
       <!-- Statistiques -->
       <div class="hero-reveal flex flex-wrap gap-8 lg:gap-14">
-        <!-- Séparateur décoratif -->
         <div class="w-full h-px bg-white/15 mb-4" aria-hidden="true"></div>
-
-        <div class="flex flex-col">
-          <span
-            class="font-serif text-4xl font-semibold text-cream"
-            data-count="50"
-            data-suffix="+"
-            aria-label="Plus de 50 chantiers réalisés"
-          >0</span>
-          <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">chantiers livrés</span>
-        </div>
-
-        <div class="w-px bg-white/15 self-stretch" aria-hidden="true"></div>
-
-        <div class="flex flex-col">
-          <span
-            class="font-serif text-4xl font-semibold text-cream"
-            data-count="100"
-            data-suffix="%"
-            aria-label="100% sur mesure"
-          >0</span>
-          <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">sur mesure</span>
-        </div>
-
-        <div class="w-px bg-white/15 self-stretch" aria-hidden="true"></div>
-
-        <div class="flex flex-col">
-          <span class="font-serif text-4xl font-semibold text-cream" aria-label="Zone d'intervention : le Finistère">Finistère</span>
-          <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">zone d'intervention</span>
-        </div>
+        {stats.map((stat, i) => (
+          <>
+            {i > 0 && <div class="w-px bg-white/15 self-stretch" aria-hidden="true"></div>}
+            <div class="flex flex-col">
+              <span
+                class="font-serif text-4xl font-semibold text-cream"
+                data-count={stat.value}
+                data-suffix={stat.suffix}
+                aria-label={`${stat.value}${stat.suffix} ${stat.label}`}
+              >0</span>
+              <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">{stat.label}</span>
+            </div>
+          </>
+        ))}
       </div>
 
     </div>
