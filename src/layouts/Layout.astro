@@ -4,6 +4,8 @@
  * Layout principal avec SEO complet, fonts, et métadonnées
  */
 
+import { ViewTransitions } from 'astro:transitions';
+
 export interface Props {
   title?:       string;
   description?: string;
@@ -162,6 +164,9 @@ const jsonLd = isHome ? JSON.stringify({
   <!-- JSON-LD -->
   {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
 
+  <!-- Astro View Transitions -->
+  <ViewTransitions />
+
   <!-- GSAP via CDN -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 </head>
@@ -176,16 +181,7 @@ const jsonLd = isHome ? JSON.stringify({
   <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-  <!--
-    ═══════════════════════════════════════════════════════════════
-    LENIS SMOOTH SCROLL (optionnel — décommenter pour activer)
-    Nécessite : npm install lenis
-    Puis importer dans un script Astro : import Lenis from 'lenis'
-    ═══════════════════════════════════════════════════════════════
-    Pour l'activer via CDN (sans npm), décommenter ci-dessous :
-    <script is:inline src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-    Et dans initAnimations() ci-dessous, décommenter le bloc Lenis.
-  -->
+
 
   <!-- Curseur personnalisé — élément injecté en JS pour éviter le flash -->
   <script is:inline>
@@ -194,6 +190,8 @@ const jsonLd = isHome ? JSON.stringify({
     (function() {
       // Uniquement sur desktop (pointeur précis)
       if (!window.matchMedia('(pointer: fine)').matches) return;
+      // Éviter les doublons lors des View Transitions
+      if (document.querySelector('.custom-cursor')) return;
 
       const cursor = document.createElement('div');
       cursor.className = 'custom-cursor';
@@ -257,14 +255,9 @@ const jsonLd = isHome ? JSON.stringify({
       }
 
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // LENIS (décommenter si installé via npm ou CDN ci-dessus)
+      // LENIS SMOOTH SCROLL
       // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // if (typeof Lenis !== 'undefined') {
-      //   const lenis = new Lenis({ duration: 1.4, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-      //   lenis.on('scroll', ScrollTrigger.update);
-      //   gsap.ticker.add(time => lenis.raf(time * 1000));
-      //   gsap.ticker.lagSmoothing(0);
-      // }
+
 
       // ── .reveal : fade + glisse vers le haut ──
       gsap.utils.toArray('.reveal').forEach(el => {
