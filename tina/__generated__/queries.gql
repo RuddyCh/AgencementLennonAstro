@@ -108,8 +108,8 @@ query galleryConnection($before: String, $after: String, $first: Float, $last: F
   }
 }
 
-query services($relativePath: String!) {
-  services(relativePath: $relativePath) {
+query cuisine($relativePath: String!) {
+  cuisine(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -122,12 +122,12 @@ query services($relativePath: String!) {
       }
       id
     }
-    ...ServicesParts
+    ...CuisineParts
   }
 }
 
-query servicesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ServicesFilter) {
-  servicesConnection(
+query cuisineConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: CuisineFilter) {
+  cuisineConnection(
     before: $before
     after: $after
     first: $first
@@ -157,7 +157,172 @@ query servicesConnection($before: String, $after: String, $first: Float, $last: 
           }
           id
         }
-        ...ServicesParts
+        ...CuisineParts
+      }
+    }
+  }
+}
+
+query terrasse($relativePath: String!) {
+  terrasse(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...TerrasseParts
+  }
+}
+
+query terrasseConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: TerrasseFilter) {
+  terrasseConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...TerrasseParts
+      }
+    }
+  }
+}
+
+query dressing($relativePath: String!) {
+  dressing(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DressingParts
+  }
+}
+
+query dressingConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DressingFilter) {
+  dressingConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DressingParts
+      }
+    }
+  }
+}
+
+query bardage($relativePath: String!) {
+  bardage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...BardageParts
+  }
+}
+
+query bardageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: BardageFilter) {
+  bardageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...BardageParts
       }
     }
   }

@@ -91,7 +91,7 @@ const faq = serviceData.faq ?? [];
       <div class="container">
         <div class="grid lg:grid-cols-3 gap-16">
           <div class="lg:col-span-2">
-            <h2 class="font-serif text-h2 text-navy mb-6 reveal">Un bardage pensé<br><em>pour le Finistère</em></h2>
+            <h2 class="font-serif text-h2 text-navy mb-6 reveal">{serviceData.section?.title}<br><em>{serviceData.section?.titleEm}</em></h2>
             <div class="ornament-line reveal-clip mb-8"></div>
             <div class="space-y-5 font-sans text-stone leading-relaxed reveal">
               <p>{serviceData.intro1}</p>
@@ -101,7 +101,7 @@ const faq = serviceData.faq ?? [];
 
             <!-- Matériaux -->
             <div class="mt-12 reveal">
-              <h3 class="font-serif text-h3 text-navy mb-6">Matériaux disponibles</h3>
+              <h3 class="font-serif text-h3 text-navy mb-6">{serviceData.materiauxTitle}</h3>
               <div class="space-y-4">
                 {[
                   {
@@ -145,12 +145,12 @@ const faq = serviceData.faq ?? [];
           <aside class="reveal-left">
             <div class="bg-navy rounded-sm p-7 text-cream sticky top-28">
               <div class="absolute left-0 top-0 bottom-0 w-1 bg-oak rounded-l-sm" aria-hidden="true"></div>
-              <p class="font-serif text-xl text-cream mb-1">Un projet de bardage ?</p>
-              <p class="font-sans text-sm text-cream/60 mb-6">Devis gratuit · Finistère · 48h</p>
+              <p class="font-serif text-xl text-cream mb-1">{serviceData.sidebar?.title}</p>
+              <p class="font-sans text-sm text-cream/60 mb-6">{serviceData.sidebar?.subtitle}</p>
               <a href="/#contact" class="btn-primary w-full justify-center mb-3 text-sm">Demander un devis</a>
               <a href="tel:+33767426234" class="btn-outline w-full justify-center text-sm">07 67 42 62 34</a>
               <div class="mt-6 pt-6 border-t border-white/10 space-y-2">
-                {['Visite gratuite sur site', 'Matériaux adaptés au climat breton', 'Fixations inox anti-corrosion', 'Ventilation soignée', 'Tout le Finistère (29)'].map(item => (
+                {(serviceData.sidebar?.checklist ?? []).map((item: string) => (
                   <div class="flex items-center gap-2.5">
                     <svg class="w-4 h-4 text-oak flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
                     <span class="font-sans text-xs text-cream/70">{item}</span>
@@ -200,9 +200,9 @@ const faq = serviceData.faq ?? [];
           <div class="h-px w-16 bg-gradient-to-l from-transparent to-oak/50"></div>
         </div>
 
-        <h2 class="font-serif text-h2 text-cream mb-4 reveal">Votre façade mérite<br><em>mieux que le provisoire</em></h2>
+        <h2 class="font-serif text-h2 text-cream mb-4 reveal">{serviceData.cta?.title}<br><em>{serviceData.cta?.titleEm}</em></h2>
         <p class="font-sans text-body-lg text-cream/60 max-w-xl mx-auto mb-10 reveal">
-          Visite gratuite et sans engagement. Tout le Finistère.
+          {serviceData.cta?.subtitle}
         </p>
         <div class="flex flex-wrap gap-4 justify-center reveal">
           <a href="/#contact" class="btn-primary px-10 py-4">Demander un devis gratuit</a>

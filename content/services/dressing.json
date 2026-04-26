@@ -28,5 +28,46 @@
       "q": "Quels délais pour un dressing sur mesure ?",
       "a": "Comptez 3 à 6 semaines entre la visite et la pose selon la complexité. Nous vous donnons une date précise à la signature du devis."
     }
+  ],
+  "sectionTitle": "Nos solutions",
+  "sectionTitleEm": "de rangement",
+  "h3Pourquoi": "Pourquoi choisir le sur-mesure ?",
+  "sidebarTitle": "Un projet de rangement ?",
+  "sidebarSubtitle": "Devis gratuit · Finistère · 48h",
+  "sidebarChecklist": [
+    "Cotes au millimètre",
+    "Espaces atypiques acceptés",
+    "Plan avant fabrication",
+    "Portes coulissantes ou battantes",
+    "Tout le Finistère (29)"
+  ],
+  "ctaTitle": "Un espace optimisé,",
+  "ctaTitleEm": "enfin à votre mesure",
+  "ctaSubtitle": "Premier rendez-vous gratuit. Finistère et alentours.",
+  "solutions": [
+    {
+      "title": "Dressing chambre",
+      "desc": "Penderies, tiroirs, étagères — organisés selon vos habitudes"
+    },
+    {
+      "title": "Placard de couloir",
+      "desc": "Optimisation de l'entrée avec manteaux, chaussures, rangements"
+    },
+    {
+      "title": "Bibliothèque sur mesure",
+      "desc": "Du sol au plafond, en niche ou en saillie, avec ou sans portes"
+    },
+    {
+      "title": "Aménagement sous escalier",
+      "desc": "Chaque centimètre optimisé : tiroirs, penderie, cellier"
+    },
+    {
+      "title": "Rangement buanderie",
+      "desc": "Meubles hauts, bacs à linge, plan de travail, colonnes"
+    },
+    {
+      "title": "Meuble TV et multimédia",
+      "desc": "Niche encastrée, gestion des câbles, éclairage LED intégré"
+    }
   ]
 }

@@ -33,19 +33,173 @@ fragment GalleryParts on Gallery {
   order
 }
 
-fragment ServicesParts on Services {
+fragment CuisineParts on Cuisine {
   __typename
   heroSubtitle
   photo1
   photo1Alt
   photo2
   photo2Alt
+  section {
+    __typename
+    title
+    titleEm
+  }
   intro1
   intro2
   intro3
+  sidebar {
+    __typename
+    title
+    subtitle
+    checklist
+  }
+  cta {
+    __typename
+    title
+    titleEm
+    subtitle
+  }
   faq {
     __typename
     q
     a
+  }
+  etapes {
+    __typename
+    num
+    title
+    desc
+  }
+  materiaux {
+    __typename
+    label
+    detail
+  }
+}
+
+fragment TerrasseParts on Terrasse {
+  __typename
+  heroSubtitle
+  photo1
+  photo1Alt
+  photo2
+  photo2Alt
+  section {
+    __typename
+    title
+    titleEm
+  }
+  intro1
+  intro2
+  intro3
+  sidebar {
+    __typename
+    title
+    subtitle
+    checklist
+  }
+  cta {
+    __typename
+    title
+    titleEm
+    subtitle
+  }
+  faq {
+    __typename
+    q
+    a
+  }
+  comparatif {
+    __typename
+    crit
+    bois
+    comp
+  }
+  options {
+    __typename
+    label
+    detail
+  }
+}
+
+fragment DressingParts on Dressing {
+  __typename
+  heroSubtitle
+  photo1
+  photo1Alt
+  photo2
+  photo2Alt
+  section {
+    __typename
+    title
+    titleEm
+  }
+  intro1
+  intro2
+  intro3
+  sidebar {
+    __typename
+    title
+    subtitle
+    checklist
+  }
+  cta {
+    __typename
+    title
+    titleEm
+    subtitle
+  }
+  faq {
+    __typename
+    q
+    a
+  }
+  h3Pourquoi
+  solutions {
+    __typename
+    title
+    desc
+  }
+}
+
+fragment BardageParts on Bardage {
+  __typename
+  heroSubtitle
+  photo1
+  photo1Alt
+  photo2
+  photo2Alt
+  section {
+    __typename
+    title
+    titleEm
+  }
+  intro1
+  intro2
+  intro3
+  sidebar {
+    __typename
+    title
+    subtitle
+    checklist
+  }
+  cta {
+    __typename
+    title
+    titleEm
+    subtitle
+  }
+  faq {
+    __typename
+    q
+    a
+  }
+  materiaux {
+    __typename
+    name
+    items
+    pros
+    cons
   }
 }

@@ -86,8 +86,14 @@ export type Query = {
   homepageConnection: HomepageConnection;
   gallery: Gallery;
   galleryConnection: GalleryConnection;
-  services: Services;
-  servicesConnection: ServicesConnection;
+  cuisine: Cuisine;
+  cuisineConnection: CuisineConnection;
+  terrasse: Terrasse;
+  terrasseConnection: TerrasseConnection;
+  dressing: Dressing;
+  dressingConnection: DressingConnection;
+  bardage: Bardage;
+  bardageConnection: BardageConnection;
 };
 
 
@@ -142,24 +148,72 @@ export type QueryGalleryConnectionArgs = {
 };
 
 
-export type QueryServicesArgs = {
+export type QueryCuisineArgs = {
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 
-export type QueryServicesConnectionArgs = {
+export type QueryCuisineConnectionArgs = {
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<ServicesFilter>;
+  filter?: InputMaybe<CuisineFilter>;
+};
+
+
+export type QueryTerrasseArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryTerrasseConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<TerrasseFilter>;
+};
+
+
+export type QueryDressingArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryDressingConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<DressingFilter>;
+};
+
+
+export type QueryBardageArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryBardageConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<BardageFilter>;
 };
 
 export type DocumentFilter = {
   homepage?: InputMaybe<HomepageFilter>;
   gallery?: InputMaybe<GalleryFilter>;
-  services?: InputMaybe<ServicesFilter>;
+  cuisine?: InputMaybe<CuisineFilter>;
+  terrasse?: InputMaybe<TerrasseFilter>;
+  dressing?: InputMaybe<DressingFilter>;
+  bardage?: InputMaybe<BardageFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -199,7 +253,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Homepage | Gallery | Services | Folder;
+export type DocumentNode = Homepage | Gallery | Cuisine | Terrasse | Dressing | Bardage | Folder;
 
 export type HomepageHero = {
   __typename?: 'HomepageHero';
@@ -339,56 +393,472 @@ export type GalleryConnection = Connection & {
   edges?: Maybe<Array<Maybe<GalleryConnectionEdges>>>;
 };
 
-export type ServicesFaq = {
-  __typename?: 'ServicesFaq';
+export type CuisineSection = {
+  __typename?: 'CuisineSection';
+  title?: Maybe<Scalars['String']['output']>;
+  titleEm?: Maybe<Scalars['String']['output']>;
+};
+
+export type CuisineSidebar = {
+  __typename?: 'CuisineSidebar';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  checklist?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type CuisineCta = {
+  __typename?: 'CuisineCta';
+  title?: Maybe<Scalars['String']['output']>;
+  titleEm?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+};
+
+export type CuisineFaq = {
+  __typename?: 'CuisineFaq';
   q: Scalars['String']['output'];
   a: Scalars['String']['output'];
 };
 
-export type Services = Node & Document & {
-  __typename?: 'Services';
+export type CuisineEtapes = {
+  __typename?: 'CuisineEtapes';
+  num?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  desc?: Maybe<Scalars['String']['output']>;
+};
+
+export type CuisineMateriaux = {
+  __typename?: 'CuisineMateriaux';
+  label: Scalars['String']['output'];
+  detail?: Maybe<Scalars['String']['output']>;
+};
+
+export type Cuisine = Node & Document & {
+  __typename?: 'Cuisine';
   heroSubtitle?: Maybe<Scalars['String']['output']>;
   photo1?: Maybe<Scalars['String']['output']>;
   photo1Alt?: Maybe<Scalars['String']['output']>;
   photo2?: Maybe<Scalars['String']['output']>;
   photo2Alt?: Maybe<Scalars['String']['output']>;
+  section?: Maybe<CuisineSection>;
   intro1?: Maybe<Scalars['String']['output']>;
   intro2?: Maybe<Scalars['String']['output']>;
   intro3?: Maybe<Scalars['String']['output']>;
-  faq?: Maybe<Array<Maybe<ServicesFaq>>>;
+  sidebar?: Maybe<CuisineSidebar>;
+  cta?: Maybe<CuisineCta>;
+  faq?: Maybe<Array<Maybe<CuisineFaq>>>;
+  etapes?: Maybe<Array<Maybe<CuisineEtapes>>>;
+  materiaux?: Maybe<Array<Maybe<CuisineMateriaux>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
 };
 
-export type ServicesFaqFilter = {
+export type CuisineSectionFilter = {
+  title?: InputMaybe<StringFilter>;
+  titleEm?: InputMaybe<StringFilter>;
+};
+
+export type CuisineSidebarFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  checklist?: InputMaybe<StringFilter>;
+};
+
+export type CuisineCtaFilter = {
+  title?: InputMaybe<StringFilter>;
+  titleEm?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+};
+
+export type CuisineFaqFilter = {
   q?: InputMaybe<StringFilter>;
   a?: InputMaybe<StringFilter>;
 };
 
-export type ServicesFilter = {
+export type CuisineEtapesFilter = {
+  num?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  desc?: InputMaybe<StringFilter>;
+};
+
+export type CuisineMateriauxFilter = {
+  label?: InputMaybe<StringFilter>;
+  detail?: InputMaybe<StringFilter>;
+};
+
+export type CuisineFilter = {
   heroSubtitle?: InputMaybe<StringFilter>;
   photo1?: InputMaybe<ImageFilter>;
   photo1Alt?: InputMaybe<StringFilter>;
   photo2?: InputMaybe<ImageFilter>;
   photo2Alt?: InputMaybe<StringFilter>;
+  section?: InputMaybe<CuisineSectionFilter>;
   intro1?: InputMaybe<StringFilter>;
   intro2?: InputMaybe<StringFilter>;
   intro3?: InputMaybe<StringFilter>;
-  faq?: InputMaybe<ServicesFaqFilter>;
+  sidebar?: InputMaybe<CuisineSidebarFilter>;
+  cta?: InputMaybe<CuisineCtaFilter>;
+  faq?: InputMaybe<CuisineFaqFilter>;
+  etapes?: InputMaybe<CuisineEtapesFilter>;
+  materiaux?: InputMaybe<CuisineMateriauxFilter>;
 };
 
-export type ServicesConnectionEdges = {
-  __typename?: 'ServicesConnectionEdges';
+export type CuisineConnectionEdges = {
+  __typename?: 'CuisineConnectionEdges';
   cursor: Scalars['String']['output'];
-  node?: Maybe<Services>;
+  node?: Maybe<Cuisine>;
 };
 
-export type ServicesConnection = Connection & {
-  __typename?: 'ServicesConnection';
+export type CuisineConnection = Connection & {
+  __typename?: 'CuisineConnection';
   pageInfo: PageInfo;
   totalCount: Scalars['Float']['output'];
-  edges?: Maybe<Array<Maybe<ServicesConnectionEdges>>>;
+  edges?: Maybe<Array<Maybe<CuisineConnectionEdges>>>;
+};
+
+export type TerrasseSection = {
+  __typename?: 'TerrasseSection';
+  title?: Maybe<Scalars['String']['output']>;
+  titleEm?: Maybe<Scalars['String']['output']>;
+};
+
+export type TerrasseSidebar = {
+  __typename?: 'TerrasseSidebar';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  checklist?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type TerrasseCta = {
+  __typename?: 'TerrasseCta';
+  title?: Maybe<Scalars['String']['output']>;
+  titleEm?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+};
+
+export type TerrasseFaq = {
+  __typename?: 'TerrasseFaq';
+  q: Scalars['String']['output'];
+  a: Scalars['String']['output'];
+};
+
+export type TerrasseComparatif = {
+  __typename?: 'TerrasseComparatif';
+  crit: Scalars['String']['output'];
+  bois?: Maybe<Scalars['String']['output']>;
+  comp?: Maybe<Scalars['String']['output']>;
+};
+
+export type TerrasseOptions = {
+  __typename?: 'TerrasseOptions';
+  label: Scalars['String']['output'];
+  detail?: Maybe<Scalars['String']['output']>;
+};
+
+export type Terrasse = Node & Document & {
+  __typename?: 'Terrasse';
+  heroSubtitle?: Maybe<Scalars['String']['output']>;
+  photo1?: Maybe<Scalars['String']['output']>;
+  photo1Alt?: Maybe<Scalars['String']['output']>;
+  photo2?: Maybe<Scalars['String']['output']>;
+  photo2Alt?: Maybe<Scalars['String']['output']>;
+  section?: Maybe<TerrasseSection>;
+  intro1?: Maybe<Scalars['String']['output']>;
+  intro2?: Maybe<Scalars['String']['output']>;
+  intro3?: Maybe<Scalars['String']['output']>;
+  sidebar?: Maybe<TerrasseSidebar>;
+  cta?: Maybe<TerrasseCta>;
+  faq?: Maybe<Array<Maybe<TerrasseFaq>>>;
+  comparatif?: Maybe<Array<Maybe<TerrasseComparatif>>>;
+  options?: Maybe<Array<Maybe<TerrasseOptions>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type TerrasseSectionFilter = {
+  title?: InputMaybe<StringFilter>;
+  titleEm?: InputMaybe<StringFilter>;
+};
+
+export type TerrasseSidebarFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  checklist?: InputMaybe<StringFilter>;
+};
+
+export type TerrasseCtaFilter = {
+  title?: InputMaybe<StringFilter>;
+  titleEm?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+};
+
+export type TerrasseFaqFilter = {
+  q?: InputMaybe<StringFilter>;
+  a?: InputMaybe<StringFilter>;
+};
+
+export type TerrasseComparatifFilter = {
+  crit?: InputMaybe<StringFilter>;
+  bois?: InputMaybe<StringFilter>;
+  comp?: InputMaybe<StringFilter>;
+};
+
+export type TerrasseOptionsFilter = {
+  label?: InputMaybe<StringFilter>;
+  detail?: InputMaybe<StringFilter>;
+};
+
+export type TerrasseFilter = {
+  heroSubtitle?: InputMaybe<StringFilter>;
+  photo1?: InputMaybe<ImageFilter>;
+  photo1Alt?: InputMaybe<StringFilter>;
+  photo2?: InputMaybe<ImageFilter>;
+  photo2Alt?: InputMaybe<StringFilter>;
+  section?: InputMaybe<TerrasseSectionFilter>;
+  intro1?: InputMaybe<StringFilter>;
+  intro2?: InputMaybe<StringFilter>;
+  intro3?: InputMaybe<StringFilter>;
+  sidebar?: InputMaybe<TerrasseSidebarFilter>;
+  cta?: InputMaybe<TerrasseCtaFilter>;
+  faq?: InputMaybe<TerrasseFaqFilter>;
+  comparatif?: InputMaybe<TerrasseComparatifFilter>;
+  options?: InputMaybe<TerrasseOptionsFilter>;
+};
+
+export type TerrasseConnectionEdges = {
+  __typename?: 'TerrasseConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Terrasse>;
+};
+
+export type TerrasseConnection = Connection & {
+  __typename?: 'TerrasseConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<TerrasseConnectionEdges>>>;
+};
+
+export type DressingSection = {
+  __typename?: 'DressingSection';
+  title?: Maybe<Scalars['String']['output']>;
+  titleEm?: Maybe<Scalars['String']['output']>;
+};
+
+export type DressingSidebar = {
+  __typename?: 'DressingSidebar';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  checklist?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type DressingCta = {
+  __typename?: 'DressingCta';
+  title?: Maybe<Scalars['String']['output']>;
+  titleEm?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+};
+
+export type DressingFaq = {
+  __typename?: 'DressingFaq';
+  q: Scalars['String']['output'];
+  a: Scalars['String']['output'];
+};
+
+export type DressingSolutions = {
+  __typename?: 'DressingSolutions';
+  title: Scalars['String']['output'];
+  desc?: Maybe<Scalars['String']['output']>;
+};
+
+export type Dressing = Node & Document & {
+  __typename?: 'Dressing';
+  heroSubtitle?: Maybe<Scalars['String']['output']>;
+  photo1?: Maybe<Scalars['String']['output']>;
+  photo1Alt?: Maybe<Scalars['String']['output']>;
+  photo2?: Maybe<Scalars['String']['output']>;
+  photo2Alt?: Maybe<Scalars['String']['output']>;
+  section?: Maybe<DressingSection>;
+  intro1?: Maybe<Scalars['String']['output']>;
+  intro2?: Maybe<Scalars['String']['output']>;
+  intro3?: Maybe<Scalars['String']['output']>;
+  sidebar?: Maybe<DressingSidebar>;
+  cta?: Maybe<DressingCta>;
+  faq?: Maybe<Array<Maybe<DressingFaq>>>;
+  h3Pourquoi?: Maybe<Scalars['String']['output']>;
+  solutions?: Maybe<Array<Maybe<DressingSolutions>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type DressingSectionFilter = {
+  title?: InputMaybe<StringFilter>;
+  titleEm?: InputMaybe<StringFilter>;
+};
+
+export type DressingSidebarFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  checklist?: InputMaybe<StringFilter>;
+};
+
+export type DressingCtaFilter = {
+  title?: InputMaybe<StringFilter>;
+  titleEm?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+};
+
+export type DressingFaqFilter = {
+  q?: InputMaybe<StringFilter>;
+  a?: InputMaybe<StringFilter>;
+};
+
+export type DressingSolutionsFilter = {
+  title?: InputMaybe<StringFilter>;
+  desc?: InputMaybe<StringFilter>;
+};
+
+export type DressingFilter = {
+  heroSubtitle?: InputMaybe<StringFilter>;
+  photo1?: InputMaybe<ImageFilter>;
+  photo1Alt?: InputMaybe<StringFilter>;
+  photo2?: InputMaybe<ImageFilter>;
+  photo2Alt?: InputMaybe<StringFilter>;
+  section?: InputMaybe<DressingSectionFilter>;
+  intro1?: InputMaybe<StringFilter>;
+  intro2?: InputMaybe<StringFilter>;
+  intro3?: InputMaybe<StringFilter>;
+  sidebar?: InputMaybe<DressingSidebarFilter>;
+  cta?: InputMaybe<DressingCtaFilter>;
+  faq?: InputMaybe<DressingFaqFilter>;
+  h3Pourquoi?: InputMaybe<StringFilter>;
+  solutions?: InputMaybe<DressingSolutionsFilter>;
+};
+
+export type DressingConnectionEdges = {
+  __typename?: 'DressingConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Dressing>;
+};
+
+export type DressingConnection = Connection & {
+  __typename?: 'DressingConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<DressingConnectionEdges>>>;
+};
+
+export type BardageSection = {
+  __typename?: 'BardageSection';
+  title?: Maybe<Scalars['String']['output']>;
+  titleEm?: Maybe<Scalars['String']['output']>;
+};
+
+export type BardageSidebar = {
+  __typename?: 'BardageSidebar';
+  title?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+  checklist?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+export type BardageCta = {
+  __typename?: 'BardageCta';
+  title?: Maybe<Scalars['String']['output']>;
+  titleEm?: Maybe<Scalars['String']['output']>;
+  subtitle?: Maybe<Scalars['String']['output']>;
+};
+
+export type BardageFaq = {
+  __typename?: 'BardageFaq';
+  q: Scalars['String']['output'];
+  a: Scalars['String']['output'];
+};
+
+export type BardageMateriaux = {
+  __typename?: 'BardageMateriaux';
+  name: Scalars['String']['output'];
+  items?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  pros?: Maybe<Scalars['String']['output']>;
+  cons?: Maybe<Scalars['String']['output']>;
+};
+
+export type Bardage = Node & Document & {
+  __typename?: 'Bardage';
+  heroSubtitle?: Maybe<Scalars['String']['output']>;
+  photo1?: Maybe<Scalars['String']['output']>;
+  photo1Alt?: Maybe<Scalars['String']['output']>;
+  photo2?: Maybe<Scalars['String']['output']>;
+  photo2Alt?: Maybe<Scalars['String']['output']>;
+  section?: Maybe<BardageSection>;
+  intro1?: Maybe<Scalars['String']['output']>;
+  intro2?: Maybe<Scalars['String']['output']>;
+  intro3?: Maybe<Scalars['String']['output']>;
+  sidebar?: Maybe<BardageSidebar>;
+  cta?: Maybe<BardageCta>;
+  faq?: Maybe<Array<Maybe<BardageFaq>>>;
+  materiaux?: Maybe<Array<Maybe<BardageMateriaux>>>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type BardageSectionFilter = {
+  title?: InputMaybe<StringFilter>;
+  titleEm?: InputMaybe<StringFilter>;
+};
+
+export type BardageSidebarFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  checklist?: InputMaybe<StringFilter>;
+};
+
+export type BardageCtaFilter = {
+  title?: InputMaybe<StringFilter>;
+  titleEm?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+};
+
+export type BardageFaqFilter = {
+  q?: InputMaybe<StringFilter>;
+  a?: InputMaybe<StringFilter>;
+};
+
+export type BardageMateriauxFilter = {
+  name?: InputMaybe<StringFilter>;
+  items?: InputMaybe<StringFilter>;
+  pros?: InputMaybe<StringFilter>;
+  cons?: InputMaybe<StringFilter>;
+};
+
+export type BardageFilter = {
+  heroSubtitle?: InputMaybe<StringFilter>;
+  photo1?: InputMaybe<ImageFilter>;
+  photo1Alt?: InputMaybe<StringFilter>;
+  photo2?: InputMaybe<ImageFilter>;
+  photo2Alt?: InputMaybe<StringFilter>;
+  section?: InputMaybe<BardageSectionFilter>;
+  intro1?: InputMaybe<StringFilter>;
+  intro2?: InputMaybe<StringFilter>;
+  intro3?: InputMaybe<StringFilter>;
+  sidebar?: InputMaybe<BardageSidebarFilter>;
+  cta?: InputMaybe<BardageCtaFilter>;
+  faq?: InputMaybe<BardageFaqFilter>;
+  materiaux?: InputMaybe<BardageMateriauxFilter>;
+};
+
+export type BardageConnectionEdges = {
+  __typename?: 'BardageConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Bardage>;
+};
+
+export type BardageConnection = Connection & {
+  __typename?: 'BardageConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<BardageConnectionEdges>>>;
 };
 
 export type Mutation = {
@@ -402,8 +872,14 @@ export type Mutation = {
   createHomepage: Homepage;
   updateGallery: Gallery;
   createGallery: Gallery;
-  updateServices: Services;
-  createServices: Services;
+  updateCuisine: Cuisine;
+  createCuisine: Cuisine;
+  updateTerrasse: Terrasse;
+  createTerrasse: Terrasse;
+  updateDressing: Dressing;
+  createDressing: Dressing;
+  updateBardage: Bardage;
+  createBardage: Bardage;
 };
 
 
@@ -464,28 +940,70 @@ export type MutationCreateGalleryArgs = {
 };
 
 
-export type MutationUpdateServicesArgs = {
+export type MutationUpdateCuisineArgs = {
   relativePath: Scalars['String']['input'];
-  params: ServicesMutation;
+  params: CuisineMutation;
 };
 
 
-export type MutationCreateServicesArgs = {
+export type MutationCreateCuisineArgs = {
   relativePath: Scalars['String']['input'];
-  params: ServicesMutation;
+  params: CuisineMutation;
+};
+
+
+export type MutationUpdateTerrasseArgs = {
+  relativePath: Scalars['String']['input'];
+  params: TerrasseMutation;
+};
+
+
+export type MutationCreateTerrasseArgs = {
+  relativePath: Scalars['String']['input'];
+  params: TerrasseMutation;
+};
+
+
+export type MutationUpdateDressingArgs = {
+  relativePath: Scalars['String']['input'];
+  params: DressingMutation;
+};
+
+
+export type MutationCreateDressingArgs = {
+  relativePath: Scalars['String']['input'];
+  params: DressingMutation;
+};
+
+
+export type MutationUpdateBardageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: BardageMutation;
+};
+
+
+export type MutationCreateBardageArgs = {
+  relativePath: Scalars['String']['input'];
+  params: BardageMutation;
 };
 
 export type DocumentUpdateMutation = {
   homepage?: InputMaybe<HomepageMutation>;
   gallery?: InputMaybe<GalleryMutation>;
-  services?: InputMaybe<ServicesMutation>;
+  cuisine?: InputMaybe<CuisineMutation>;
+  terrasse?: InputMaybe<TerrasseMutation>;
+  dressing?: InputMaybe<DressingMutation>;
+  bardage?: InputMaybe<BardageMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   homepage?: InputMaybe<HomepageMutation>;
   gallery?: InputMaybe<GalleryMutation>;
-  services?: InputMaybe<ServicesMutation>;
+  cuisine?: InputMaybe<CuisineMutation>;
+  terrasse?: InputMaybe<TerrasseMutation>;
+  dressing?: InputMaybe<DressingMutation>;
+  bardage?: InputMaybe<BardageMutation>;
 };
 
 export type HomepageHeroMutation = {
@@ -524,28 +1042,206 @@ export type GalleryMutation = {
   order?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type ServicesFaqMutation = {
+export type CuisineSectionMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleEm?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CuisineSidebarMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  checklist?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type CuisineCtaMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleEm?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CuisineFaqMutation = {
   q?: InputMaybe<Scalars['String']['input']>;
   a?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type ServicesMutation = {
+export type CuisineEtapesMutation = {
+  num?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  desc?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CuisineMateriauxMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  detail?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CuisineMutation = {
   heroSubtitle?: InputMaybe<Scalars['String']['input']>;
   photo1?: InputMaybe<Scalars['String']['input']>;
   photo1Alt?: InputMaybe<Scalars['String']['input']>;
   photo2?: InputMaybe<Scalars['String']['input']>;
   photo2Alt?: InputMaybe<Scalars['String']['input']>;
+  section?: InputMaybe<CuisineSectionMutation>;
   intro1?: InputMaybe<Scalars['String']['input']>;
   intro2?: InputMaybe<Scalars['String']['input']>;
   intro3?: InputMaybe<Scalars['String']['input']>;
-  faq?: InputMaybe<Array<InputMaybe<ServicesFaqMutation>>>;
+  sidebar?: InputMaybe<CuisineSidebarMutation>;
+  cta?: InputMaybe<CuisineCtaMutation>;
+  faq?: InputMaybe<Array<InputMaybe<CuisineFaqMutation>>>;
+  etapes?: InputMaybe<Array<InputMaybe<CuisineEtapesMutation>>>;
+  materiaux?: InputMaybe<Array<InputMaybe<CuisineMateriauxMutation>>>;
+};
+
+export type TerrasseSectionMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleEm?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TerrasseSidebarMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  checklist?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type TerrasseCtaMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleEm?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TerrasseFaqMutation = {
+  q?: InputMaybe<Scalars['String']['input']>;
+  a?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TerrasseComparatifMutation = {
+  crit?: InputMaybe<Scalars['String']['input']>;
+  bois?: InputMaybe<Scalars['String']['input']>;
+  comp?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TerrasseOptionsMutation = {
+  label?: InputMaybe<Scalars['String']['input']>;
+  detail?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type TerrasseMutation = {
+  heroSubtitle?: InputMaybe<Scalars['String']['input']>;
+  photo1?: InputMaybe<Scalars['String']['input']>;
+  photo1Alt?: InputMaybe<Scalars['String']['input']>;
+  photo2?: InputMaybe<Scalars['String']['input']>;
+  photo2Alt?: InputMaybe<Scalars['String']['input']>;
+  section?: InputMaybe<TerrasseSectionMutation>;
+  intro1?: InputMaybe<Scalars['String']['input']>;
+  intro2?: InputMaybe<Scalars['String']['input']>;
+  intro3?: InputMaybe<Scalars['String']['input']>;
+  sidebar?: InputMaybe<TerrasseSidebarMutation>;
+  cta?: InputMaybe<TerrasseCtaMutation>;
+  faq?: InputMaybe<Array<InputMaybe<TerrasseFaqMutation>>>;
+  comparatif?: InputMaybe<Array<InputMaybe<TerrasseComparatifMutation>>>;
+  options?: InputMaybe<Array<InputMaybe<TerrasseOptionsMutation>>>;
+};
+
+export type DressingSectionMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleEm?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type DressingSidebarMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  checklist?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type DressingCtaMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleEm?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type DressingFaqMutation = {
+  q?: InputMaybe<Scalars['String']['input']>;
+  a?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type DressingSolutionsMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  desc?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type DressingMutation = {
+  heroSubtitle?: InputMaybe<Scalars['String']['input']>;
+  photo1?: InputMaybe<Scalars['String']['input']>;
+  photo1Alt?: InputMaybe<Scalars['String']['input']>;
+  photo2?: InputMaybe<Scalars['String']['input']>;
+  photo2Alt?: InputMaybe<Scalars['String']['input']>;
+  section?: InputMaybe<DressingSectionMutation>;
+  intro1?: InputMaybe<Scalars['String']['input']>;
+  intro2?: InputMaybe<Scalars['String']['input']>;
+  intro3?: InputMaybe<Scalars['String']['input']>;
+  sidebar?: InputMaybe<DressingSidebarMutation>;
+  cta?: InputMaybe<DressingCtaMutation>;
+  faq?: InputMaybe<Array<InputMaybe<DressingFaqMutation>>>;
+  h3Pourquoi?: InputMaybe<Scalars['String']['input']>;
+  solutions?: InputMaybe<Array<InputMaybe<DressingSolutionsMutation>>>;
+};
+
+export type BardageSectionMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleEm?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BardageSidebarMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+  checklist?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type BardageCtaMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  titleEm?: InputMaybe<Scalars['String']['input']>;
+  subtitle?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BardageFaqMutation = {
+  q?: InputMaybe<Scalars['String']['input']>;
+  a?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BardageMateriauxMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  items?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  pros?: InputMaybe<Scalars['String']['input']>;
+  cons?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BardageMutation = {
+  heroSubtitle?: InputMaybe<Scalars['String']['input']>;
+  photo1?: InputMaybe<Scalars['String']['input']>;
+  photo1Alt?: InputMaybe<Scalars['String']['input']>;
+  photo2?: InputMaybe<Scalars['String']['input']>;
+  photo2Alt?: InputMaybe<Scalars['String']['input']>;
+  section?: InputMaybe<BardageSectionMutation>;
+  intro1?: InputMaybe<Scalars['String']['input']>;
+  intro2?: InputMaybe<Scalars['String']['input']>;
+  intro3?: InputMaybe<Scalars['String']['input']>;
+  sidebar?: InputMaybe<BardageSidebarMutation>;
+  cta?: InputMaybe<BardageCtaMutation>;
+  faq?: InputMaybe<Array<InputMaybe<BardageFaqMutation>>>;
+  materiaux?: InputMaybe<Array<InputMaybe<BardageMateriauxMutation>>>;
 };
 
 export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', eyebrow?: string | null, titleLine1?: string | null, titleLine2?: string | null, subtitle?: string | null, ctaText?: string | null, ctaSecondary?: string | null } | null, stats?: Array<{ __typename: 'HomepageStats', value?: number | null, suffix?: string | null, label?: string | null } | null> | null, about?: { __typename: 'HomepageAbout', paragraph1?: string | null, paragraph2?: string | null, photo?: string | null } | null };
 
 export type GalleryPartsFragment = { __typename: 'Gallery', caption: string, photo?: string | null, alt?: string | null, category?: string | null, featured?: boolean | null, order?: number | null };
 
-export type ServicesPartsFragment = { __typename: 'Services', heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, faq?: Array<{ __typename: 'ServicesFaq', q: string, a: string } | null> | null };
+export type CuisinePartsFragment = { __typename: 'Cuisine', heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, section?: { __typename: 'CuisineSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'CuisineSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'CuisineCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'CuisineFaq', q: string, a: string } | null> | null, etapes?: Array<{ __typename: 'CuisineEtapes', num?: string | null, title: string, desc?: string | null } | null> | null, materiaux?: Array<{ __typename: 'CuisineMateriaux', label: string, detail?: string | null } | null> | null };
+
+export type TerrassePartsFragment = { __typename: 'Terrasse', heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, section?: { __typename: 'TerrasseSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'TerrasseSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'TerrasseCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'TerrasseFaq', q: string, a: string } | null> | null, comparatif?: Array<{ __typename: 'TerrasseComparatif', crit: string, bois?: string | null, comp?: string | null } | null> | null, options?: Array<{ __typename: 'TerrasseOptions', label: string, detail?: string | null } | null> | null };
+
+export type DressingPartsFragment = { __typename: 'Dressing', heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, h3Pourquoi?: string | null, section?: { __typename: 'DressingSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'DressingSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'DressingCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'DressingFaq', q: string, a: string } | null> | null, solutions?: Array<{ __typename: 'DressingSolutions', title: string, desc?: string | null } | null> | null };
+
+export type BardagePartsFragment = { __typename: 'Bardage', heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, section?: { __typename: 'BardageSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'BardageSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'BardageCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'BardageFaq', q: string, a: string } | null> | null, materiaux?: Array<{ __typename: 'BardageMateriaux', name: string, items?: Array<string | null> | null, pros?: string | null, cons?: string | null } | null> | null };
 
 export type HomepageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -585,24 +1281,81 @@ export type GalleryConnectionQueryVariables = Exact<{
 
 export type GalleryConnectionQuery = { __typename?: 'Query', galleryConnection: { __typename?: 'GalleryConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'GalleryConnectionEdges', cursor: string, node?: { __typename: 'Gallery', id: string, caption: string, photo?: string | null, alt?: string | null, category?: string | null, featured?: boolean | null, order?: number | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
-export type ServicesQueryVariables = Exact<{
+export type CuisineQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type ServicesQuery = { __typename?: 'Query', services: { __typename: 'Services', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'ServicesFaq', q: string, a: string } | null> | null } };
+export type CuisineQuery = { __typename?: 'Query', cuisine: { __typename: 'Cuisine', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, section?: { __typename: 'CuisineSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'CuisineSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'CuisineCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'CuisineFaq', q: string, a: string } | null> | null, etapes?: Array<{ __typename: 'CuisineEtapes', num?: string | null, title: string, desc?: string | null } | null> | null, materiaux?: Array<{ __typename: 'CuisineMateriaux', label: string, detail?: string | null } | null> | null } };
 
-export type ServicesConnectionQueryVariables = Exact<{
+export type CuisineConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Float']['input']>;
   last?: InputMaybe<Scalars['Float']['input']>;
   sort?: InputMaybe<Scalars['String']['input']>;
-  filter?: InputMaybe<ServicesFilter>;
+  filter?: InputMaybe<CuisineFilter>;
 }>;
 
 
-export type ServicesConnectionQuery = { __typename?: 'Query', servicesConnection: { __typename?: 'ServicesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServicesConnectionEdges', cursor: string, node?: { __typename: 'Services', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'ServicesFaq', q: string, a: string } | null> | null } | null } | null> | null } };
+export type CuisineConnectionQuery = { __typename?: 'Query', cuisineConnection: { __typename?: 'CuisineConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'CuisineConnectionEdges', cursor: string, node?: { __typename: 'Cuisine', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, section?: { __typename: 'CuisineSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'CuisineSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'CuisineCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'CuisineFaq', q: string, a: string } | null> | null, etapes?: Array<{ __typename: 'CuisineEtapes', num?: string | null, title: string, desc?: string | null } | null> | null, materiaux?: Array<{ __typename: 'CuisineMateriaux', label: string, detail?: string | null } | null> | null } | null } | null> | null } };
+
+export type TerrasseQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type TerrasseQuery = { __typename?: 'Query', terrasse: { __typename: 'Terrasse', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, section?: { __typename: 'TerrasseSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'TerrasseSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'TerrasseCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'TerrasseFaq', q: string, a: string } | null> | null, comparatif?: Array<{ __typename: 'TerrasseComparatif', crit: string, bois?: string | null, comp?: string | null } | null> | null, options?: Array<{ __typename: 'TerrasseOptions', label: string, detail?: string | null } | null> | null } };
+
+export type TerrasseConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<TerrasseFilter>;
+}>;
+
+
+export type TerrasseConnectionQuery = { __typename?: 'Query', terrasseConnection: { __typename?: 'TerrasseConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'TerrasseConnectionEdges', cursor: string, node?: { __typename: 'Terrasse', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, section?: { __typename: 'TerrasseSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'TerrasseSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'TerrasseCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'TerrasseFaq', q: string, a: string } | null> | null, comparatif?: Array<{ __typename: 'TerrasseComparatif', crit: string, bois?: string | null, comp?: string | null } | null> | null, options?: Array<{ __typename: 'TerrasseOptions', label: string, detail?: string | null } | null> | null } | null } | null> | null } };
+
+export type DressingQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type DressingQuery = { __typename?: 'Query', dressing: { __typename: 'Dressing', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, h3Pourquoi?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, section?: { __typename: 'DressingSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'DressingSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'DressingCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'DressingFaq', q: string, a: string } | null> | null, solutions?: Array<{ __typename: 'DressingSolutions', title: string, desc?: string | null } | null> | null } };
+
+export type DressingConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<DressingFilter>;
+}>;
+
+
+export type DressingConnectionQuery = { __typename?: 'Query', dressingConnection: { __typename?: 'DressingConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'DressingConnectionEdges', cursor: string, node?: { __typename: 'Dressing', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, h3Pourquoi?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, section?: { __typename: 'DressingSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'DressingSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'DressingCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'DressingFaq', q: string, a: string } | null> | null, solutions?: Array<{ __typename: 'DressingSolutions', title: string, desc?: string | null } | null> | null } | null } | null> | null } };
+
+export type BardageQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type BardageQuery = { __typename?: 'Query', bardage: { __typename: 'Bardage', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, section?: { __typename: 'BardageSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'BardageSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'BardageCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'BardageFaq', q: string, a: string } | null> | null, materiaux?: Array<{ __typename: 'BardageMateriaux', name: string, items?: Array<string | null> | null, pros?: string | null, cons?: string | null } | null> | null } };
+
+export type BardageConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<BardageFilter>;
+}>;
+
+
+export type BardageConnectionQuery = { __typename?: 'Query', bardageConnection: { __typename?: 'BardageConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'BardageConnectionEdges', cursor: string, node?: { __typename: 'Bardage', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, section?: { __typename: 'BardageSection', title?: string | null, titleEm?: string | null } | null, sidebar?: { __typename: 'BardageSidebar', title?: string | null, subtitle?: string | null, checklist?: Array<string | null> | null } | null, cta?: { __typename: 'BardageCta', title?: string | null, titleEm?: string | null, subtitle?: string | null } | null, faq?: Array<{ __typename: 'BardageFaq', q: string, a: string } | null> | null, materiaux?: Array<{ __typename: 'BardageMateriaux', name: string, items?: Array<string | null> | null, pros?: string | null, cons?: string | null } | null> | null } | null } | null> | null } };
 
 export const HomepagePartsFragmentDoc = gql`
     fragment HomepageParts on Homepage {
@@ -641,21 +1394,178 @@ export const GalleryPartsFragmentDoc = gql`
   order
 }
     `;
-export const ServicesPartsFragmentDoc = gql`
-    fragment ServicesParts on Services {
+export const CuisinePartsFragmentDoc = gql`
+    fragment CuisineParts on Cuisine {
   __typename
   heroSubtitle
   photo1
   photo1Alt
   photo2
   photo2Alt
+  section {
+    __typename
+    title
+    titleEm
+  }
   intro1
   intro2
   intro3
+  sidebar {
+    __typename
+    title
+    subtitle
+    checklist
+  }
+  cta {
+    __typename
+    title
+    titleEm
+    subtitle
+  }
   faq {
     __typename
     q
     a
+  }
+  etapes {
+    __typename
+    num
+    title
+    desc
+  }
+  materiaux {
+    __typename
+    label
+    detail
+  }
+}
+    `;
+export const TerrassePartsFragmentDoc = gql`
+    fragment TerrasseParts on Terrasse {
+  __typename
+  heroSubtitle
+  photo1
+  photo1Alt
+  photo2
+  photo2Alt
+  section {
+    __typename
+    title
+    titleEm
+  }
+  intro1
+  intro2
+  intro3
+  sidebar {
+    __typename
+    title
+    subtitle
+    checklist
+  }
+  cta {
+    __typename
+    title
+    titleEm
+    subtitle
+  }
+  faq {
+    __typename
+    q
+    a
+  }
+  comparatif {
+    __typename
+    crit
+    bois
+    comp
+  }
+  options {
+    __typename
+    label
+    detail
+  }
+}
+    `;
+export const DressingPartsFragmentDoc = gql`
+    fragment DressingParts on Dressing {
+  __typename
+  heroSubtitle
+  photo1
+  photo1Alt
+  photo2
+  photo2Alt
+  section {
+    __typename
+    title
+    titleEm
+  }
+  intro1
+  intro2
+  intro3
+  sidebar {
+    __typename
+    title
+    subtitle
+    checklist
+  }
+  cta {
+    __typename
+    title
+    titleEm
+    subtitle
+  }
+  faq {
+    __typename
+    q
+    a
+  }
+  h3Pourquoi
+  solutions {
+    __typename
+    title
+    desc
+  }
+}
+    `;
+export const BardagePartsFragmentDoc = gql`
+    fragment BardageParts on Bardage {
+  __typename
+  heroSubtitle
+  photo1
+  photo1Alt
+  photo2
+  photo2Alt
+  section {
+    __typename
+    title
+    titleEm
+  }
+  intro1
+  intro2
+  intro3
+  sidebar {
+    __typename
+    title
+    subtitle
+    checklist
+  }
+  cta {
+    __typename
+    title
+    titleEm
+    subtitle
+  }
+  faq {
+    __typename
+    q
+    a
+  }
+  materiaux {
+    __typename
+    name
+    items
+    pros
+    cons
   }
 }
     `;
@@ -773,9 +1683,9 @@ export const GalleryConnectionDocument = gql`
   }
 }
     ${GalleryPartsFragmentDoc}`;
-export const ServicesDocument = gql`
-    query services($relativePath: String!) {
-  services(relativePath: $relativePath) {
+export const CuisineDocument = gql`
+    query cuisine($relativePath: String!) {
+  cuisine(relativePath: $relativePath) {
     ... on Document {
       _sys {
         filename
@@ -788,13 +1698,13 @@ export const ServicesDocument = gql`
       }
       id
     }
-    ...ServicesParts
+    ...CuisineParts
   }
 }
-    ${ServicesPartsFragmentDoc}`;
-export const ServicesConnectionDocument = gql`
-    query servicesConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: ServicesFilter) {
-  servicesConnection(
+    ${CuisinePartsFragmentDoc}`;
+export const CuisineConnectionDocument = gql`
+    query cuisineConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: CuisineFilter) {
+  cuisineConnection(
     before: $before
     after: $after
     first: $first
@@ -824,12 +1734,183 @@ export const ServicesConnectionDocument = gql`
           }
           id
         }
-        ...ServicesParts
+        ...CuisineParts
       }
     }
   }
 }
-    ${ServicesPartsFragmentDoc}`;
+    ${CuisinePartsFragmentDoc}`;
+export const TerrasseDocument = gql`
+    query terrasse($relativePath: String!) {
+  terrasse(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...TerrasseParts
+  }
+}
+    ${TerrassePartsFragmentDoc}`;
+export const TerrasseConnectionDocument = gql`
+    query terrasseConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: TerrasseFilter) {
+  terrasseConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...TerrasseParts
+      }
+    }
+  }
+}
+    ${TerrassePartsFragmentDoc}`;
+export const DressingDocument = gql`
+    query dressing($relativePath: String!) {
+  dressing(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...DressingParts
+  }
+}
+    ${DressingPartsFragmentDoc}`;
+export const DressingConnectionDocument = gql`
+    query dressingConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: DressingFilter) {
+  dressingConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...DressingParts
+      }
+    }
+  }
+}
+    ${DressingPartsFragmentDoc}`;
+export const BardageDocument = gql`
+    query bardage($relativePath: String!) {
+  bardage(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        hasReferences
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...BardageParts
+  }
+}
+    ${BardagePartsFragmentDoc}`;
+export const BardageConnectionDocument = gql`
+    query bardageConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: BardageFilter) {
+  bardageConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            hasReferences
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...BardageParts
+      }
+    }
+  }
+}
+    ${BardagePartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -845,11 +1926,29 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
     galleryConnection(variables?: GalleryConnectionQueryVariables, options?: C): Promise<{data: GalleryConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: GalleryConnectionQueryVariables, query: string}> {
         return requester<{data: GalleryConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: GalleryConnectionQueryVariables, query: string}, GalleryConnectionQueryVariables>(GalleryConnectionDocument, variables, options);
       },
-    services(variables: ServicesQueryVariables, options?: C): Promise<{data: ServicesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesQueryVariables, query: string}> {
-        return requester<{data: ServicesQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesQueryVariables, query: string}, ServicesQueryVariables>(ServicesDocument, variables, options);
+    cuisine(variables: CuisineQueryVariables, options?: C): Promise<{data: CuisineQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CuisineQueryVariables, query: string}> {
+        return requester<{data: CuisineQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CuisineQueryVariables, query: string}, CuisineQueryVariables>(CuisineDocument, variables, options);
       },
-    servicesConnection(variables?: ServicesConnectionQueryVariables, options?: C): Promise<{data: ServicesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesConnectionQueryVariables, query: string}> {
-        return requester<{data: ServicesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: ServicesConnectionQueryVariables, query: string}, ServicesConnectionQueryVariables>(ServicesConnectionDocument, variables, options);
+    cuisineConnection(variables?: CuisineConnectionQueryVariables, options?: C): Promise<{data: CuisineConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CuisineConnectionQueryVariables, query: string}> {
+        return requester<{data: CuisineConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: CuisineConnectionQueryVariables, query: string}, CuisineConnectionQueryVariables>(CuisineConnectionDocument, variables, options);
+      },
+    terrasse(variables: TerrasseQueryVariables, options?: C): Promise<{data: TerrasseQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TerrasseQueryVariables, query: string}> {
+        return requester<{data: TerrasseQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TerrasseQueryVariables, query: string}, TerrasseQueryVariables>(TerrasseDocument, variables, options);
+      },
+    terrasseConnection(variables?: TerrasseConnectionQueryVariables, options?: C): Promise<{data: TerrasseConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TerrasseConnectionQueryVariables, query: string}> {
+        return requester<{data: TerrasseConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: TerrasseConnectionQueryVariables, query: string}, TerrasseConnectionQueryVariables>(TerrasseConnectionDocument, variables, options);
+      },
+    dressing(variables: DressingQueryVariables, options?: C): Promise<{data: DressingQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DressingQueryVariables, query: string}> {
+        return requester<{data: DressingQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DressingQueryVariables, query: string}, DressingQueryVariables>(DressingDocument, variables, options);
+      },
+    dressingConnection(variables?: DressingConnectionQueryVariables, options?: C): Promise<{data: DressingConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DressingConnectionQueryVariables, query: string}> {
+        return requester<{data: DressingConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: DressingConnectionQueryVariables, query: string}, DressingConnectionQueryVariables>(DressingConnectionDocument, variables, options);
+      },
+    bardage(variables: BardageQueryVariables, options?: C): Promise<{data: BardageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BardageQueryVariables, query: string}> {
+        return requester<{data: BardageQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BardageQueryVariables, query: string}, BardageQueryVariables>(BardageDocument, variables, options);
+      },
+    bardageConnection(variables?: BardageConnectionQueryVariables, options?: C): Promise<{data: BardageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BardageConnectionQueryVariables, query: string}> {
+        return requester<{data: BardageConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: BardageConnectionQueryVariables, query: string}, BardageConnectionQueryVariables>(BardageConnectionDocument, variables, options);
       }
     };
   }

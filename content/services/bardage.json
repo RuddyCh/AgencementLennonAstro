@@ -28,5 +28,55 @@
       "q": "Réalisez-vous des habillages de colonnes ou de murets ?",
       "a": "Oui, nous réalisons tous types d'habillages extérieurs : colonnes, piliers de portail, murets, soubassements, extensions et garages."
     }
+  ],
+  "sectionTitle": "Un bardage pensé",
+  "sectionTitleEm": "pour le Finistère",
+  "sidebarTitle": "Un projet de bardage ?",
+  "sidebarSubtitle": "Devis gratuit · Finistère · 48h",
+  "sidebarChecklist": [
+    "Visite gratuite sur site",
+    "Matériaux adaptés au climat breton",
+    "Fixations inox anti-corrosion",
+    "Ventilation soignée",
+    "Tout le Finistère (29)"
+  ],
+  "ctaTitle": "Votre façade mérite",
+  "ctaTitleEm": "mieux que le provisoire",
+  "ctaSubtitle": "Visite gratuite et sans engagement. Tout le Finistère.",
+  "materiauxTitle": "Matériaux disponibles",
+  "materiaux": [
+    {
+      "name": "Bardage bois naturel",
+      "items": [
+        "Red cedar (très résistant aux intempéries)",
+        "Douglas (bois français, PEFC)",
+        "Mélèze (naturellement imputrescible)",
+        "Pin traité autoclave classe 3"
+      ],
+      "pros": "Aspect chaleureux, biodégradable, travaillable",
+      "cons": "Entretien régulier recommandé (3–5 ans)"
+    },
+    {
+      "name": "Bardage composite",
+      "items": [
+        "Fibres bois + polymère",
+        "Imputrescible, sans entretien annuel",
+        "Anti-dérapant, résistant UV",
+        "Large palette de teintes et textures"
+      ],
+      "pros": "Durabilité maximale, zéro entretien, aspect bois",
+      "cons": "Coût initial plus élevé que le bois"
+    },
+    {
+      "name": "Fibrociment",
+      "items": [
+        "Planches à recouvrement ou panneaux",
+        "Imperméable, ininflammable",
+        "Aspect bois ou lisse selon modèle",
+        "Garanti 15 à 50 ans selon fabricant"
+      ],
+      "pros": "Excellent rapport durabilité/prix, très résistant",
+      "cons": "Aspect moins \"naturel\" que le bois massif"
+    }
   ]
 }

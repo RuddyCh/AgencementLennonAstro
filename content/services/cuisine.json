@@ -28,5 +28,69 @@
       "q": "Proposez-vous la pose des électroménagers et de l'évier ?",
       "a": "Nous posons l'ensemble du mobilier et coordonnons avec le plombier et l'électricien. Pour les électroménagers, nous pouvons les intégrer si vous les fournissez, ou vous conseiller sur les références compatibles."
     }
+  ],
+  "sectionTitle": "Un cuisiniste artisan,",
+  "sectionTitleEm": "pas un revendeur",
+  "sidebarTitle": "Un projet de cuisine ?",
+  "sidebarSubtitle": "Devis gratuit · Réponse sous 48h · Tout le Finistère",
+  "sidebarChecklist": [
+    "Étude et visite gratuites",
+    "Fabrication artisanale",
+    "Pose par Steven en personne",
+    "Tout le Finistère (29)",
+    "Devis détaillé sous 7 jours"
+  ],
+  "ctaTitle": "Votre cuisine sur mesure",
+  "ctaTitleEm": "commence ici",
+  "ctaSubtitle": "Premier rendez-vous gratuit et sans engagement. Steven se déplace dans tout le Finistère.",
+  "etapesTitle": "Le processus, étape par étape",
+  "etapes": [
+    {
+      "num": "01",
+      "title": "Rendez-vous et prise de côtes",
+      "desc": "Steven vient chez vous gratuitement. Mesures, échanges sur vos besoins, premiers conseils sur les matériaux et l'organisation de l'espace."
+    },
+    {
+      "num": "02",
+      "title": "Étude et devis personnalisé",
+      "desc": "Proposition de plan, sélection des façades, plans de travail et accessoires. Devis détaillé remis sous 5 à 7 jours."
+    },
+    {
+      "num": "03",
+      "title": "Fabrication artisanale",
+      "desc": "Les caissons et éléments sont fabriqués ou sourcés selon les spécifications exactes du projet. Chaque pièce est vérifiée avant livraison."
+    },
+    {
+      "num": "04",
+      "title": "Pose soignée par Steven",
+      "desc": "Installation minutieuse, gestion des angles et finitions. Vous avez un seul interlocuteur du début à la fin — pas de sous-traitance."
+    }
+  ],
+  "materiauxTitle": "Matériaux et finitions",
+  "materiaux": [
+    {
+      "label": "Façades bois massif",
+      "detail": "Chêne, hêtre, frêne — durabilité et chaleur naturelle"
+    },
+    {
+      "label": "Façades laquées MDF",
+      "detail": "Mat ou brillant, palette RAL complète"
+    },
+    {
+      "label": "Stratifié & HPL",
+      "detail": "Excellent rapport qualité/prix, très résistant"
+    },
+    {
+      "label": "Plans de travail",
+      "detail": "Bois massif, quartz, compact, stratifié, céramique"
+    },
+    {
+      "label": "Caissons qualité",
+      "detail": "Panneaux de faible émission, visserie inox"
+    },
+    {
+      "label": "Quincaillerie premium",
+      "detail": "Blum, Hettich — charnières et coulisses silencieuses"
+    }
   ]
 }

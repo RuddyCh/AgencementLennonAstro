@@ -28,5 +28,79 @@
       "q": "Intervenez-vous pour des terrasses sur plots ou sur plots réglables ?",
       "a": "Oui, nous maîtrisons les deux systèmes : lambourdes sur plots réglables pour les terrasses surélevées ou sur toiture-terrasse, et pose sur lambourdes vissées pour les terrasses de plain-pied."
     }
+  ],
+  "sectionTitle": "Bois ou composite :",
+  "sectionTitleEm": "le bon choix pour la Bretagne",
+  "sidebarTitle": "Un projet de terrasse ?",
+  "sidebarSubtitle": "Devis gratuit · Finistère · 48h",
+  "sidebarChecklist": [
+    "Visite gratuite sur site",
+    "Matériaux certifiés PEFC",
+    "Fixations inox anti-corrosion",
+    "Garantie pose et matériaux",
+    "Tout le Finistère (29)"
+  ],
+  "ctaTitle": "Profitez de votre jardin",
+  "ctaTitleEm": "toute l'année",
+  "ctaSubtitle": "Devis gratuit sur site. Steven intervient dans tout le Finistère.",
+  "comparatifTitle": "Bois massif vs Composite — comparatif",
+  "comparatif": [
+    {
+      "crit": "Aspect naturel",
+      "bois": "★★★★★",
+      "comp": "★★★★☆"
+    },
+    {
+      "crit": "Résistance humidité",
+      "bois": "★★★☆☆",
+      "comp": "★★★★★"
+    },
+    {
+      "crit": "Entretien",
+      "bois": "Huilage annuel",
+      "comp": "Nettoyage simple"
+    },
+    {
+      "crit": "Durée de vie",
+      "bois": "15–20 ans",
+      "comp": "25–30 ans"
+    },
+    {
+      "crit": "Glissance mouillée",
+      "bois": "Variable",
+      "comp": "Anti-dérapant"
+    },
+    {
+      "crit": "Budget",
+      "bois": "€€",
+      "comp": "€€€"
+    }
+  ],
+  "optionsTitle": "Prestations complémentaires",
+  "options": [
+    {
+      "label": "Claustra et brise-vue",
+      "detail": "Intimité et esthétique, bois ou composite"
+    },
+    {
+      "label": "Pergola et carport",
+      "detail": "Structure bois, toile ou polycarbonate"
+    },
+    {
+      "label": "Escalier de terrasse",
+      "detail": "Sur mesure, en harmonie avec la terrasse"
+    },
+    {
+      "label": "Garde-corps",
+      "detail": "Bois, inox, verre — selon réglementation"
+    },
+    {
+      "label": "Éclairage intégré",
+      "detail": "Spots LED encastrés dans la structure"
+    },
+    {
+      "label": "Plancher sur plots",
+      "detail": "Sans travaux de maçonnerie, idéal en rénovation"
+    }
   ]
 }

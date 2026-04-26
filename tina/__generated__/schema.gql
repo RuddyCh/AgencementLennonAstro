@@ -58,14 +58,23 @@ type Query {
   homepageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HomepageFilter): HomepageConnection!
   gallery(relativePath: String): Gallery!
   galleryConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: GalleryFilter): GalleryConnection!
-  services(relativePath: String): Services!
-  servicesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ServicesFilter): ServicesConnection!
+  cuisine(relativePath: String): Cuisine!
+  cuisineConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CuisineFilter): CuisineConnection!
+  terrasse(relativePath: String): Terrasse!
+  terrasseConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: TerrasseFilter): TerrasseConnection!
+  dressing(relativePath: String): Dressing!
+  dressingConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: DressingFilter): DressingConnection!
+  bardage(relativePath: String): Bardage!
+  bardageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: BardageFilter): BardageConnection!
 }
 
 input DocumentFilter {
   homepage: HomepageFilter
   gallery: GalleryFilter
-  services: ServicesFilter
+  cuisine: CuisineFilter
+  terrasse: TerrasseFilter
+  dressing: DressingFilter
+  bardage: BardageFilter
 }
 
 type DocumentConnectionEdges {
@@ -91,7 +100,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Homepage | Gallery | Services | Folder
+union DocumentNode = Homepage | Gallery | Cuisine | Terrasse | Dressing | Bardage | Folder
 
 type HomepageHero {
   eyebrow: String
@@ -222,52 +231,438 @@ type GalleryConnection implements Connection {
   edges: [GalleryConnectionEdges]
 }
 
-type ServicesFaq {
+type CuisineSection {
+  title: String
+  titleEm: String
+}
+
+type CuisineSidebar {
+  title: String
+  subtitle: String
+  checklist: [String]
+}
+
+type CuisineCta {
+  title: String
+  titleEm: String
+  subtitle: String
+}
+
+type CuisineFaq {
   q: String!
   a: String!
 }
 
-type Services implements Node & Document {
+type CuisineEtapes {
+  num: String
+  title: String!
+  desc: String
+}
+
+type CuisineMateriaux {
+  label: String!
+  detail: String
+}
+
+type Cuisine implements Node & Document {
   heroSubtitle: String
   photo1: String
   photo1Alt: String
   photo2: String
   photo2Alt: String
+  section: CuisineSection
   intro1: String
   intro2: String
   intro3: String
-  faq: [ServicesFaq]
+  sidebar: CuisineSidebar
+  cta: CuisineCta
+  faq: [CuisineFaq]
+  etapes: [CuisineEtapes]
+  materiaux: [CuisineMateriaux]
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input ServicesFaqFilter {
+input CuisineSectionFilter {
+  title: StringFilter
+  titleEm: StringFilter
+}
+
+input CuisineSidebarFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  checklist: StringFilter
+}
+
+input CuisineCtaFilter {
+  title: StringFilter
+  titleEm: StringFilter
+  subtitle: StringFilter
+}
+
+input CuisineFaqFilter {
   q: StringFilter
   a: StringFilter
 }
 
-input ServicesFilter {
+input CuisineEtapesFilter {
+  num: StringFilter
+  title: StringFilter
+  desc: StringFilter
+}
+
+input CuisineMateriauxFilter {
+  label: StringFilter
+  detail: StringFilter
+}
+
+input CuisineFilter {
   heroSubtitle: StringFilter
   photo1: ImageFilter
   photo1Alt: StringFilter
   photo2: ImageFilter
   photo2Alt: StringFilter
+  section: CuisineSectionFilter
   intro1: StringFilter
   intro2: StringFilter
   intro3: StringFilter
-  faq: ServicesFaqFilter
+  sidebar: CuisineSidebarFilter
+  cta: CuisineCtaFilter
+  faq: CuisineFaqFilter
+  etapes: CuisineEtapesFilter
+  materiaux: CuisineMateriauxFilter
 }
 
-type ServicesConnectionEdges {
+type CuisineConnectionEdges {
   cursor: String!
-  node: Services
+  node: Cuisine
 }
 
-type ServicesConnection implements Connection {
+type CuisineConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [ServicesConnectionEdges]
+  edges: [CuisineConnectionEdges]
+}
+
+type TerrasseSection {
+  title: String
+  titleEm: String
+}
+
+type TerrasseSidebar {
+  title: String
+  subtitle: String
+  checklist: [String]
+}
+
+type TerrasseCta {
+  title: String
+  titleEm: String
+  subtitle: String
+}
+
+type TerrasseFaq {
+  q: String!
+  a: String!
+}
+
+type TerrasseComparatif {
+  crit: String!
+  bois: String
+  comp: String
+}
+
+type TerrasseOptions {
+  label: String!
+  detail: String
+}
+
+type Terrasse implements Node & Document {
+  heroSubtitle: String
+  photo1: String
+  photo1Alt: String
+  photo2: String
+  photo2Alt: String
+  section: TerrasseSection
+  intro1: String
+  intro2: String
+  intro3: String
+  sidebar: TerrasseSidebar
+  cta: TerrasseCta
+  faq: [TerrasseFaq]
+  comparatif: [TerrasseComparatif]
+  options: [TerrasseOptions]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input TerrasseSectionFilter {
+  title: StringFilter
+  titleEm: StringFilter
+}
+
+input TerrasseSidebarFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  checklist: StringFilter
+}
+
+input TerrasseCtaFilter {
+  title: StringFilter
+  titleEm: StringFilter
+  subtitle: StringFilter
+}
+
+input TerrasseFaqFilter {
+  q: StringFilter
+  a: StringFilter
+}
+
+input TerrasseComparatifFilter {
+  crit: StringFilter
+  bois: StringFilter
+  comp: StringFilter
+}
+
+input TerrasseOptionsFilter {
+  label: StringFilter
+  detail: StringFilter
+}
+
+input TerrasseFilter {
+  heroSubtitle: StringFilter
+  photo1: ImageFilter
+  photo1Alt: StringFilter
+  photo2: ImageFilter
+  photo2Alt: StringFilter
+  section: TerrasseSectionFilter
+  intro1: StringFilter
+  intro2: StringFilter
+  intro3: StringFilter
+  sidebar: TerrasseSidebarFilter
+  cta: TerrasseCtaFilter
+  faq: TerrasseFaqFilter
+  comparatif: TerrasseComparatifFilter
+  options: TerrasseOptionsFilter
+}
+
+type TerrasseConnectionEdges {
+  cursor: String!
+  node: Terrasse
+}
+
+type TerrasseConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [TerrasseConnectionEdges]
+}
+
+type DressingSection {
+  title: String
+  titleEm: String
+}
+
+type DressingSidebar {
+  title: String
+  subtitle: String
+  checklist: [String]
+}
+
+type DressingCta {
+  title: String
+  titleEm: String
+  subtitle: String
+}
+
+type DressingFaq {
+  q: String!
+  a: String!
+}
+
+type DressingSolutions {
+  title: String!
+  desc: String
+}
+
+type Dressing implements Node & Document {
+  heroSubtitle: String
+  photo1: String
+  photo1Alt: String
+  photo2: String
+  photo2Alt: String
+  section: DressingSection
+  intro1: String
+  intro2: String
+  intro3: String
+  sidebar: DressingSidebar
+  cta: DressingCta
+  faq: [DressingFaq]
+  h3Pourquoi: String
+  solutions: [DressingSolutions]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input DressingSectionFilter {
+  title: StringFilter
+  titleEm: StringFilter
+}
+
+input DressingSidebarFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  checklist: StringFilter
+}
+
+input DressingCtaFilter {
+  title: StringFilter
+  titleEm: StringFilter
+  subtitle: StringFilter
+}
+
+input DressingFaqFilter {
+  q: StringFilter
+  a: StringFilter
+}
+
+input DressingSolutionsFilter {
+  title: StringFilter
+  desc: StringFilter
+}
+
+input DressingFilter {
+  heroSubtitle: StringFilter
+  photo1: ImageFilter
+  photo1Alt: StringFilter
+  photo2: ImageFilter
+  photo2Alt: StringFilter
+  section: DressingSectionFilter
+  intro1: StringFilter
+  intro2: StringFilter
+  intro3: StringFilter
+  sidebar: DressingSidebarFilter
+  cta: DressingCtaFilter
+  faq: DressingFaqFilter
+  h3Pourquoi: StringFilter
+  solutions: DressingSolutionsFilter
+}
+
+type DressingConnectionEdges {
+  cursor: String!
+  node: Dressing
+}
+
+type DressingConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [DressingConnectionEdges]
+}
+
+type BardageSection {
+  title: String
+  titleEm: String
+}
+
+type BardageSidebar {
+  title: String
+  subtitle: String
+  checklist: [String]
+}
+
+type BardageCta {
+  title: String
+  titleEm: String
+  subtitle: String
+}
+
+type BardageFaq {
+  q: String!
+  a: String!
+}
+
+type BardageMateriaux {
+  name: String!
+  items: [String]
+  pros: String
+  cons: String
+}
+
+type Bardage implements Node & Document {
+  heroSubtitle: String
+  photo1: String
+  photo1Alt: String
+  photo2: String
+  photo2Alt: String
+  section: BardageSection
+  intro1: String
+  intro2: String
+  intro3: String
+  sidebar: BardageSidebar
+  cta: BardageCta
+  faq: [BardageFaq]
+  materiaux: [BardageMateriaux]
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input BardageSectionFilter {
+  title: StringFilter
+  titleEm: StringFilter
+}
+
+input BardageSidebarFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  checklist: StringFilter
+}
+
+input BardageCtaFilter {
+  title: StringFilter
+  titleEm: StringFilter
+  subtitle: StringFilter
+}
+
+input BardageFaqFilter {
+  q: StringFilter
+  a: StringFilter
+}
+
+input BardageMateriauxFilter {
+  name: StringFilter
+  items: StringFilter
+  pros: StringFilter
+  cons: StringFilter
+}
+
+input BardageFilter {
+  heroSubtitle: StringFilter
+  photo1: ImageFilter
+  photo1Alt: StringFilter
+  photo2: ImageFilter
+  photo2Alt: StringFilter
+  section: BardageSectionFilter
+  intro1: StringFilter
+  intro2: StringFilter
+  intro3: StringFilter
+  sidebar: BardageSidebarFilter
+  cta: BardageCtaFilter
+  faq: BardageFaqFilter
+  materiaux: BardageMateriauxFilter
+}
+
+type BardageConnectionEdges {
+  cursor: String!
+  node: Bardage
+}
+
+type BardageConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [BardageConnectionEdges]
 }
 
 type Mutation {
@@ -280,21 +675,33 @@ type Mutation {
   createHomepage(relativePath: String!, params: HomepageMutation!): Homepage!
   updateGallery(relativePath: String!, params: GalleryMutation!): Gallery!
   createGallery(relativePath: String!, params: GalleryMutation!): Gallery!
-  updateServices(relativePath: String!, params: ServicesMutation!): Services!
-  createServices(relativePath: String!, params: ServicesMutation!): Services!
+  updateCuisine(relativePath: String!, params: CuisineMutation!): Cuisine!
+  createCuisine(relativePath: String!, params: CuisineMutation!): Cuisine!
+  updateTerrasse(relativePath: String!, params: TerrasseMutation!): Terrasse!
+  createTerrasse(relativePath: String!, params: TerrasseMutation!): Terrasse!
+  updateDressing(relativePath: String!, params: DressingMutation!): Dressing!
+  createDressing(relativePath: String!, params: DressingMutation!): Dressing!
+  updateBardage(relativePath: String!, params: BardageMutation!): Bardage!
+  createBardage(relativePath: String!, params: BardageMutation!): Bardage!
 }
 
 input DocumentUpdateMutation {
   homepage: HomepageMutation
   gallery: GalleryMutation
-  services: ServicesMutation
+  cuisine: CuisineMutation
+  terrasse: TerrasseMutation
+  dressing: DressingMutation
+  bardage: BardageMutation
   relativePath: String
 }
 
 input DocumentMutation {
   homepage: HomepageMutation
   gallery: GalleryMutation
-  services: ServicesMutation
+  cuisine: CuisineMutation
+  terrasse: TerrasseMutation
+  dressing: DressingMutation
+  bardage: BardageMutation
 }
 
 input HomepageHeroMutation {
@@ -333,21 +740,193 @@ input GalleryMutation {
   order: Float
 }
 
-input ServicesFaqMutation {
+input CuisineSectionMutation {
+  title: String
+  titleEm: String
+}
+
+input CuisineSidebarMutation {
+  title: String
+  subtitle: String
+  checklist: [String]
+}
+
+input CuisineCtaMutation {
+  title: String
+  titleEm: String
+  subtitle: String
+}
+
+input CuisineFaqMutation {
   q: String
   a: String
 }
 
-input ServicesMutation {
+input CuisineEtapesMutation {
+  num: String
+  title: String
+  desc: String
+}
+
+input CuisineMateriauxMutation {
+  label: String
+  detail: String
+}
+
+input CuisineMutation {
   heroSubtitle: String
   photo1: String
   photo1Alt: String
   photo2: String
   photo2Alt: String
+  section: CuisineSectionMutation
   intro1: String
   intro2: String
   intro3: String
-  faq: [ServicesFaqMutation]
+  sidebar: CuisineSidebarMutation
+  cta: CuisineCtaMutation
+  faq: [CuisineFaqMutation]
+  etapes: [CuisineEtapesMutation]
+  materiaux: [CuisineMateriauxMutation]
+}
+
+input TerrasseSectionMutation {
+  title: String
+  titleEm: String
+}
+
+input TerrasseSidebarMutation {
+  title: String
+  subtitle: String
+  checklist: [String]
+}
+
+input TerrasseCtaMutation {
+  title: String
+  titleEm: String
+  subtitle: String
+}
+
+input TerrasseFaqMutation {
+  q: String
+  a: String
+}
+
+input TerrasseComparatifMutation {
+  crit: String
+  bois: String
+  comp: String
+}
+
+input TerrasseOptionsMutation {
+  label: String
+  detail: String
+}
+
+input TerrasseMutation {
+  heroSubtitle: String
+  photo1: String
+  photo1Alt: String
+  photo2: String
+  photo2Alt: String
+  section: TerrasseSectionMutation
+  intro1: String
+  intro2: String
+  intro3: String
+  sidebar: TerrasseSidebarMutation
+  cta: TerrasseCtaMutation
+  faq: [TerrasseFaqMutation]
+  comparatif: [TerrasseComparatifMutation]
+  options: [TerrasseOptionsMutation]
+}
+
+input DressingSectionMutation {
+  title: String
+  titleEm: String
+}
+
+input DressingSidebarMutation {
+  title: String
+  subtitle: String
+  checklist: [String]
+}
+
+input DressingCtaMutation {
+  title: String
+  titleEm: String
+  subtitle: String
+}
+
+input DressingFaqMutation {
+  q: String
+  a: String
+}
+
+input DressingSolutionsMutation {
+  title: String
+  desc: String
+}
+
+input DressingMutation {
+  heroSubtitle: String
+  photo1: String
+  photo1Alt: String
+  photo2: String
+  photo2Alt: String
+  section: DressingSectionMutation
+  intro1: String
+  intro2: String
+  intro3: String
+  sidebar: DressingSidebarMutation
+  cta: DressingCtaMutation
+  faq: [DressingFaqMutation]
+  h3Pourquoi: String
+  solutions: [DressingSolutionsMutation]
+}
+
+input BardageSectionMutation {
+  title: String
+  titleEm: String
+}
+
+input BardageSidebarMutation {
+  title: String
+  subtitle: String
+  checklist: [String]
+}
+
+input BardageCtaMutation {
+  title: String
+  titleEm: String
+  subtitle: String
+}
+
+input BardageFaqMutation {
+  q: String
+  a: String
+}
+
+input BardageMateriauxMutation {
+  name: String
+  items: [String]
+  pros: String
+  cons: String
+}
+
+input BardageMutation {
+  heroSubtitle: String
+  photo1: String
+  photo1Alt: String
+  photo2: String
+  photo2Alt: String
+  section: BardageSectionMutation
+  intro1: String
+  intro2: String
+  intro3: String
+  sidebar: BardageSidebarMutation
+  cta: BardageCtaMutation
+  faq: [BardageFaqMutation]
+  materiaux: [BardageMateriauxMutation]
 }
 
 schema {

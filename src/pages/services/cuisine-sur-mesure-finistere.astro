@@ -115,9 +115,7 @@ const faq = serviceData.faq ?? [];
           <!-- Corps de texte (2/3) -->
           <div class="lg:col-span-2 prose-content">
 
-            <h2 class="font-serif text-h2 text-navy mb-6 reveal">
-              Un cuisiniste artisan,<br><em>pas un revendeur</em>
-            </h2>
+            <h2 class="font-serif text-h2 text-navy mb-6 reveal">{serviceData.section?.title}<br><em>{serviceData.section?.titleEm}</em></h2>
             <div class="ornament-line reveal-clip mb-8"></div>
 
             <div class="space-y-5 font-sans text-stone leading-relaxed reveal">
@@ -128,14 +126,9 @@ const faq = serviceData.faq ?? [];
 
             <!-- Étapes du projet -->
             <div class="mt-14 reveal">
-              <h3 class="font-serif text-h3 text-navy mb-8">Le processus, étape par étape</h3>
+              <h3 class="font-serif text-h3 text-navy mb-8">{serviceData.etapesTitle}</h3>
               <ol class="space-y-6" role="list">
-                {[
-                  { num: '01', title: 'Rendez-vous et prise de côtes', desc: "Steven vient chez vous gratuitement. Mesures, échanges sur vos besoins, premiers conseils sur les matériaux et l'organisation de l'espace." },
-                  { num: '02', title: 'Étude et devis personnalisé', desc: 'Proposition de plan, sélection des façades, plans de travail et accessoires. Devis détaillé remis sous 5 à 7 jours.' },
-                  { num: '03', title: 'Fabrication artisanale', desc: 'Les caissons et éléments sont fabriqués ou sourcés selon les spécifications exactes du projet. Chaque pièce est vérifiée avant livraison.' },
-                  { num: '04', title: 'Pose soignée par Steven', desc: "Installation minutieuse, gestion des angles et finitions. Vous avez un seul interlocuteur du début à la fin — pas de sous-traitance." },
-                ].map(step => (
+                {(serviceData.etapes ?? []).map((step: any) => (
                   <li class="flex gap-6 items-start">
                     <span class="font-serif text-3xl font-bold text-oak/30 leading-none flex-shrink-0 w-10 text-right">{step.num}</span>
                     <div class="border-l border-cream-dark pl-6">
@@ -149,16 +142,9 @@ const faq = serviceData.faq ?? [];
 
             <!-- Matériaux -->
             <div class="mt-14 reveal">
-              <h3 class="font-serif text-h3 text-navy mb-6">Matériaux et finitions</h3>
+              <h3 class="font-serif text-h3 text-navy mb-6">{serviceData.materiauxTitle}</h3>
               <div class="grid sm:grid-cols-2 gap-4">
-                {[
-                  { label: 'Façades bois massif', detail: 'Chêne, hêtre, frêne — durabilité et chaleur naturelle' },
-                  { label: 'Façades laquées MDF', detail: 'Mat ou brillant, palette RAL complète' },
-                  { label: 'Stratifié & HPL', detail: 'Excellent rapport qualité/prix, très résistant' },
-                  { label: 'Plans de travail', detail: 'Bois massif, quartz, compact, stratifié, céramique' },
-                  { label: 'Caissons qualité', detail: 'Panneaux de faible émission, visserie inox' },
-                  { label: 'Quincaillerie premium', detail: 'Blum, Hettich — charnières et coulisses silencieuses' },
-                ].map(m => (
+                {(serviceData.materiaux ?? []).map((m: any) => (
                   <div class="bg-white border border-cream-dark rounded-sm p-4">
                     <p class="font-sans text-sm font-medium text-navy mb-0.5">{m.label}</p>
                     <p class="font-sans text-xs text-stone">{m.detail}</p>
@@ -173,8 +159,8 @@ const faq = serviceData.faq ?? [];
             <!-- CTA sticky -->
             <div class="bg-navy rounded-sm p-7 text-cream sticky top-28">
               <div class="absolute left-0 top-0 bottom-0 w-1 bg-oak rounded-l-sm" aria-hidden="true"></div>
-              <p class="font-serif text-xl text-cream mb-1">Un projet de cuisine ?</p>
-              <p class="font-sans text-sm text-cream/60 mb-6">Devis gratuit · Réponse sous 48h · Tout le Finistère</p>
+              <p class="font-serif text-xl text-cream mb-1">{serviceData.sidebar?.title}</p>
+              <p class="font-sans text-sm text-cream/60 mb-6">{serviceData.sidebar?.subtitle}</p>
               <a href="/#contact" class="btn-primary w-full justify-center mb-3 text-sm">Demander un devis</a>
               <a href="tel:+33767426234" class="btn-outline w-full justify-center text-sm">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
@@ -183,7 +169,7 @@ const faq = serviceData.faq ?? [];
                 07 67 42 62 34
               </a>
               <div class="mt-6 pt-6 border-t border-white/10 space-y-2">
-                {['Étude et visite gratuites', 'Fabrication artisanale', 'Pose par Steven en personne', 'Tout le Finistère (29)', 'Devis détaillé sous 7 jours'].map(item => (
+                {(serviceData.sidebar?.checklist ?? []).map((item: string) => (
                   <div class="flex items-center gap-2.5">
                     <svg class="w-4 h-4 text-oak flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
                     <span class="font-sans text-xs text-cream/70">{item}</span>
@@ -238,9 +224,9 @@ const faq = serviceData.faq ?? [];
           <div class="h-px w-16 bg-gradient-to-l from-transparent to-oak/50"></div>
         </div>
 
-        <h2 class="font-serif text-h2 text-cream mb-4 reveal">Votre cuisine sur mesure<br><em>commence ici</em></h2>
+        <h2 class="font-serif text-h2 text-cream mb-4 reveal">{serviceData.cta?.title}<br><em>{serviceData.cta?.titleEm}</em></h2>
         <p class="font-sans text-body-lg text-cream/60 max-w-xl mx-auto mb-10 reveal">
-          Premier rendez-vous gratuit et sans engagement. Steven se déplace dans tout le Finistère.
+          {serviceData.cta?.subtitle}
         </p>
         <div class="flex flex-wrap gap-4 justify-center reveal">
           <a href="/#contact" class="btn-primary px-10 py-4">Demander un devis gratuit</a>
