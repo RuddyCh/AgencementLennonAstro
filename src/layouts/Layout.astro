@@ -177,6 +177,7 @@ const jsonLd = isHome ? JSON.stringify({
   <!-- Accessibilité : skip link -->
   <a class="skip-link" href="#contenu">Aller au contenu principal</a>
 
+  <slot name="head" />
   <slot />
 
   <!-- GSAP + ScrollTrigger -->
@@ -210,18 +211,25 @@ const jsonLd = isHome ? JSON.stringify({
         curX = lerp(curX, mouseX, 0.14);
         curY = lerp(curY, mouseY, 0.14);
         cursor.style.transform = `translate(${curX}px, ${curY}px) translate(-50%, -50%)`;
-        animId = requestAnimationFrame(loop);
+        // Annuler la RAF quand le curseur est suffisamment proche — évite la boucle infinie orpheline
+        const dist = Math.abs(curX - mouseX) + Math.abs(curY - mouseY);
+        if (dist > 0.1) {
+          animId = requestAnimationFrame(loop);
+        } else {
+          animId = null;
+        }
       };
 
       document.addEventListener('mousemove', e => {
         mouseX = e.clientX;
         mouseY = e.clientY;
         cursor.classList.add('cursor-active');
-        if (!animId) loop();
+        if (!animId) animId = requestAnimationFrame(loop);
       }, { passive: true });
 
       document.addEventListener('mouseleave', () => {
         cursor.classList.remove('cursor-active');
+        animId = null;
       });
 
       // Loupe sur les items de galerie
@@ -422,28 +430,7 @@ const jsonLd = isHome ? JSON.stringify({
         });
       });
 
-      // ── Titre lettre par lettre (.split-title) ──
-      document.querySelectorAll('.split-title').forEach(el => {
-        const text = el.textContent.trim();
-        el.innerHTML = text.split('').map(char =>
-          char === ' '
-            ? '<span style="display:inline-block;width:0.3em"></span>'
-            : `<span class="split-char" style="display:inline-block;opacity:0;transform:translateY(110%)">${char}</span>`
-        ).join('');
-        ScrollTrigger.create({
-          trigger: el,
-          start: 'top 90%',
-          once: true,
-          onEnter: () => {
-            gsap.to(el.querySelectorAll('.split-char'), {
-              opacity: 1, y: 0,
-              duration: 0.6,
-              stagger: 0.03,
-              ease: 'power3.out',
-            });
-          },
-        });
-      });
+      // .split-title supprimé — aucun élément n'utilise cette classe
     }
 
     // ── Lancement ─────────────────────────────────────────────────

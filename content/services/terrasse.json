@@ -7,43 +7,28 @@
   "intro1": "Le Finistère impose ses conditions aux matériaux extérieurs : humidité, vent marin, alternance gel/dégel. Chez Agencement Lennon, nous sélectionnons les essences et composites qui tiennent dans la durée sous ce climat, sans que vous ayez à repeindre ou huiler chaque année.",
   "intro2": "Le bois composite (mélange de fibres bois et polymère) est notre solution la plus demandée : imputrescible, anti-dérapant même mouillé, disponible dans des teintes naturelles ou contemporaines. Aucun entretien annuel n'est nécessaire.",
   "intro3": "Le bois massif traité (douglas, pin autoclave, teck) reste une option noble si vous aimez le grain naturel et acceptez un entretien régulier. Nous travaillons avec des bois certifiés PEFC issus de forêts gérées durablement.",
-  "faq": [
-    {
-      "q": "Bois ou composite : que choisir pour le climat breton ?",
-      "a": "Le composite est idéal pour la Bretagne : imputrescible, anti-dérapant mouillé, sans entretien annuel. Le bois massif (pin traité, douglas, teck) offre un aspect plus naturel mais demande un entretien régulier (lasure, huile) tous les 1 à 2 ans."
-    },
-    {
-      "q": "Faut-il un permis pour construire une terrasse ?",
-      "a": "Une terrasse de plain-pied ou surélevée de moins de 60 cm ne nécessite généralement pas de permis, mais une déclaration préalable peut être requise selon la surface et la commune. Nous vous renseignons lors de la visite."
-    },
-    {
-      "q": "Quelle est la durée de vie d'une terrasse composite ?",
-      "a": "Les lames composite de qualité ont une garantie fabricant de 10 à 25 ans selon les gammes. Avec une pose soignée et une ventilation correcte en dessous, la terrasse dure facilement 20 à 30 ans sans entretien majeur."
-    },
-    {
-      "q": "Posez-vous aussi les éclairages et les garde-corps ?",
-      "a": "Oui, nous intégrons l'éclairage LED encastré et les garde-corps (inox, verre, aluminium, bois) dans nos réalisations. Tout est pensé dès la conception pour une finition propre."
-    },
-    {
-      "q": "Intervenez-vous pour des terrasses sur plots ou sur plots réglables ?",
-      "a": "Oui, nous maîtrisons les deux systèmes : lambourdes sur plots réglables pour les terrasses surélevées ou sur toiture-terrasse, et pose sur lambourdes vissées pour les terrasses de plain-pied."
-    }
-  ],
-  "sectionTitle": "Bois ou composite :",
-  "sectionTitleEm": "le bon choix pour la Bretagne",
-  "sidebarTitle": "Un projet de terrasse ?",
-  "sidebarSubtitle": "Devis gratuit · Finistère · 48h",
-  "sidebarChecklist": [
-    "Visite gratuite sur site",
-    "Matériaux certifiés PEFC",
-    "Fixations inox anti-corrosion",
-    "Garantie pose et matériaux",
-    "Tout le Finistère (29)"
-  ],
-  "ctaTitle": "Profitez de votre jardin",
-  "ctaTitleEm": "toute l'année",
-  "ctaSubtitle": "Devis gratuit sur site. Steven intervient dans tout le Finistère.",
+  "section": {
+    "title": "Bois ou composite :",
+    "titleEm": "le bon choix pour la Bretagne"
+  },
+  "sidebar": {
+    "title": "Un projet de terrasse ?",
+    "subtitle": "Devis gratuit · Finistère · 48h",
+    "checklist": [
+      "Visite gratuite sur site",
+      "Matériaux certifiés PEFC",
+      "Fixations inox anti-corrosion",
+      "Garantie pose et matériaux",
+      "Tout le Finistère (29)"
+    ]
+  },
+  "cta": {
+    "title": "Profitez de votre jardin",
+    "titleEm": "toute l'année",
+    "subtitle": "Devis gratuit sur site. Steven intervient dans tout le Finistère."
+  },
   "comparatifTitle": "Bois massif vs Composite — comparatif",
+  "optionsTitle": "Prestations complémentaires",
   "comparatif": [
     {
       "crit": "Aspect naturel",
@@ -76,7 +61,6 @@
       "comp": "€€€"
     }
   ],
-  "optionsTitle": "Prestations complémentaires",
   "options": [
     {
       "label": "Claustra et brise-vue",
@@ -101,6 +85,28 @@
     {
       "label": "Plancher sur plots",
       "detail": "Sans travaux de maçonnerie, idéal en rénovation"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Bois ou composite : que choisir pour le climat breton ?",
+      "a": "Le composite est idéal pour la Bretagne : imputrescible, anti-dérapant mouillé, sans entretien annuel. Le bois massif (pin traité, douglas, teck) offre un aspect plus naturel mais demande un entretien régulier (lasure, huilage). Nous vous conseillons selon votre usage et votre budget."
+    },
+    {
+      "q": "Faut-il un permis de construire pour une terrasse ?",
+      "a": "Généralement non pour une terrasse de plain-pied. Au-delà de 20 m² ou si la terrasse est surélevée, une déclaration préalable peut être nécessaire. Nous vous guidons sur les démarches selon votre situation."
+    },
+    {
+      "q": "Quelle est la durée de vie d'une terrasse composite ?",
+      "a": "Un composite de qualité a une durée de vie de 25 à 30 ans avec très peu d'entretien (un nettoyage annuel suffit). Nous travaillons avec des fabricants garantissant leurs produits 10 à 25 ans."
+    },
+    {
+      "q": "Posez-vous sur tous types de support ?",
+      "a": "Oui : dalle béton existante, plots réglables sur terre, lambourdes sur ossature bois. Le type de support conditionne la solution technique — nous l'évaluons lors de la visite."
+    },
+    {
+      "q": "Quelle est la surface minimale pour un chantier ?",
+      "a": "Nous intervenons dès 15 m². La plupart de nos chantiers vont de 20 à 80 m²."
     }
   ]
 }

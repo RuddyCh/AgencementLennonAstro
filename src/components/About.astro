@@ -6,9 +6,11 @@
  */
 
 import { Image } from 'astro:assets';
-// ⚠ stevbg.jpg doit être déplacé de public/images/ vers src/assets/images/
-// Idéalement le renommer : steven-lennon-menuisier-landivisiau.jpg
-import stevbg from '../assets/images/steven-lennon-menuisier-landivisiau.jpg';
+// Import statique pour le fallback (si Tina n'a pas de photo configurée)
+import stevbgFallback from '../assets/images/steven-lennon-menuisier-landivisiau.jpg';
+import homeData from '../../content/home.json';
+
+const { paragraph1, paragraph2, photo } = homeData.about;
 
 const values = [
   {
@@ -37,14 +39,24 @@ const values = [
       <!-- Image + badge -->
       <div class="about-image-wrap reveal-left order-2 lg:order-1">
         <div class="relative">
-          <Image
-            src={stevbg}
-            alt="Extension de maison réalisée par Agencement Lennon — bardage anthracite et baies vitrées, Finistère"
-            class="about-image-main w-full rounded-sm shadow-luxury-lg object-cover"
-            style="aspect-ratio:4/5"
-            quality={85}
-            loading="lazy"
-          />
+          {photo ? (
+            <img
+              src={photo}
+              alt="Steven Lennon — menuisier artisan à Landivisiau, Finistère"
+              class="about-image-main w-full rounded-sm shadow-luxury-lg object-cover"
+              style="aspect-ratio:4/5"
+              loading="lazy"
+            />
+          ) : (
+            <Image
+              src={stevbgFallback}
+              alt="Steven Lennon — menuisier artisan à Landivisiau, Finistère"
+              class="about-image-main w-full rounded-sm shadow-luxury-lg object-cover"
+              style="aspect-ratio:4/5"
+              quality={85}
+              loading="lazy"
+            />
+          )}
 
           <!-- Badge flottant -->
           <div
@@ -72,17 +84,8 @@ const values = [
         <div class="ornament-line reveal-clip mt-4 mb-8"></div>
 
         <div class="space-y-4 font-sans text-stone leading-relaxed mb-8 reveal">
-          <p>
-            Fondée en <strong class="text-navy">2021</strong> par <strong class="text-navy">Steven Lennon</strong>,
-            Agencement Lennon est une entreprise de menuiserie basée à Landivisiau, au cœur du Finistère.
-            La passion du bois et l'exigence du travail bien fait sont au cœur de chaque projet —
-            du premier rendez-vous à la dernière finition.
-          </p>
-          <p>
-            Nous intervenons auprès des particuliers et des professionnels pour des réalisations
-            entièrement sur mesure. Pas d'intermédiaire, pas de sous-traitance : vous êtes suivi
-            par l'artisan lui-même, avec rigueur et implication personnelle à chaque étape.
-          </p>
+          <p set:html={paragraph1} />
+          <p set:html={paragraph2} />
         </div>
 
         <!-- Liste de valeurs -->

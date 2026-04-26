@@ -7,10 +7,11 @@
  */
 
 // Charge tous les fichiers JSON de la galerie
-const galleryFiles = await Astro.glob('../../content/gallery/*.json');
+const modules = import.meta.glob('../../content/gallery/*.json', { eager: true });
+const galleryFiles = Object.values(modules);
 
 const projects = galleryFiles
-  .map(f => f.default)
+  .map((f: any) => f.default)
   .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
 ---
 
@@ -37,7 +38,7 @@ const projects = galleryFiles
       {projects.map((project, index) => (
         <a
           href={project.photo}
-          class={`gallery-item stagger-child rounded-sm overflow-hidden ${
+          class={`gallery-item group stagger-child rounded-sm overflow-hidden ${
             project.featured ? 'md:col-span-2 md:row-span-2' : ''
           }`}
           aria-label={`Voir en grand : ${project.caption}`}
