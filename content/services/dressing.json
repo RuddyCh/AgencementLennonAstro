@@ -6,5 +6,27 @@
   "photo2Alt": "Détail rangements sur mesure — menuiserie Landivisiau",
   "intro1": "Un dressing en kit vous oblige à adapter votre usage à ses dimensions. Le sur-mesure fait l'inverse : chaque colonne, chaque tiroir, chaque étagère est dimensionné exactement comme vous en avez besoin. Résultat : aucun espace perdu, aucune pièce qui force.",
   "intro2": "Chez Agencement Lennon, nous prenons les cotes au millimètre, proposons un plan avant fabrication, et posons nous-mêmes le résultat — sans sous-traitant et sans mauvaise surprise.",
-  "intro3": "Basé à Landivisiau, Steven intervient dans tout le Finistère pour la création de dressings et rangements sur mesure. Premier rendez-vous et devis gratuits."
+  "intro3": "Basé à Landivisiau, Steven intervient dans tout le Finistère pour la création de dressings et rangements sur mesure. Premier rendez-vous et devis gratuits.",
+  "faq": [
+    {
+      "q": "Puis-je avoir un dressing dans un espace atypique (sous combles, sous escalier) ?",
+      "a": "C'est même là que le sur-mesure prend tout son sens. Sous des combles en pente, sous un escalier ou dans un recoin : Steven prend les cotes au millimètre et conçoit un aménagement qui exploite chaque centimètre."
+    },
+    {
+      "q": "Quelle est la différence entre un dressing sur mesure et un modèle en kit ?",
+      "a": "Un dressing en kit s'adapte à votre espace, le sur-mesure est conçu pour votre espace. Les dimensions sont exactes, les matériaux sont au choix, la finition est soignée — et aucune colonne ne gâche une fenêtre ou une prise de courant."
+    },
+    {
+      "q": "Proposez-vous des systèmes de portes coulissantes ?",
+      "a": "Oui, nous posons des portes coulissantes sur rail en aluminium : miroir, verre dépoli, bois, laqué. Nous pouvons aussi travailler sur des portes pliantes ou battantes selon l'espace disponible."
+    },
+    {
+      "q": "Pouvez-vous intégrer un espace bureau dans le dressing ?",
+      "a": "Absolument. Nous intégrons volontiers un plan de travail, des prises et un espace câbles dans les rangements — idéal pour un coin bureau discret dans une chambre."
+    },
+    {
+      "q": "Quels délais pour un dressing sur mesure ?",
+      "a": "Comptez 3 à 6 semaines entre la visite et la pose selon la complexité. Nous vous donnons une date précise à la signature du devis."
+    }
+  ]
 }

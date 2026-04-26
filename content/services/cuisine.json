@@ -6,5 +6,27 @@
   "photo2Alt": "Détail cuisine sur mesure — menuiserie Landivisiau",
   "intro1": "Chez Agencement Lennon, une cuisine sur mesure commence par une rencontre : Steven vient chez vous, mesure votre espace, écoute vos envies et contraintes. Il n'existe pas de catalogue, pas de modèle standard à adapter — chaque cuisine est dessinée spécifiquement pour votre intérieur.",
   "intro2": "C'est cette approche qui fait la différence entre une cuisine \"sur mesure\" vendue en grande surface et une vraie création artisanale : les côtes sont les vôtres, les matériaux sont choisis ensemble, et la pose est réalisée par le même artisan qui a conçu le projet.",
-  "intro3": "Basé à Landivisiau, Steven intervient dans tout le Finistère : Brest, Morlaix, Lesneven, Landerneau, Saint-Pol-de-Léon, Quimper et leurs environs. Le déplacement pour le premier rendez-vous est gratuit."
+  "intro3": "Basé à Landivisiau, Steven intervient dans tout le Finistère : Brest, Morlaix, Lesneven, Landerneau, Saint-Pol-de-Léon, Quimper et leurs environs. Le déplacement pour le premier rendez-vous est gratuit.",
+  "faq": [
+    {
+      "q": "Quel est le délai de réalisation d'une cuisine sur mesure ?",
+      "a": "En général, comptez 4 à 8 semaines entre la validation du plan et la pose, selon la complexité du projet et notre planning. Nous vous donnons un délai précis dès la première rencontre."
+    },
+    {
+      "q": "Intervenez-vous pour des remplacements partiels (plan de travail, façades) ?",
+      "a": "Oui, nous pouvons remplacer uniquement les façades ou le plan de travail pour rénover une cuisine existante à moindre coût, sans tout démonter."
+    },
+    {
+      "q": "Quels matériaux proposez-vous pour les plans de travail ?",
+      "a": "Bois massif, stratifié haute résistance, quartz, céramique — nous vous conseillons selon l'usage, l'entretien souhaité et le budget. Chaque plan est coupé et ajusté sur mesure."
+    },
+    {
+      "q": "Peut-on intégrer un îlot central dans une petite cuisine ?",
+      "a": "Tout dépend de la circulation. Nous étudions avec vous si un îlot fixe, semi-fixe ou un meuble sur roulettes est plus adapté. Parfois un simple bar bien conçu change tout."
+    },
+    {
+      "q": "Proposez-vous la pose des électroménagers et de l'évier ?",
+      "a": "Nous posons l'ensemble du mobilier et coordonnons avec le plombier et l'électricien. Pour les électroménagers, nous pouvons les intégrer si vous les fournissez, ou vous conseiller sur les références compatibles."
+    }
+  ]
 }

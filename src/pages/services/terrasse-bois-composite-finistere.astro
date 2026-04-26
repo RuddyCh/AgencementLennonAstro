@@ -39,28 +39,7 @@ const serviceJsonLd = JSON.stringify({
   ]
 });
 
-const faq = [
-  {
-    q: "Bois ou composite : que choisir pour le climat breton ?",
-    a: "Le composite est idéal pour la Bretagne : imputrescible, anti-dérapant mouillé, sans entretien annuel. Le bois massif (pin traité, douglas, teck) offre un aspect plus naturel mais demande un entretien régulier (lasure, huilage). Nous vous conseillons selon votre usage et votre budget.",
-  },
-  {
-    q: "Faut-il un permis de construire pour une terrasse ?",
-    a: "Généralement non pour une terrasse de plain-pied. Au-delà de 20 m² ou si la terrasse est surélevée, une déclaration préalable peut être nécessaire. Nous vous guidons sur les démarches selon votre situation.",
-  },
-  {
-    q: "Quelle est la durée de vie d'une terrasse composite ?",
-    a: "Un composite de qualité a une durée de vie de 25 à 30 ans avec très peu d'entretien (un nettoyage annuel suffit). Nous travaillons avec des fabricants garantissant leurs produits 10 à 25 ans.",
-  },
-  {
-    q: "Posez-vous sur tous types de support ?",
-    a: "Oui : dalle béton existante, plots réglables sur terre, lambourdes sur ossature bois. Le type de support conditionne la solution technique — nous l'évaluons lors de la visite.",
-  },
-  {
-    q: "Quelle est la surface minimale pour un chantier ?",
-    a: "Nous intervenons dès 15 m². La plupart de nos chantiers vont de 20 à 80 m².",
-  },
-];
+const faq = serviceData.faq ?? [];
 ---
 
 <Layout

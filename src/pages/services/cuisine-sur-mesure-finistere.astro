@@ -49,28 +49,7 @@ const serviceJsonLd = JSON.stringify({
   }
 });
 
-const faq = [
-  {
-    q: "Quel est le délai de réalisation d'une cuisine sur mesure ?",
-    a: "En général, comptez 4 à 8 semaines entre la validation du plan et la pose, selon la complexité du projet et notre planning. Nous vous donnons un délai précis dès la première rencontre.",
-  },
-  {
-    q: "Intervenez-vous uniquement à Landivisiau ?",
-    a: "Non, nous intervenons dans tout le Finistère : Brest, Morlaix, Quimper, Saint-Pol-de-Léon, Lesneven, Landerneau... Contactez-nous pour vérifier selon votre commune.",
-  },
-  {
-    q: "Quels matériaux proposez-vous pour les façades ?",
-    a: "Bois massif (chêne, hêtre, frêne), MDF laqué, stratifié HPL, panneaux melaminés... Nous vous guidons selon votre budget, votre style et la durabilité souhaitée.",
-  },
-  {
-    q: "Proposez-vous un service de conception avant la pose ?",
-    a: "Oui, chaque projet commence par une étude personnalisée : visite du chantier, prise de côtes, proposition de plan. Ce premier rendez-vous est sans engagement.",
-  },
-  {
-    q: "Posez-vous également les électroménagers ?",
-    a: "Nous assurons la pose des meubles, plinthes, plans de travail et habillages. Pour les branchements électriques et plomberie, nous coordonnons avec vos artisans ou pouvons recommander des prestataires de confiance.",
-  },
-];
+const faq = serviceData.faq ?? [];
 ---
 
 <Layout

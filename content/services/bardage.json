@@ -6,5 +6,27 @@
   "photo2Alt": "Extension bardée — menuiserie Landivisiau",
   "intro1": "Le bardage n'est pas qu'esthétique : c'est une protection. En Finistère, les conditions météorologiques sont parmi les plus sévères de France. Un bardage mal posé ou mal choisi se dégrade rapidement, et les réparations coûtent cher.",
   "intro2": "Chez Agencement Lennon, nous sélectionnons les matériaux selon votre exposition, nous soignons la ventilation derrière le bardage (essentielle pour éviter condensation et pourriture), et nous fixons avec des systèmes inox pour tenir sur la durée sans taches de rouille.",
-  "intro3": "Qu'il s'agisse de rénover une façade vieillissante, d'habiller une extension neuve ou de créer un bardage contemporain sur une maison ancienne — nous étudions chaque projet pour un résultat qui tient dans le temps."
+  "intro3": "Qu'il s'agisse de rénover une façade vieillissante, d'habiller une extension neuve ou de créer un bardage contemporain sur une maison ancienne — nous étudions chaque projet pour un résultat qui tient dans le temps.",
+  "faq": [
+    {
+      "q": "Quel bardage résiste le mieux au climat breton ?",
+      "a": "En Bretagne, le composite et le fibrociment sont les plus durables : imperméables, résistants aux vents chargés en sel, sans entretien. Le bois naturel (red cedar, mélèze, douglas) est aussi adapté avec un traitement initial et un entretien tous les 3 à 5 ans. Nous conseillons selon votre exposition et votre budget."
+    },
+    {
+      "q": "Faut-il un permis pour poser un bardage ?",
+      "a": "Un bardage modifiant l'aspect extérieur de la maison nécessite généralement une déclaration préalable de travaux. En zone protégée (ABF), les règles sont plus strictes. Nous vous informons lors de la visite."
+    },
+    {
+      "q": "Posez-vous aussi les isolants sous le bardage ?",
+      "a": "Oui, nous travaillons en coordination avec les artisans isolation ou pouvons intégrer le complexe isolant + bardage selon vos besoins. Un bardage ventilé bien posé améliore sensiblement le bilan thermique."
+    },
+    {
+      "q": "Quelles sont les orientations les plus adaptées au bardage ?",
+      "a": "Toutes les façades peuvent être bardées. Les façades nord et ouest (plus exposées en Bretagne) bénéficient particulièrement du composite ou du fibrociment pour leur imperméabilité totale."
+    },
+    {
+      "q": "Réalisez-vous des habillages de colonnes ou de murets ?",
+      "a": "Oui, nous réalisons tous types d'habillages extérieurs : colonnes, piliers de portail, murets, soubassements, extensions et garages."
+    }
+  ]
 }

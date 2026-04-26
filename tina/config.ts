@@ -208,6 +208,33 @@ export default defineConfig({
             label: 'Paragraphe 3',
             ui:    { component: 'textarea' },
           },
+
+          // ── FAQ ───────────────────────────────────────────────
+          {
+            type:  'object',
+            name:  'faq',
+            label: '❓ Questions fréquentes (FAQ)',
+            list:  true,
+            ui: {
+              itemProps: item => ({ label: item?.q || 'Question' }),
+            },
+            fields: [
+              {
+                type:     'string',
+                name:     'q',
+                label:    'Question',
+                isTitle:  true,
+                required: true,
+              },
+              {
+                type:  'string',
+                name:  'a',
+                label: 'Réponse',
+                ui:    { component: 'textarea' },
+                required: true,
+              },
+            ],
+          },
         ],
       },
 

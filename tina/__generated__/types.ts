@@ -339,6 +339,12 @@ export type GalleryConnection = Connection & {
   edges?: Maybe<Array<Maybe<GalleryConnectionEdges>>>;
 };
 
+export type ServicesFaq = {
+  __typename?: 'ServicesFaq';
+  q: Scalars['String']['output'];
+  a: Scalars['String']['output'];
+};
+
 export type Services = Node & Document & {
   __typename?: 'Services';
   heroSubtitle?: Maybe<Scalars['String']['output']>;
@@ -349,9 +355,15 @@ export type Services = Node & Document & {
   intro1?: Maybe<Scalars['String']['output']>;
   intro2?: Maybe<Scalars['String']['output']>;
   intro3?: Maybe<Scalars['String']['output']>;
+  faq?: Maybe<Array<Maybe<ServicesFaq>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
+};
+
+export type ServicesFaqFilter = {
+  q?: InputMaybe<StringFilter>;
+  a?: InputMaybe<StringFilter>;
 };
 
 export type ServicesFilter = {
@@ -363,6 +375,7 @@ export type ServicesFilter = {
   intro1?: InputMaybe<StringFilter>;
   intro2?: InputMaybe<StringFilter>;
   intro3?: InputMaybe<StringFilter>;
+  faq?: InputMaybe<ServicesFaqFilter>;
 };
 
 export type ServicesConnectionEdges = {
@@ -511,6 +524,11 @@ export type GalleryMutation = {
   order?: InputMaybe<Scalars['Float']['input']>;
 };
 
+export type ServicesFaqMutation = {
+  q?: InputMaybe<Scalars['String']['input']>;
+  a?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ServicesMutation = {
   heroSubtitle?: InputMaybe<Scalars['String']['input']>;
   photo1?: InputMaybe<Scalars['String']['input']>;
@@ -520,13 +538,14 @@ export type ServicesMutation = {
   intro1?: InputMaybe<Scalars['String']['input']>;
   intro2?: InputMaybe<Scalars['String']['input']>;
   intro3?: InputMaybe<Scalars['String']['input']>;
+  faq?: InputMaybe<Array<InputMaybe<ServicesFaqMutation>>>;
 };
 
 export type HomepagePartsFragment = { __typename: 'Homepage', hero?: { __typename: 'HomepageHero', eyebrow?: string | null, titleLine1?: string | null, titleLine2?: string | null, subtitle?: string | null, ctaText?: string | null, ctaSecondary?: string | null } | null, stats?: Array<{ __typename: 'HomepageStats', value?: number | null, suffix?: string | null, label?: string | null } | null> | null, about?: { __typename: 'HomepageAbout', paragraph1?: string | null, paragraph2?: string | null, photo?: string | null } | null };
 
 export type GalleryPartsFragment = { __typename: 'Gallery', caption: string, photo?: string | null, alt?: string | null, category?: string | null, featured?: boolean | null, order?: number | null };
 
-export type ServicesPartsFragment = { __typename: 'Services', heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null };
+export type ServicesPartsFragment = { __typename: 'Services', heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, faq?: Array<{ __typename: 'ServicesFaq', q: string, a: string } | null> | null };
 
 export type HomepageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -571,7 +590,7 @@ export type ServicesQueryVariables = Exact<{
 }>;
 
 
-export type ServicesQuery = { __typename?: 'Query', services: { __typename: 'Services', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ServicesQuery = { __typename?: 'Query', services: { __typename: 'Services', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'ServicesFaq', q: string, a: string } | null> | null } };
 
 export type ServicesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -583,7 +602,7 @@ export type ServicesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ServicesConnectionQuery = { __typename?: 'Query', servicesConnection: { __typename?: 'ServicesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServicesConnectionEdges', cursor: string, node?: { __typename: 'Services', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ServicesConnectionQuery = { __typename?: 'Query', servicesConnection: { __typename?: 'ServicesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ServicesConnectionEdges', cursor: string, node?: { __typename: 'Services', id: string, heroSubtitle?: string | null, photo1?: string | null, photo1Alt?: string | null, photo2?: string | null, photo2Alt?: string | null, intro1?: string | null, intro2?: string | null, intro3?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, faq?: Array<{ __typename: 'ServicesFaq', q: string, a: string } | null> | null } | null } | null> | null } };
 
 export const HomepagePartsFragmentDoc = gql`
     fragment HomepageParts on Homepage {
@@ -633,6 +652,11 @@ export const ServicesPartsFragmentDoc = gql`
   intro1
   intro2
   intro3
+  faq {
+    __typename
+    q
+    a
+  }
 }
     `;
 export const HomepageDocument = gql`

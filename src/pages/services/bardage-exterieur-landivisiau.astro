@@ -33,28 +33,7 @@ const serviceJsonLd = JSON.stringify({
   ]
 });
 
-const faq = [
-  {
-    q: "Quel bardage résiste le mieux au climat breton ?",
-    a: "En Bretagne, le composite et le fibrociment sont les plus durables : imperméables, résistants aux vents chargés en sel, sans entretien. Le bois naturel (red cedar, mélèze, douglas) est aussi adapté avec un traitement initial et un entretien tous les 3 à 5 ans. Nous conseillons selon votre exposition et votre budget.",
-  },
-  {
-    q: "Faut-il un permis pour poser un bardage ?",
-    a: "Un bardage modifiant l'aspect extérieur de la maison nécessite généralement une déclaration préalable de travaux. En zone protégée (ABF), les règles sont plus strictes. Nous vous informons lors de la visite.",
-  },
-  {
-    q: "Posez-vous aussi les isolants sous le bardage ?",
-    a: "Oui, nous travaillons en coordination avec les artisans isolation ou pouvons intégrer le complexe isolant + bardage selon vos besoins. Un bardage ventilé bien posé améliore sensiblement le bilan thermique.",
-  },
-  {
-    q: "Quelles sont les orientations les plus adaptées au bardage ?",
-    a: "Toutes les façades peuvent être bardées. Les façades nord et ouest (plus exposées en Bretagne) bénéficient particulièrement du composite ou du fibrociment pour leur imperméabilité totale.",
-  },
-  {
-    q: "Réalisez-vous des habillages de colonnes ou de murets ?",
-    a: "Oui, nous réalisons tous types d'habillages extérieurs : colonnes, piliers de portail, murets, soubassements, extensions et garages.",
-  },
-];
+const faq = serviceData.faq ?? [];
 ---
 
 <Layout

@@ -201,6 +201,32 @@ var config_default = defineConfig({
             name: "intro3",
             label: "Paragraphe 3",
             ui: { component: "textarea" }
+          },
+          // ── FAQ ───────────────────────────────────────────────
+          {
+            type: "object",
+            name: "faq",
+            label: "\u2753 Questions fr\xE9quentes (FAQ)",
+            list: true,
+            ui: {
+              itemProps: (item) => ({ label: item?.q || "Question" })
+            },
+            fields: [
+              {
+                type: "string",
+                name: "q",
+                label: "Question",
+                isTitle: true,
+                required: true
+              },
+              {
+                type: "string",
+                name: "a",
+                label: "R\xE9ponse",
+                ui: { component: "textarea" },
+                required: true
+              }
+            ]
           }
         ]
       }

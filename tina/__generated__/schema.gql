@@ -222,6 +222,11 @@ type GalleryConnection implements Connection {
   edges: [GalleryConnectionEdges]
 }
 
+type ServicesFaq {
+  q: String!
+  a: String!
+}
+
 type Services implements Node & Document {
   heroSubtitle: String
   photo1: String
@@ -231,9 +236,15 @@ type Services implements Node & Document {
   intro1: String
   intro2: String
   intro3: String
+  faq: [ServicesFaq]
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
+}
+
+input ServicesFaqFilter {
+  q: StringFilter
+  a: StringFilter
 }
 
 input ServicesFilter {
@@ -245,6 +256,7 @@ input ServicesFilter {
   intro1: StringFilter
   intro2: StringFilter
   intro3: StringFilter
+  faq: ServicesFaqFilter
 }
 
 type ServicesConnectionEdges {
@@ -321,6 +333,11 @@ input GalleryMutation {
   order: Float
 }
 
+input ServicesFaqMutation {
+  q: String
+  a: String
+}
+
 input ServicesMutation {
   heroSubtitle: String
   photo1: String
@@ -330,6 +347,7 @@ input ServicesMutation {
   intro1: String
   intro2: String
   intro3: String
+  faq: [ServicesFaqMutation]
 }
 
 schema {

@@ -43,4 +43,9 @@ fragment ServicesParts on Services {
   intro1
   intro2
   intro3
+  faq {
+    __typename
+    q
+    a
+  }
 }
