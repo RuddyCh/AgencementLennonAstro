@@ -163,8 +163,9 @@ const jsonLd = isHome ? JSON.stringify({
 
   <!-- Préchargement image hero : géré par fetchpriority="high" sur le composant <Image> -->
 
-  <!-- JSON-LD -->
+  <!-- JSON-LD LocalBusiness (accueil) + schemas injectés par les pages enfants -->
   {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+  <slot name="head" />
 
   <!-- Astro View Transitions -->
   <ViewTransitions />
@@ -177,7 +178,6 @@ const jsonLd = isHome ? JSON.stringify({
   <!-- Accessibilité : skip link -->
   <a class="skip-link" href="#contenu">Aller au contenu principal</a>
 
-  <slot name="head" />
   <slot />
 
   <!-- GSAP + ScrollTrigger -->

@@ -91,7 +91,7 @@ const { hero, stats } = homeData;
                 data-count={stat.value}
                 data-suffix={stat.suffix}
                 aria-label={`${stat.value}${stat.suffix} ${stat.label}`}
-              >0</span>
+              >{stat.value}{stat.suffix}</span>
               <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">{stat.label}</span>
             </div>
           ))}
