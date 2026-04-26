@@ -6,6 +6,9 @@
  */
 
 import { Image } from 'astro:assets';
+// ⚠ stevbg.jpg doit être déplacé de public/images/ vers src/assets/images/
+// Idéalement le renommer : steven-lennon-menuisier-landivisiau.jpg
+import stevbg from '../assets/images/steven-lennon-menuisier-landivisiau.jpg';
 
 const values = [
   {
@@ -35,12 +38,10 @@ const values = [
       <div class="about-image-wrap reveal-left order-2 lg:order-1">
         <div class="relative">
           <Image
-            src="/images/stevbg.jpg"
+            src={stevbg}
             alt="Extension de maison réalisée par Agencement Lennon — bardage anthracite et baies vitrées, Finistère"
             class="about-image-main w-full rounded-sm shadow-luxury-lg object-cover"
             style="aspect-ratio:4/5"
-            width={600}
-            height={750}
             quality={85}
             loading="lazy"
           />

@@ -12,6 +12,7 @@ export interface Props {
   image?:       string;
   canonical?:   string;
   isHome?:      boolean;
+  robots?:      string;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   image       = '/images/wood-bg-blue.jpg',
   canonical   = 'https://www.agencementlennon.fr/',
   isHome      = false,
+  robots      = 'index, follow',
 } = Astro.props;
 
 const siteName = 'Agencement Lennon';
@@ -122,7 +124,7 @@ const jsonLd = isHome ? JSON.stringify({
   <!-- SEO primaire -->
   <title>{title}</title>
   <meta name="description"   content={description} />
-  <meta name="robots"        content="index, follow" />
+  <meta name="robots"        content={robots} />
   <meta name="author"        content="Steven Lennon — Agencement Lennon" />
   <link rel="canonical"      href={canonical} />
 
@@ -251,13 +253,12 @@ const jsonLd = isHome ? JSON.stringify({
         document.querySelectorAll('.hero-reveal').forEach(el => {
           el.style.visibility = 'visible';
         });
+        // Afficher la valeur finale des compteurs (sinon ils restent bloqués à "0")
+        document.querySelectorAll('[data-count]').forEach(el => {
+          el.textContent = el.getAttribute('data-count') + (el.getAttribute('data-suffix') || '');
+        });
         return;
       }
-
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-      // LENIS SMOOTH SCROLL
-      // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 
       // ── .reveal : fade + glisse vers le haut ──
       gsap.utils.toArray('.reveal').forEach(el => {

@@ -1,0 +1,78 @@
+---
+/**
+ * ServiceFAQ.astro — Section FAQ réutilisable pour toutes les pages service
+ * Gère le rendu HTML, l'accordion JS, et le JSON-LD FAQPage
+ */
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+export interface Props {
+  /** Titre affiché dans le H2 (ex: "Cuisine sur mesure") */
+  serviceLabel: string;
+  items:        FaqItem[];
+}
+
+const { serviceLabel, items } = Astro.props;
+
+const faqJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+---
+
+<section class="section bg-cream" aria-labelledby="faq-title">
+  <div class="container max-w-3xl">
+    <span class="section-eyebrow reveal">Questions fréquentes</span>
+    <h2 class="section-title reveal" id="faq-title">
+      {serviceLabel} — <em>FAQ</em>
+    </h2>
+    <div class="ornament-line reveal-clip mt-4 mb-10"></div>
+
+    <script type="application/ld+json" set:html={faqJsonLd} />
+
+    <dl class="space-y-4 stagger-parent">
+      {items.map(item => (
+        <div class="stagger-child bg-white border border-cream-dark rounded-sm overflow-hidden">
+          <dt>
+            <button
+              class="faq-btn w-full flex items-center justify-between gap-4 p-6 text-left
+                     font-serif text-navy hover:text-oak transition-colors duration-200"
+              aria-expanded="false"
+            >
+              <span class="text-base leading-snug">{item.q}</span>
+              <svg class="faq-icon w-5 h-5 flex-shrink-0 text-oak transition-transform duration-300"
+                   viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+          </dt>
+          <dd class="faq-answer hidden px-6 pb-6 font-sans text-sm text-stone leading-relaxed">
+            {item.a}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<script>
+  // Accordion — délégation d'événement pour compatibilité View Transitions
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as Element).closest<HTMLButtonElement>('.faq-btn');
+    if (!btn) return;
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    const answer = btn.closest('div')?.querySelector('.faq-answer');
+    const icon   = btn.querySelector('.faq-icon') as HTMLElement | null;
+    answer?.classList.toggle('hidden', expanded);
+    if (icon) icon.style.transform = expanded ? '' : 'rotate(180deg)';
+  });
+</script>
