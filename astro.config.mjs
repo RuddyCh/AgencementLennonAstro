@@ -6,7 +6,11 @@ export default defineConfig({
   site: 'https://www.agencementlennon.fr',
   integrations: [
     tailwind(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        !page.includes('/admin/') &&
+        !page.includes('/tina/'),
+    }),
   ],
   compressHTML: true,
   build: {
