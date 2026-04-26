@@ -81,12 +81,11 @@ const { hero, stats } = homeData;
       </div>
 
       <!-- Statistiques -->
-      <div class="hero-reveal flex flex-wrap gap-8 lg:gap-14">
-        <div class="w-full h-px bg-white/15 mb-4" aria-hidden="true"></div>
-        {stats.map((stat, i) => (
-          <>
-            {i > 0 && <div class="w-px bg-white/15 self-stretch" aria-hidden="true"></div>}
-            <div class="flex flex-col">
+      <div class="hero-reveal w-full">
+        <div class="w-full h-px bg-white/15 mb-6" aria-hidden="true"></div>
+        <div class="grid grid-cols-2 gap-y-6 sm:flex sm:flex-row sm:gap-14">
+          {stats.map((stat, i) => (
+            <div class="flex flex-col pl-4 border-l border-white/15">
               <span
                 class="font-serif text-4xl font-semibold text-cream"
                 data-count={stat.value}
@@ -95,15 +94,15 @@ const { hero, stats } = homeData;
               >0</span>
               <span class="text-xs font-sans tracking-widest uppercase text-oak-light mt-1">{stat.label}</span>
             </div>
-          </>
-        ))}
+          ))}
+        </div>
       </div>
 
     </div>
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-cream/40 hero-reveal" aria-hidden="true">
+  <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-cream/40 hero-reveal" aria-hidden="true">
     <span class="text-xs font-sans tracking-widest uppercase">Défiler</span>
     <div class="w-px h-12 bg-gradient-to-b from-cream/40 to-transparent scroll-line"></div>
   </div>
