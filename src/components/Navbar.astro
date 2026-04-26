@@ -261,14 +261,30 @@
 
 <script>
   // ── Header scroll state ──────────────────────────────────────
-  const header = document.getElementById('site-header');
-  if (header) {
+  // Réinitialisé à chaque navigation View Transitions via astro:page-load
+  function initHeader() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+
+    // Sur les pages sans hero (hors accueil), le header est toujours opaque
+    const isHome = window.location.pathname === '/' || window.location.pathname === '';
+
     const handleScroll = () => {
-      header.classList.toggle('scrolled', window.scrollY > 50);
+      header.classList.toggle('scrolled', !isHome || window.scrollY > 50);
     };
+
+    // Nettoyage de l'ancien listener avant d'en ajouter un nouveau
+    const prev = (header as any)._scrollHandler;
+    if (prev) window.removeEventListener('scroll', prev);
+    (header as any)._scrollHandler = handleScroll;
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // état initial
+    handleScroll(); // état initial immédiat
   }
+
+  // Exécuté au chargement initial ET après chaque navigation View Transitions
+  document.addEventListener('astro:page-load', initHeader);
+  initHeader();
 
   // ── Menu mobile ──────────────────────────────────────────────
   const navToggle = document.getElementById('navToggle');
