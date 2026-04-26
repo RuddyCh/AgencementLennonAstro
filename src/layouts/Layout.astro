@@ -444,7 +444,13 @@ const jsonLd = isHome ? JSON.stringify({
     // View Transitions ready (à activer quand @astrojs/transitions sera intégré)
     document.addEventListener('astro:page-load', () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
-      initAnimations();
+      // rAF : attend que le browser ait peint le nouveau DOM avant que
+      // ScrollTrigger mesure les positions — sinon race condition intermittente
+      // où les triggers se créent sur un layout stale → éléments restent à opacity:0
+      requestAnimationFrame(() => {
+        initAnimations();
+        ScrollTrigger.refresh();
+      });
     });
   </script>
 </body>
